@@ -1,0 +1,18 @@
+set_location_assignment PIN_AE26 -to dig0[0] -comment HEX0[0]
+set_location_assignment PIN_AE27 -to dig0[1]
+set_location_assignment PIN_AE28 -to dig0[2]
+set_location_assignment PIN_AG27 -to dig0[3]
+set_location_assignment PIN_AF28 -to dig0[4]
+set_location_assignment PIN_AG28 -to dig0[5]
+set_location_assignment PIN_AH28 -to dig0[6]
+set_location_assignment PIN_AJ29 -to dig1[0]
+set_location_assignment PIN_AH29 -to dig1[1]
+set_location_assignment PIN_AH30 -to dig1[2]
+set_location_assignment PIN_AG30 -to dig1[3]
+set_location_assignment PIN_AF29 -to dig1[4]
+set_location_assignment PIN_AF30 -to dig1[5]
+set_location_assignment PIN_AD27 -to dig1[6]
+set_location_assignment PIN_AA14 -to reset -comment KEY[0]
+set_location_assignment PIN_AD7 -to kbclock -comment PS2_CLK
+set_location_assignment PIN_AE7 -to kbdata -comment PS2_DAT
+set_location_assignment PIN_V16  -to byte_read

@@ -1,0 +1,113 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "dig0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "dig0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dig0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "dig0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "dig0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "dig0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "dig0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "dig1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[0]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[1]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[2]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[3]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[4]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[5]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[6]",
+					"strict" : false
+				},
+				{
+					"name" : "scancode[7]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_read",
+					"strict" : false
+				},
+				{
+					"name" : "kbclock",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "kbdata",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

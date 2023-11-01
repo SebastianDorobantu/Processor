@@ -1,0 +1,18 @@
+vsim -gui work.key2pulselength
+# vsim -gui work.key2pulselength 
+# Start time: 12:24:57 on Oct 19,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.key2pulselength(bhv)
+add wave *
+
+
+
+
+
+
+
+run -all
+wave zoom full

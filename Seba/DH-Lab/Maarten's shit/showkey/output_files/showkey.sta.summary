@@ -1,0 +1,53 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'kbclock'
+Slack : -1.413
+TNS   : -49.649
+
+Type  : Slow 1100mV 85C Model Hold 'kbclock'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'kbclock'
+Slack : -0.394
+TNS   : -24.455
+
+Type  : Slow 1100mV 0C Model Setup 'kbclock'
+Slack : -1.298
+TNS   : -45.308
+
+Type  : Slow 1100mV 0C Model Hold 'kbclock'
+Slack : 0.267
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'kbclock'
+Slack : -0.394
+TNS   : -25.888
+
+Type  : Fast 1100mV 85C Model Setup 'kbclock'
+Slack : -0.354
+TNS   : -9.465
+
+Type  : Fast 1100mV 85C Model Hold 'kbclock'
+Slack : 0.138
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'kbclock'
+Slack : -0.331
+TNS   : -15.647
+
+Type  : Fast 1100mV 0C Model Setup 'kbclock'
+Slack : -0.233
+TNS   : -5.851
+
+Type  : Fast 1100mV 0C Model Hold 'kbclock'
+Slack : 0.145
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'kbclock'
+Slack : -0.340
+TNS   : -16.327
+
+------------------------------------------------------------

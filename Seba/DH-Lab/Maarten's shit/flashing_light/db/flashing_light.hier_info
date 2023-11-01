@@ -1,0 +1,6 @@
+|flashing_light
+clk => ~NO_FANOUT~
+reset => ~NO_FANOUT~
+led <> led
+
+

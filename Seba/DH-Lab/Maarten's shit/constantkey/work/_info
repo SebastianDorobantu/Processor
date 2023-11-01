@@ -1,0 +1,89 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/18.1/projects/showkey
+Econstant_simple_test
+Z0 w1696865375
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dC:/intelFPGA_lite/18.1/projects/constantkey
+Z4 8C:/intelFPGA_lite/18.1/projects/constantkey/constant_simple_test.vhd
+Z5 FC:/intelFPGA_lite/18.1/projects/constantkey/constant_simple_test.vhd
+l0
+L5
+V<2UURngg>87nK87zGYSdj3
+!s100 2L_T:^aVnAKHBoB4`Zd2;0
+Z6 OV;C;10.5b;63
+32
+Z7 !s110 1697615765
+!i10b 1
+Z8 !s108 1697615765.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/constantkey/constant_simple_test.vhd|
+Z10 !s107 C:/intelFPGA_lite/18.1/projects/constantkey/constant_simple_test.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Atest
+Z13 DEx4 work 11 constantkey 0 22 E;QfnoMW5X7GnJ@Ioig7_2
+R1
+R2
+DEx4 work 20 constant_simple_test 0 22 <2UURngg>87nK87zGYSdj3
+l64
+L8
+V5^jn6;C:<4:kY>YgOi6fR2
+!s100 20N[[`ROilO0LzL[EM@<U2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Econstantkey
+Z14 w1697616976
+R1
+R2
+R3
+Z15 8C:/intelFPGA_lite/18.1/projects/constantkey/constant_key_entity.vhd
+Z16 FC:/intelFPGA_lite/18.1/projects/constantkey/constant_key_entity.vhd
+l0
+L4
+VE;QfnoMW5X7GnJ@Ioig7_2
+!s100 f3c[9RPW[i225fCR_[eZZ0
+R6
+32
+Z17 !s110 1697616984
+!i10b 1
+Z18 !s108 1697616984.000000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/constantkey/constant_key_entity.vhd|
+Z20 !s107 C:/intelFPGA_lite/18.1/projects/constantkey/constant_key_entity.vhd|
+!i113 1
+R11
+R12
+Abhv
+R1
+R2
+R13
+l43
+L15
+Z21 V5fiQ1>kJSA`aU0k?o@?Zl2
+Z22 !s100 a5<KlGzci@leQnQH0c]Lj1
+R6
+32
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R11
+R12

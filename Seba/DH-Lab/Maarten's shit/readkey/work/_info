@@ -1,0 +1,200 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/18.1/projects/constantkey
+Econstantkey
+Z0 w1697704313
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dC:/intelFPGA_lite/18.1/projects/readkey
+Z4 8C:/intelFPGA_lite/18.1/projects/readkey/constant_key_entity.vhd
+Z5 FC:/intelFPGA_lite/18.1/projects/readkey/constant_key_entity.vhd
+l0
+L4
+VE;QfnoMW5X7GnJ@Ioig7_2
+!s100 f3c[9RPW[i225fCR_[eZZ0
+Z6 OV;C;10.5b;63
+32
+Z7 !s110 1697705871
+!i10b 1
+Z8 !s108 1697705871.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/readkey/constant_key_entity.vhd|
+Z10 !s107 C:/intelFPGA_lite/18.1/projects/readkey/constant_key_entity.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abhv
+R1
+R2
+Z13 DEx4 work 11 constantkey 0 22 E;QfnoMW5X7GnJ@Ioig7_2
+l43
+L15
+V]Q1G4EmW>=JAUO0g>hV0[1
+!s100 cZ`^5a1Rb10YjEceCgi?83
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ereadkey
+Z14 w1697701045
+R1
+R2
+R3
+Z15 8C:/intelFPGA_lite/18.1/projects/readkey/readkey_entity.vhd
+Z16 FC:/intelFPGA_lite/18.1/projects/readkey/readkey_entity.vhd
+l0
+L3
+VT416_1^;S`EVaikL@;O?z2
+!s100 `X>h00VRPneCWdB15k=CT0
+R6
+32
+R7
+!i10b 1
+R8
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/readkey/readkey_entity.vhd|
+Z18 !s107 C:/intelFPGA_lite/18.1/projects/readkey/readkey_entity.vhd|
+!i113 1
+R11
+R12
+Abhv
+R13
+Z19 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z20 DEx4 work 7 showkey 0 22 n;10]:BQ@]h9TFRRN:MZT2
+R1
+R2
+Z21 DEx4 work 7 readkey 0 22 T416_1^;S`EVaikL@;O?z2
+l42
+L16
+V2]RmYC^e^i[T6526c^7he0
+!s100 2MzgbniXNbK;0Nl>`MU^z0
+R6
+32
+!s110 1697705872
+!i10b 1
+R8
+R17
+R18
+!i113 1
+R11
+R12
+Astructure
+DPx8 cyclonev 18 cyclonev_atom_pack 0 22 OGn598C_0mX<WSGfCb?AK2
+DPx8 cyclonev 19 cyclonev_components 0 22 CcdNAEi>PYH4@n><]NQ]V2
+DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+DPx6 altera 11 dffeas_pack 0 22 :S1C`o89Vbe5bV6`:6CaB3
+DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+R1
+R2
+DPx6 altera 28 altera_primitives_components 0 22 z?[99Tn<@QGNik3V1c6ah1
+DEx4 work 7 readkey 0 22 aVfz3dL2[^NODXofPAbze3
+l238
+L95
+V:e^=[DD>G04WIEMT:Ib:M0
+!s100 0WLg`oO?BX<7lm^dGcJ][2
+R6
+32
+!s110 1697702760
+!i10b 1
+!s108 1697702760.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/readkey/simulation/modelsim/readkey.vho|
+!s107 C:/intelFPGA_lite/18.1/projects/readkey/simulation/modelsim/readkey.vho|
+!i113 1
+R11
+R12
+FC:/intelFPGA_lite/18.1/projects/readkey/simulation/modelsim/readkey.vho
+w1697702632
+8C:/intelFPGA_lite/18.1/projects/readkey/simulation/modelsim/readkey.vho
+Ereadkey_simple_test
+Z22 w1696865376
+R1
+R2
+R3
+Z23 8C:/intelFPGA_lite/18.1/projects/readkey/readkey_simple_test.vhd
+Z24 FC:/intelFPGA_lite/18.1/projects/readkey/readkey_simple_test.vhd
+l0
+L5
+V>g=gfID]k7SH>71OkFZg<2
+!s100 QKFGO6:4X3RLTL<LXNi820
+R6
+32
+Z25 !s110 1697705876
+!i10b 1
+Z26 !s108 1697705876.000000
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/readkey/readkey_simple_test.vhd|
+Z28 !s107 C:/intelFPGA_lite/18.1/projects/readkey/readkey_simple_test.vhd|
+!i113 1
+R11
+R12
+Atest
+R21
+R1
+R2
+Z29 DEx4 work 19 readkey_simple_test 0 22 >g=gfID]k7SH>71OkFZg<2
+l65
+L8
+Z30 VMmfHPTC^czajMNJ78:iFj3
+Z31 !s100 QU6CLYCZ@:B>M54a=H3@O0
+R6
+32
+R25
+!i10b 1
+R26
+R27
+R28
+!i113 1
+R11
+R12
+Eshowkey
+Z32 w1697705788
+R19
+R1
+R2
+R3
+Z33 8C:/intelFPGA_lite/18.1/projects/readkey/showkey_entity.vhd
+Z34 FC:/intelFPGA_lite/18.1/projects/readkey/showkey_entity.vhd
+l0
+L7
+Vn;10]:BQ@]h9TFRRN:MZT2
+!s100 _z[aSV0PIjAa;5A[Pic8N0
+R6
+32
+R7
+!i10b 1
+R8
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA_lite/18.1/projects/readkey/showkey_entity.vhd|
+Z36 !s107 C:/intelFPGA_lite/18.1/projects/readkey/showkey_entity.vhd|
+!i113 1
+R11
+R12
+Abhv
+R19
+R1
+R2
+R20
+l42
+L18
+Vm2UjYaUdk2n4VcQFF=IB80
+!s100 [1<cD[Ka]5RcE>0gIYGa:2
+R6
+32
+R7
+!i10b 1
+R8
+R35
+R36
+!i113 1
+R11
+R12

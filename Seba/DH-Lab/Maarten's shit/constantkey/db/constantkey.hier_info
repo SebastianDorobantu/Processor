@@ -1,0 +1,41 @@
+|constantkey
+reset => cnt.ACLR
+reset => new_scancode_detected~reg0.ACLR
+clk => cnt.CLK
+clk => new_scancode_detected~reg0.CLK
+scancode[0] => ~NO_FANOUT~
+scancode[1] => ~NO_FANOUT~
+scancode[2] => ~NO_FANOUT~
+scancode[3] => ~NO_FANOUT~
+scancode[4] => ~NO_FANOUT~
+scancode[5] => ~NO_FANOUT~
+scancode[6] => ~NO_FANOUT~
+scancode[7] => ~NO_FANOUT~
+byte_read => new_scancode_detected.DATAB
+byte_read => new_scancode_detected.OUTPUTSELECT
+byte_read => cnt.DATAB
+dig2[0] <= dig2[0].DB_MAX_OUTPUT_PORT_TYPE
+dig2[1] <= dig2[1].DB_MAX_OUTPUT_PORT_TYPE
+dig2[2] <= dig2[2].DB_MAX_OUTPUT_PORT_TYPE
+dig2[3] <= dig2[3].DB_MAX_OUTPUT_PORT_TYPE
+dig2[4] <= dig2[4].DB_MAX_OUTPUT_PORT_TYPE
+dig2[5] <= dig2[5].DB_MAX_OUTPUT_PORT_TYPE
+dig2[6] <= dig2[6].DB_MAX_OUTPUT_PORT_TYPE
+dig3[0] <= dig3[0].DB_MAX_OUTPUT_PORT_TYPE
+dig3[1] <= dig3[1].DB_MAX_OUTPUT_PORT_TYPE
+dig3[2] <= dig3[2].DB_MAX_OUTPUT_PORT_TYPE
+dig3[3] <= dig3[3].DB_MAX_OUTPUT_PORT_TYPE
+dig3[4] <= dig3[4].DB_MAX_OUTPUT_PORT_TYPE
+dig3[5] <= dig3[5].DB_MAX_OUTPUT_PORT_TYPE
+dig3[6] <= dig3[6].DB_MAX_OUTPUT_PORT_TYPE
+key[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+key[1] <= key[1].DB_MAX_OUTPUT_PORT_TYPE
+key[2] <= key[2].DB_MAX_OUTPUT_PORT_TYPE
+key[3] <= key[3].DB_MAX_OUTPUT_PORT_TYPE
+key[4] <= key[4].DB_MAX_OUTPUT_PORT_TYPE
+key[5] <= key[5].DB_MAX_OUTPUT_PORT_TYPE
+key[6] <= key[6].DB_MAX_OUTPUT_PORT_TYPE
+key[7] <= key[7].DB_MAX_OUTPUT_PORT_TYPE
+new_scancode_detected <= new_scancode_detected~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

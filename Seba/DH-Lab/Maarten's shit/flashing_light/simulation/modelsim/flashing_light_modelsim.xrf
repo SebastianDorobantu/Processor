@@ -1,0 +1,13 @@
+vendor_name = ModelSim
+source_file = 1, C:/intelFPGA_lite/18.1/projects/flashing_light/flashing_light.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/intelfpga_lite/18.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+source_file = 1, C:/intelFPGA_lite/18.1/projects/flashing_light/db/flashing_light.cbx.xml
+design_name = flashing_light
+instance = comp, \led~output\, led~output, flashing_light, 1
+instance = comp, \clk~input\, clk~input, flashing_light, 1
+instance = comp, \reset~input\, reset~input, flashing_light, 1
+instance = comp, \led~input\, led~input, flashing_light, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, flashing_light, 1

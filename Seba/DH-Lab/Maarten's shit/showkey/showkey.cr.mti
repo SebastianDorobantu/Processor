@@ -1,0 +1,20 @@
+C:/intelFPGA_lite/18.1/projects/showkey/showkey_entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA_lite/18.1/projects/showkey/showkey_entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity showkey
+-- Compiling architecture bhv of showkey
+
+} {} {}} C:/intelFPGA_lite/18.1/projects/showkey/showkey_simple_test.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA_lite/18.1/projects/showkey/showkey_simple_test.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity showkey_simple_test
+-- Compiling architecture test of showkey_simple_test
+-- Loading package NUMERIC_STD
+-- Loading entity showkey
+
+} {} {}}
