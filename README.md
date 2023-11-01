@@ -4,7 +4,7 @@ Certainly! Below is a template for a README file for your VHDL processor project
 
 # VHDL Processor Project
 
-![University of Twente Logo](https://www.utwente.nl/global-assets/shared/logo.png)
+![University of Twente Logo](Boring/hnipmwf8ce0qpb3bxfzmqa.png)
 
 ## Table of Contents
 
