@@ -24,7 +24,7 @@ ENTITY registerfile IS
 END registerfile; 
 
 ARCHITECTURE bhv of registerfile IS 
-	TYPE reg_array IS ARRAY(0 TO 15) OF std_logic_vector(15 DOWNTO 0); --register file 16x16
+	TYPE reg_array IS ARRAY(0 TO 15) OF std_logic_vector(15 DOWNTO 0) ; --register file 16x16
 	SIGNAL regs: reg_array; 
 BEGIN 
 	PROCESS(clk) IS 
