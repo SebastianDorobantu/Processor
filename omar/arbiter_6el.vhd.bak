@@ -60,7 +60,7 @@ process(write_enable)
 
 process(addr)
 	begin
-	   address(7 downto 0) <= addr;
+	   adress(7 downto 0) <= addr;
 	end process;
 
 
