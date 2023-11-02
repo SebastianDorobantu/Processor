@@ -17,20 +17,29 @@ signal PC_temp         : unsigned(7 DOWNTO 0) := (OTHERS => '0');
 
 BEGIN
 
-PROCESS(clk,reset)
+PC <= std_logic_vector(PC_temp);
 
+PROCESS(CU_control,reset)
 BEGIN
+    IF reset = '0' THEN
+        PC_temp <= (OTHERS => '0') ;
+    ELSE
+        -- WITH CU_control SELECT
+        -- PC_temp <=
+        --     PC_temp             WHEN "00",
+        --     PC_temp + 1         WHEN "01",
+        --     PC_temp - 1         WHEN "10",
+        --     unsigned(jmp_addr)  WHEN "11",
+        --     (OTHERS => '0')     WHEN OTHERS ;
 
-    WITH CU_control SELECT
-    PC_temp <=
-        PC_temp             WHEN "00",
-        PC_temp + 1         WHEN "01",
-        PC_temp - 1         WHEN "10",
-        unsigned(jmp_addr)  WHEN "11",
-        "ZZZZZZZZ"          WHEN OTHERS ;
-
-
-    PC <= std_logic_vector(PC_temp) WHEN reset /= '0';
     
-    PC <= (OTHERS => '0') WHEN reset = '0';
+        case CU_control is
+        when "01" => PC_temp <= PC_temp + 1 ;
+        when "10" => PC_temp <= PC_temp - 1 ;
+        when "00" => PC_temp <= PC_temp ;
+        when "11" => PC_temp <= unsigned(jmp_addr) ;
+        when others => PC_temp <= (OTHERS =>'0');
+        end case ;
+    END IF;
+END PROCESS;
 END;
