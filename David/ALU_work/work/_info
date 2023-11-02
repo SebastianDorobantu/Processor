@@ -1,0 +1,117 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/18.0
+Ealu
+w1698938514
+Z0 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work
+8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd
+FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd
+l0
+L5
+VX;?WnI7C;3GoZ5QIZbOdi0
+!s100 OlUYBGDUf_D>Qj>Zm`Dzl3
+Z4 OV;C;10.5b;63
+32
+!s110 1698939219
+!i10b 1
+!s108 1698939219.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd|
+!s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd|
+!i113 1
+Z5 o-work work -2002 -explicit
+Z6 tExplicit 1 CvgOpt 0
+Ehl_lshifter
+w1698939290
+R0
+R1
+R2
+R3
+8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd
+FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd
+l0
+L5
+VgH415>?8?iM[7NbgVgd7l2
+!s100 HUNZ`W:2IQIWJL4jcBHS?0
+R4
+32
+!s110 1698939294
+!i10b 1
+!s108 1698939294.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd|
+!s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd|
+!i113 1
+R5
+R6
+Elshifter
+Z7 w1698937888
+R0
+R1
+R2
+R3
+Z8 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd
+Z9 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd
+l0
+L6
+V4>YifeDbDDiVk;]^5DBhZ2
+!s100 l?E_0Eki2dI9h`@H1H?Ya1
+R4
+32
+Z10 !s110 1698938032
+!i10b 1
+Z11 !s108 1698938032.000000
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd|
+Z13 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd|
+!i113 1
+R5
+R6
+Abhv
+R0
+R1
+R2
+DEx4 work 8 lshifter 0 22 4>YifeDbDDiVk;]^5DBhZ2
+l51
+L33
+VEHBn2XbRgLC^ZQ`iUQB0P0
+!s100 2Pa9Ngj43E?;]@?Dbl4BD3
+R4
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R5
+R6
+Eshifter
+w1698937010
+R0
+R1
+R2
+R3
+R8
+R9
+l0
+L6
+VP8VaIY[nJHf4T4G0RfhK<1
+!s100 :CW_hkCk1lNMk^AWfaj4c1
+R4
+32
+!s110 1698937707
+!i10b 1
+!s108 1698937707.000000
+R12
+R13
+!i113 1
+R5
+R6

@@ -24,8 +24,49 @@ signal pos_ovflow : std_logic;
 signal neg_ovflow : std_logic;
 signal overflow : std_logic;
 
+component lshifter is
+port(
+input  : IN  std_logic_vector (14 DOWNTO 0);
+shift1 : out std_logic_vector (14 DOWNTO 0);
+shift2 : out std_logic_vector (14 DOWNTO 0);
+shift3 : out std_logic_vector (14 DOWNTO 0);
+shift4 : out std_logic_vector (14 DOWNTO 0);
+shift5 : out std_logic_vector (14 DOWNTO 0);
+shift6 : out std_logic_vector (14 DOWNTO 0);
+shift7 : out std_logic_vector (14 DOWNTO 0);
+shift8 : out std_logic_vector (14 DOWNTO 0);
+shift9 : out std_logic_vector (14 DOWNTO 0);
+shift10 : out std_logic_vector (14 DOWNTO 0);
+shift11 : out std_logic_vector (14 DOWNTO 0);
+shift12 : out std_logic_vector (14 DOWNTO 0);
+shift13 : out std_logic_vector (14 DOWNTO 0);
+shift14 : out std_logic_vector (14 DOWNTO 0);
+shift15 : out std_logic_vector (14 DOWNTO 0);
+shift16 : out std_logic_vector (14 DOWNTO 0);
+output : out std_logic_vector (14 downto 0);
+overflow_vector : out std_logic_vector(14 DOWNTO 0 );
+overflow_out : out std_logic_vector(14 DOWNTO 0 );
+signbit : out std_logic
+);
+end component;
+
+component hl_lshifter is
+port(
+ALU_A2 : in std_logic_vector(15 downto 0);
+ALU_B2 : in std_logic_vector(15 downto 0)
+);
+end component;
+
 
 begin
+
+component hl_lshifter
+PORT MAP(
+input <= ALU_A2 (14 downto 0);
+signbit <= ALU_A2(15);
+nbit_shift <= to_integer(unsgined(ALU_B2(15 downto 0)))
+);
+
 process(clk,reset)
 variable vec0, vec1, vec2 : std_logic_vector (15 downto 0);
 variable nbits : integer;

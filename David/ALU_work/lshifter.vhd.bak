@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 
-entity shifter IS 
+entity lshifter IS 
 
 port(
 input  : IN  std_logic_vector (14 DOWNTO 0);
@@ -26,11 +26,11 @@ shift16 : out std_logic_vector (14 DOWNTO 0);
 output : out std_logic_vector (14 downto 0);
 overflow_vector : out std_logic_vector(14 DOWNTO 0 );
 overflow_out : out std_logic_vector(14 DOWNTO 0 );
-signbit : out std_logic;
-)
-end shifter;
+signbit : out std_logic
+);
+end lshifter;
 
-architecture bhv OF shifter is
+architecture bhv OF lshifter is
 signal signal1 : std_logic_vector (14 downto 0);
 signal signal2 : std_logic_vector (14 downto 0);
 signal signal3 : std_logic_vector (14 downto 0);
@@ -54,49 +54,50 @@ shift1 <= signal1;
 overflow_vector(0) <= input(14);
 signal2 <= signal1(13 DOWNTO 0) & '0';
 shift2 <= signal2;
-overflow_vector(0 to 1) <= input(14 downto 13); 
+overflow_vector(1 downto 0) <= input(14 downto 13); 
 signal3 <= signal2(13 DOWNTO 0) & '0';
 shift3 <= signal3;
-overflow_vector(0 to 2) <= input(14 downto 12);
+overflow_vector(2 downto 0) <= input(14 downto 12);
 signal4 <= signal3(13 DOWNTO 0) & '0';
 shift4 <= signal4;
-overflow_vector(0 to 3) <= input(14 downto 11);
+overflow_vector(3 downto 0) <= input(14 downto 11);
 signal5 <= signal4(13 DOWNTO 0) & '0';
 shift5 <= signal5;
-overflow_vector(0 to 4) <= input(14 downto 10);
+overflow_vector(4 downto 0) <= input(14 downto 10);
 signal6 <= signal5(13 DOWNTO 0) & '0';
 shift6 <= signal6;
-overflow_vector(0 to 5) <= input(14 downto 9);
+overflow_vector(5 downto 0) <= input(14 downto 9);
 signal7 <= signal6(13 DOWNTO 0) & '0';
 shift7 <= signal7;
-overflow_vector(0 to 6) <= input(14 downto 8);
+overflow_vector(6 downto 0) <= input(14 downto 8);
 signal8 <= signal7(13 DOWNTO 0) & '0';
 shift8 <= signal8;
-overflow_vector(0 to 7) <= input(14 downto 7);
+overflow_vector(7 downto 0) <= input(14 downto 7);
 signal9 <= signal8(13 DOWNTO 0) & '0';
 shift9 <= signal9;
-overflow_vector(0 to 8) <= input(14 downto 6);
+overflow_vector(8 downto 0) <= input(14 downto 6);
 signal10 <= signal9(13 DOWNTO 0) & '0';
 shift10 <= signal10;
-overflow_vector(0 to 9) <= input(14 downto 5);
+overflow_vector(9 downto 0) <= input(14 downto 5);
 signal11 <= signal10(13 DOWNTO 0) & '0';
-shift111 <= signal11;
-overflow_vector(0 to 10) <= input(14 downto 4);
+shift11 <= signal11;
+overflow_vector(10 downto 0) <= input(14 downto 4);
 signal12 <= signal11(13 DOWNTO 0) & '0';
-shift112 <= signal12;
-overflow_vector(0 to 11) <= input(14 downto 3);
+shift12 <= signal12;
+overflow_vector(11 downto 0) <= input(14 downto 3);
 signal13 <= signal12(13 DOWNTO 0) & '0';
-shift113 <= signal13;
-overflow_vector(0 to 12) <= input(14 downto 2);
+shift13 <= signal13;
+overflow_vector(12 downto 0) <= input(14 downto 2);
 signal14 <= signal13(13 DOWNTO 0) & '0';
 shift14 <= signal14;
-overflow_vector(0 to 13) <= input(14 downto 1);
+overflow_vector(13 to 0) <= input(14 downto 1);
 signal15 <= signal14(13 DOWNTO 0) & '0';
 shift15 <= signal15;
-overflow_vector(0 to 14) <= input(14 downto 0);
+overflow_vector(14 downto 0) <= input(14 downto 0);
 --signal16 <= signal15(13 DOWNTO 0) & '0';
 --shift16 <= signal16;
 
 
+end bhv;
 
 
