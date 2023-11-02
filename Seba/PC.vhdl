@@ -23,23 +23,16 @@ PROCESS(CU_control,reset)
 BEGIN
     IF reset = '0' THEN
         PC_temp <= (OTHERS => '0') ;
-    ELSE
-        -- WITH CU_control SELECT
-        -- PC_temp <=
-        --     PC_temp             WHEN "00",
-        --     PC_temp + 1         WHEN "01",
-        --     PC_temp - 1         WHEN "10",
-        --     unsigned(jmp_addr)  WHEN "11",
-        --     (OTHERS => '0')     WHEN OTHERS ;
+    ELSIF rising_edge(clk) THEN
 
+        CASE CU_control IS
+        WHEN "01" => PC_temp <= PC_temp + 1 ;
+        WHEN "10" => PC_temp <= PC_temp - 1 ;
+        WHEN "00" => PC_temp <= PC_temp ;
+        WHEN "11" => PC_temp <= unsigned(jmp_addr) ;
+        WHEN OTHERS => PC_temp <= (OTHERS =>'0');
+        END CASE ;
     
-        case CU_control is
-        when "01" => PC_temp <= PC_temp + 1 ;
-        when "10" => PC_temp <= PC_temp - 1 ;
-        when "00" => PC_temp <= PC_temp ;
-        when "11" => PC_temp <= unsigned(jmp_addr) ;
-        when others => PC_temp <= (OTHERS =>'0');
-        end case ;
     END IF;
 END PROCESS;
 END;

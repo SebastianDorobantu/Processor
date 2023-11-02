@@ -1,4 +1,13 @@
-C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd
+C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/lshifter.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/lshifter.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity lshifter
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/lshifter.vhd(27): near ")": (vcom-1576) expecting IDENTIFIER.
+
+} {8.0 9.0} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -47,9 +56,8 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package NUMERIC_STD
 -- Compiling entity hl_lshifter
 -- Compiling architecture bhv of hl_lshifter
-** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "when": (vcom-1576) expecting STRING or IDENTIFIER or << or '('.
-** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "1:": (vcom-111) No digits found in mantissa part of based literal.
-** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "1: ": (vcom-113) Mantissa part of based integer literal terminates with ' '; should be ':'.
-** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "1:": (vcom-118) Base value 1 is not in range 2 to 16.
+-- Loading entity lshifter
+** Error (suppressible): C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(66): (vcom-1141) Identifier "lshifter" does not identify a component declaration.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(134): VHDL Compiler exiting
 
-} {9.0 13.0} {}}
+} {11.0 12.0} {}}
