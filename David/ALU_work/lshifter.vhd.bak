@@ -23,10 +23,7 @@ shift13 : out std_logic_vector (14 DOWNTO 0);
 shift14 : out std_logic_vector (14 DOWNTO 0);
 shift15 : out std_logic_vector (14 DOWNTO 0);
 shift16 : out std_logic_vector (14 DOWNTO 0);
-output : out std_logic_vector (14 downto 0);
 overflow_vector : out std_logic_vector(14 DOWNTO 0 );
-overflow_out : out std_logic_vector(14 DOWNTO 0 );
-signbit : out std_logic
 );
 end lshifter;
 
@@ -90,7 +87,7 @@ shift13 <= signal13;
 overflow_vector(12 downto 0) <= input(14 downto 2);
 signal14 <= signal13(13 DOWNTO 0) & '0';
 shift14 <= signal14;
-overflow_vector(13 to 0) <= input(14 downto 1);
+overflow_vector(13 downto 0) <= input(14 downto 1);
 signal15 <= signal14(13 DOWNTO 0) & '0';
 shift15 <= signal15;
 overflow_vector(14 downto 0) <= input(14 downto 0);

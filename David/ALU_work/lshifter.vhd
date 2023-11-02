@@ -23,11 +23,9 @@ shift13 : out std_logic_vector (14 DOWNTO 0);
 shift14 : out std_logic_vector (14 DOWNTO 0);
 shift15 : out std_logic_vector (14 DOWNTO 0);
 shift16 : out std_logic_vector (14 DOWNTO 0);
-output : out std_logic_vector (14 downto 0);
 overflow_vector : out std_logic_vector(14 DOWNTO 0 );
-overflow_out : out std_logic_vector(14 DOWNTO 0 );
-signbit : out std_logic
-);
+)
+
 end lshifter;
 
 architecture bhv OF lshifter is

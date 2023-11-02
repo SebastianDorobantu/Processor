@@ -1,0 +1,55 @@
+C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ALU
+-- Compiling architecture bhv of ALU
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(65): (vcom-1136) Unknown identifier "input".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(65): (vcom-1136) Unknown identifier "ALU_A2".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(65): near ";": (vcom-1576) expecting ',' or ')'.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(66): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(66): (vcom-1136) Unknown identifier "signbit".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(67): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(67): (vcom-1136) Unknown identifier "nbit_shift".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(68): near ")": (vcom-1576) expecting ';'.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(72): near ";": (vcom-1576) expecting ',' or ')'.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(73): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(73): (vcom-1136) Unknown identifier "signbit".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(74): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(74): (vcom-1136) Unknown identifier "nbit_shift".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(75): near ")": (vcom-1576) expecting ';'.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(92): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(92): (vcom-1136) Unknown identifier "carry_out".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(107): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(107): (vcom-1136) Unknown identifier "carry_out".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(183): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(183): (vcom-1136) Unknown identifier "ALU_A2".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(184): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(184): (vcom-1136) Unknown identifier "ALU_B2".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(185): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(186): near "if": syntax error
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(188): Illegal target for signal assignment.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(188): (vcom-1136) Unknown identifier "signbit".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(188): (vcom-1136) Unknown identifier "overflow_vector".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(188): (vcom-1136) Unknown identifier "overflow_out".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(189): (vcom-1136) Unknown identifier "output".
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(189): Type error resolving infix expression "&" as type ieee.std_logic_1164.STD_LOGIC_VECTOR.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(190): near "else": (vcom-1576) expecting END or WHEN.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd(194): near "when": (vcom-1576) expecting END.
+
+} {9.0 41.0} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity hl_lshifter
+-- Compiling architecture bhv of hl_lshifter
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "when": (vcom-1576) expecting STRING or IDENTIFIER or << or '('.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "1:": (vcom-111) No digits found in mantissa part of based literal.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "1: ": (vcom-113) Mantissa part of based integer literal terminates with ' '; should be ':'.
+** Error: C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd(16): near "1:": (vcom-118) Base value 1 is not in range 2 to 16.
+
+} {9.0 13.0} {}}
