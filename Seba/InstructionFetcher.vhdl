@@ -8,7 +8,7 @@ PORT (
     PC                      : IN  std_logic_vector(7 DOWNTO 0)  ;
     CU_control              : IN  std_logic_vector(1 DOWNTO 0)  ;
     CU_confirm              : OUT std_logic                     ;
-    clk, reset, fetch_done  : IN  std_logic                     ;
+    clk, reset              : IN  std_logic                     ;
     -- BUS CONNECTIONS
     DB_a1                   : OUT std_logic_vector(11 DOWNTO 0) ;
     bus_sync_a1             : IN  std_logic                     ;
@@ -150,9 +150,9 @@ BEGIN
                     PCL <= PCL + (iPC - prev_PC) - 1;                                                                   -- if that happens just remove the equals
                     state <= NewIR;
                 ELSE 
-                    PCL <= last_fetch;
-                    state       <= Fetching;
-                    bus_request <= '1';      
+                    PCL         <= last_fetch   ;
+                    state       <= Fetching     ;
+                    bus_request <= '1'          ;      
                 END IF;              
             END CASE;
     END IF;         
