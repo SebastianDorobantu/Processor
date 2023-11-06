@@ -9,6 +9,7 @@ port(
 	ALU_B 		: in  std_logic_vector(15 downto 0);
 	output 		: out std_logic_vector(15 downto 0):= (others => '0');
 	overflow_vec	: out std_logic_vector(15 downto 0):= (others => '0');
+	proc_complete	: out std_logic := '0';
 	ovflow_flag	: out std_logic := '0'
 );
 end hl_lshifter;
