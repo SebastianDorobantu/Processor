@@ -12,6 +12,8 @@ entity arbiter is
 	req0,req1  : in  std_logic;
 	
 	busy : in  std_logic;
+	BUS_sync_a1,BUS_sync_a2 : OUT  std_logic;
+
 				
 -- outputs   
     gnt0 : out std_logic;
@@ -47,6 +49,8 @@ BEGIN
 		WHEN In_prog => 
 			IF busy = '0' THEN
 				state <= Idle;
+				BUS_sync_a1 <= '0 ;
+				BUS_sync_a2 <= '0';
 			END IF;
 		END CASE;
 	END IF;
