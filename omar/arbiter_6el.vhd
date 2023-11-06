@@ -9,79 +9,49 @@ entity arbiter is
 
 -- inputs --data bus requests
 
-    	req  : in  std_logic_vector(6 downto 0);
+	req0,req1  : in  std_logic;
+	
 	busy : in  std_logic;
 				
---adress bus requests 
-
-   
-    	write_enable : in std_logic;
-	CS : in std_logic_vector(2 downto 0);
-	addr : in std_logic_vector(7 downto 0);--index of the adress of each shit
-
 -- outputs   
-    
- 	address : out std_logic_vector(11 downto 0);
-    	gnt  : out std_logic_vector(6 downto 0)
+    gnt0 : out std_logic;
+	gnt1 : out std_logic
+	
   );
+  
+  type t_state is (Idle,Granted,In_prog);
+  signal state : t_state := Idle;
+
 end arbiter;
 
-architecture rtl of arbiter is
-  signal busy_d : std_logic := '0';
-  signal busy_fe : std_logic;
+ARCHITECTURE bhv OF arbiter IS
+BEGIN
 
-begin
-  busy_pr : process (clk)
-  begin
-    if (rising_edge(clk)) then
-      busy_d <= busy;
-    end if;
-  end process busy_pr;
+  PROCESS (clk)
+  BEGIN
+    IF (rst = '1') THEN
+		gnt0 <= '0';
+		gnt1 <= '0';
+    ELSIF (rising_edge(clk)) THEN
+		CASE state IS
+		WHEN Idle =>
+			gnt0 <= req0;
+			gnt1 <= req1 and not req0;
+			state <= Granted;
+		WHEN Granted => 
+			IF busy = '1' THEN
+				gnt0 <= '0';
+				gnt1 <= '0';
+				state <= In_prog;
+			END IF;
+		WHEN In_prog => 
+			IF busy = '0' THEN
+				state <= Idle;
+			END IF;
+		END CASE;
+	END IF;
+		
+	END PROCESS;
 
-  -- Falling edge of busy signal
-  busy_fe <= '1' when busy = '0' and busy_d = '1' else '0';
-
-process(CS)
-    begin
-        -- Change the 10th, 9th, and 8th bits of the address array based on CS
-        address(10 downto 8) <= CS;
-    end process;
-
-process(write_enable)
-    begin
-       
-            if write_enable = '1' then
-                -- Set the 11th bit (index 11) of the address array
-                address(11) <= '1';
-            end if;
-        
-    end process;
-
-
-process(addr)
-	begin
-	   address(7 downto 0) <= addr;
-	end process;
-
-
-arbiter_pr : process (clk, rst)
-  begin
-    if (rst = '1') then
-      gnt <= (others => '0');
-    elsif (rising_edge(clk)) then
-      if (busy_fe = '1') then
-        gnt <= (others => '0');
-      elsif (busy = '0') then
-        gnt(0) <= req(0);
-        gnt(1) <= req(1) and not req(0);
-        gnt(2) <= req(2) and not (req(0) or req(1));
-        gnt(3) <= req(3) and not (req(0) or req(1) or req(2));
-        gnt(4) <= req(4) and not (req(0) or req(1) or req(2) or req(3));
-	gnt(5) <= req(5) and not (req(0) or req(1) or req(2) or req(3) or req(4));
- 	gnt(6) <= req(6) and not (req(0) or req(1) or req(2) or req(3) or req(4) or req(5));
-      end if;
-    end if;
-  end process arbiter_pr;
-
-end rtl;
+end ARCHITECTURE ;
 
