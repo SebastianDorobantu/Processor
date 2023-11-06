@@ -7,13 +7,12 @@ ENTITY register_file IS
 	clk: IN std_logic;
 	wr_enable: IN std_logic;
 	--16 bit address from memory/ALU
-	mem_address: IN std_logic_vector(15 DOWNTO 0); 
-	--selects address of register(16 registers)
-	reg_sel: IN std_logic_vector(3 DOWNTO 0); 
-	---Assigns register with address
-	regA: IN std_logic_vector(3 DOWNTO 0); 
-	regB: IN std_logic_vector(3 DOWNTO 0); 
-	regC: IN std_logic_vector(3 DOWNTO 0); 
+	data: IN std_logic_vector(15 DOWNTO 0); 
+	--selects address of register(8 registers)(from bus)
+	address: IN std_logic_vector(7 DOWNTO 0); 
+	---Assigns register with address (from control unit)
+	regA: IN std_logic_vector(2 DOWNTO 0); 
+	regB: IN std_logic_vector(2 DOWNTO 0); 
 	---16 bit output(out A and B to ALU, outC to main bus)
 	outA: OUT std_logic_vector(15 DOWNTO 0); 
 	outB: OUT std_logic_vector(15 DOWNTO 0); 
@@ -24,23 +23,26 @@ ENTITY register_file IS
 END register_file; 
 
 ARCHITECTURE bhv of register_file IS 
-	TYPE reg_array IS ARRAY(0 TO 15) OF std_logic_vector(15 DOWNTO 0); ---register file 16x16
+	TYPE reg_array IS ARRAY(0 TO 7) OF std_logic_vector(15 DOWNTO 0); ---register file 8x16
 	SIGNAL regs: reg_array; ---initialize all registers to 0
 BEGIN 
-	regfile: PROCESS(clk) IS 
+	PROCESS(clk) IS 
 	BEGIN 
+		--register 0 is initialized to 0
+		regs(0)<=(others => '0'); 
 		IF rising_edge(clk) THEN 
 			---initialize value of complete flag output to 0
 			outD <= '0';
 			--- write to register 
 			IF wr_enable = '1' THEN 
 				--- write into selected register 
-				regs(to_integer(unsigned(reg_sel))) <= mem_address;
+				regs(to_integer(unsigned(address))) <= data;
 			ELSE 
-				---read from register address and output
-				outA <= regs(to_integer(unsigned(regA)));
+				---read from register address and output 
+				---address is not used when write is not enable, so it is used to read to outC
+				outA <= regs(to_integer(unsigned(regA))); 
 				outB <= regs(to_integer(unsigned(regB)));
-				outC <= regs(to_integer(unsigned(regC)));
+				outC <= regs(to_integer(unsigned(address)));
 				---when outputs are complete, then indicate it is ready
 				outD <= '1';
 			END IF;
