@@ -154,7 +154,7 @@ port_hl_lshifter : lshifter
 
 	with to_integer(unsigned(ALU_B)) select
 	pre_output <=	
-		ALU_A(15) & sign1(13 downto 0) 	when 1,
+		ALU_A(15) & sign1(14 downto 1) 	when 1,
 		sign1	when 2,
 		sign2	when 3,
 		sign3	when 4,
