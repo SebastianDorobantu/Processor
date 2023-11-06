@@ -132,50 +132,25 @@ overflow_vector15_buf <=  overflow_vector14_buf(13 downto 0)&input_in(0) when in
 								
 signal1 <=  input_in(13 DOWNTO 0) & '0';
 shift1 <= signal1;
---overflow_vector1_buf(0) <= input_in(14);
 
 signal2 <= signal1(13 DOWNTO 0) & '0';
 shift2 <= signal2;
---overflow_vector2_buf(0) <= input_in(13);
---overflow_vector2_buf(1) <=  overflow_vector1_buf(0); 
 
 signal3 <= signal2(13 DOWNTO 0) & '0';
 shift3 <= signal3;
---overflow_vector3_buf(0) <=  input_in(12);
---overflow_vector3_buf(1) <=  overflow_vector2_buf(0);
---overflow_vector3_buf(2) <=  overflow_vector2_buf(1);
 
 signal4 <= signal3(13 DOWNTO 0) & '0';
 shift4 <= signal4;
---overflow_vector4_buf(0) <=  input_in(11);
---overflow_vector4_buf(1) <=  overflow_vector3_buf(0);
---overflow_vector4_buf(2) <=  overflow_vector3_buf(1);
---overflow_vector4_buf(3) <=  overflow_vector3_buf(2);
 
 signal5 <= signal4(13 DOWNTO 0) & '0';
 shift5 <= signal5;
---overflow_vector5_buf(0) <=  input_in(10);
---overflow_vector5_buf(1) <=  overflow_vector4_buf(0);
---overflow_vector5_buf(2) <=  overflow_vector4_buf(1);
---overflow_vector5_buf(3) <=  overflow_vector4_buf(2);
---overflow_vector5_buf(4) <=  overflow_vector4_buf(3);
+
 signal6 <= signal5(13 DOWNTO 0) & '0';
 shift6 <= signal6;
---overflow_vector6_buf(0) <=  input_in(9);
---overflow_vector6_buf(1) <=  overflow_vector5_buf(0);
---overflow_vector6_buf(2) <=  overflow_vector5_buf(1);
---overflow_vector6_buf(3) <=  overflow_vector5_buf(2);
---overflow_vector6_buf(4) <=  overflow_vector5_buf(3);
---overflow_vector6_buf(5) <=  overflow_vector5_buf(4);
+
 signal7 <= signal6(13 DOWNTO 0) & '0';
 shift7 <= signal7;
---overflow_vector7_buf(0) <=  input_in(8);
---overflow_vector7_buf(1) <=  overflow_vector6_buf(0);
---overflow_vector7_buf(2) <=  overflow_vector6_buf(1);
---overflow_vector7_buf(3) <=  overflow_vector6_buf(2);
---overflow_vector7_buf(4) <=  overflow_vector6_buf(3);
---overflow_vector7_buf(5) <=  overflow_vector6_buf(4);
---overflow_vector7_buf(6) <=  overflow_vector6_buf(5);
+
 signal8 <= signal7(13 DOWNTO 0) & '0';
 shift8 <= signal8;
 
