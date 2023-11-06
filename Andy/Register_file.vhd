@@ -8,7 +8,7 @@ ENTITY register_file IS
 	wr_enable: IN std_logic;
 	--16 bit address from memory/ALU
 	data: IN std_logic_vector(15 DOWNTO 0); 
-	--selects address of register(8 registers)(from bus)
+	--selects registers (8 registers)(from bus)
 	address: IN std_logic_vector(7 DOWNTO 0); 
 	---Assigns register with address (from control unit)
 	regA: IN std_logic_vector(2 DOWNTO 0); 
