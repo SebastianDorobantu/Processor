@@ -54,13 +54,20 @@ begin
 		overflow <= '1' when (signed(ALU_sum) < 0 and pos_ovflow = '1') else
 			    '0' when (signed(ALU_sum) < 0 and pos_ovflow = '0') else
 			    '1' when (signed(ALU_sum) > 0 and neg_ovflow = '1') else
+			    '1' when (signed(ALU_sum) = 0 and neg_ovflow = '1') else
 			    '0' when (signed(ALU_sum) > 0 and neg_ovflow = '0');
 
 														--overflow is checked here
-		output <= ALU_sum 		when overflow = '0' else
-		 	  "ZZZZZZZZZZZZZZZZ" 	when overflow = '1';	
+		output <= ALU_sum 		when overflow = '0';
+		 	 	
+		overflow_vec(0) <= '1' 		when overflow = '1' and pos_ovflow = '1' else
+				   '1'		when overflow = '1' and neg_ovflow = '1' else
+				   '0'		when overflow = '0';
+		overflow_vec(15 downto 1) <= 	"111111111111111" when overflow = '1' and neg_ovflow = '1' else
+						"000000000000000"; 
+		
 
-		 ovflow_flag <= '1' 	  when overflow = '1' else
+		ovflow_flag  <= '1' 	  when overflow = '1' else
 				'0'	  when overflow = '0';
 														
 end bhv;

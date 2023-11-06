@@ -10,12 +10,11 @@ port(		reset : in std_logic;
 		ALU_B : in std_logic_vector (15 downto 0);				-- input B
 		complete : in boolean;							-- instruction complete => reset 
 
-		zero_flag : out std_logic;					-- checks if result is 0				
+		zero_flag : out std_logic;					        -- checks if result is 0				
 		neg_flag : out std_logic;						-- result is negative
-		ALU_out : out std_logic_vector (15 downto 0):= (others => '0');				-- output of ALU
+		ALU_out : out std_logic_vector (15 downto 0):= (others => '0');			-- output of ALU
 		ovflow_flag : out std_logic := '0';						-- overflow flag
-		proc_complete : out std_logic := '0';						-- process complete => notifies that data is placed on the bus
-		overflow_out : out std_logic_vector(15 downto 0):= (others => '0')
+		proc_complete : out std_logic := '0'						-- process complete => notifies that data is placed on the bus
 		);	
 end ALU;
 
@@ -27,6 +26,7 @@ signal overflow_out_buf : std_logic_vector (15 downto 0) := (others => '0');
 signal pos_ovflow : std_logic := '0';
 signal neg_ovflow : std_logic := '0';
 signal overflow : std_logic := '0';
+signal overflow_out : std_logic_vector (15 downto 0) := (others => '0');
 signal ALU_A_lshift : std_logic_vector (15 downto 0) := (others => '0');
 signal ALU_B_lshift : std_logic_vector (15 downto 0) := (others => '0');
 signal lshift_output : std_logic_vector (15 downto 0) := (others => '0');
@@ -116,13 +116,13 @@ ALU_A_lshift <= ALU_A when ALU_cntrl = "0010";
 ALU_B_lshift <= ALU_B when ALU_cntrl = "0010";
 
 
-overflow <=  ovflow_flag_add when ALU_cntrl = "0000" else
+overflow <=  	ovflow_flag_add when ALU_cntrl = "0000" else
 		ovflow_flag_sub when ALU_cntrl = "0001" else
 		ovflow_flag_lshift when ALU_cntrl = "0010";
 
-overflow_out_buf <= overflow_out_add when ALU_cntrl = "0000" else
-		overflow_out_sub when ALU_cntrl = "0001" else
-		overflow_out_lshift when ALU_cntrl = "0010";
+overflow_out_buf <= 	overflow_out_add when ALU_cntrl = "0000" else
+		  	overflow_out_sub when ALU_cntrl = "0001" else
+			overflow_out_lshift when ALU_cntrl = "0010";
 
 
 ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
@@ -133,10 +133,10 @@ ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
 		ALU_A or ALU_B 		when ALU_cntrl = "0101" else	-- OR
 		ALU_A xor ALU_B		when ALU_cntrl = "1001" else	-- XOR
 		not(ALU_A xor ALU_B)  	when ALU_cntrl = "1010" else	-- XNOR
-		"ZZZZZZZZZZZZZZZZ";
+		"0000000000000000";					--register is set to zero
 
 zero_flag <= '1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else --check result = 0
-	     '0' when ALU_out_buf /= "0000000000000000";
+	     '0' when ALU_out_buf /= "0000000000000000"  or overflow = '1';
 
 neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and overflow = '1' else
 		'1' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '1' and overflow = '1' else --check if result is negative
@@ -145,8 +145,16 @@ neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and o
 		'0' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '0';
 
 ovflow_flag <= overflow;
-ALU_out <= ALU_out_buf;
-overflow_out <= overflow_out_buf;
+
+overflow_out <= overflow_out_buf when ALU_cntrl ="1011" else	--loads overflow value into register if output is reqested
+		"0000000000000000";				--register is set to zero
+
+ALU_out <= overflow_out when ALU_cntrl ="1011" else		-- Output is overflow if requested, else normal output
+	   ALU_out_buf;
+
+
+
+
 
 --proc_complete <= '1' when ((ALU_out_buf /= "0000000000000000") and (overflow_out_buf /= "0000000000000000")) else '0';
 
