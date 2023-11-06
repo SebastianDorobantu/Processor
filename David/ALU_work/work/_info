@@ -22,9 +22,9 @@ VgN3XL<hgndDboUm7ZNR1D0
 !s100 foHDFaLgSR^Tiz7ndkjbb3
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1699276988
+Z8 !s110 1699280851
 !i10b 1
-Z9 !s108 1699276988.000000
+Z9 !s108 1699280851.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/adder.vhd|
 Z11 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/adder.vhd|
 !i113 1
@@ -50,7 +50,7 @@ R11
 R12
 R13
 Ealu
-Z14 w1699276984
+Z14 w1699280846
 R1
 R2
 R3
@@ -65,9 +65,9 @@ R7
 32
 R8
 !i10b 1
-Z17 !s108 1699276987.000000
-Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd|
-Z19 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd|
+R9
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd|
+Z18 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd|
 !i113 1
 R12
 R13
@@ -78,37 +78,37 @@ R3
 DEx4 work 3 alu 0 22 Q<aZm;:c_c2LG0:lOBCz]3
 l80
 L22
-VzTz_DDj`E^9n9k`]fnVFZ1
-!s100 zNX0Z[P8K5@c^13W9K^za3
+V@nVfWW?ZFoFN1i`0J2PkO1
+!s100 =izSPa42h2nZJ5YL@m94j3
 R7
 32
 R8
 !i10b 1
+R9
 R17
 R18
-R19
 !i113 1
 R12
 R13
 Ehl_lshifter
-Z20 w1699225842
+Z19 w1699225842
 R1
 R2
 R3
 R4
-Z21 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd
-Z22 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd
+Z20 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd
+Z21 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd
 l0
 L6
 VJ7E:SaOUZeR;M?VcAd_>a2
 !s100 COAW<kJkN<GGNWz7KV;cc2
 R7
 32
-Z23 !s110 1699276987
+R8
 !i10b 1
-R17
-Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd|
-Z25 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd|
+R9
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd|
+Z23 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/hl_lshifter.vhd|
 !i113 1
 R12
 R13
@@ -123,33 +123,33 @@ VkJf^kB`A08RFemn>P:9FF2
 !s100 IoRz=@NKnHbEHka5dT@5Y0
 R7
 32
-R23
+R8
 !i10b 1
-R17
-R24
-R25
+R9
+R22
+R23
 !i113 1
 R12
 R13
 Elshifter
-Z26 w1699270354
+Z24 w1699270354
 R1
 R2
 R3
 R4
-Z27 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd
-Z28 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd
+Z25 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd
+Z26 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd
 l0
 L7
 VY7Jz06AQH6]oPWLDXLIX53
 !s100 M8RUXd1_W4<mimFjAS[F]1
 R7
 32
-R23
+R8
 !i10b 1
-R17
-Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd|
-Z30 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd|
+R9
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd|
+Z28 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/lshifter.vhd|
 !i113 1
 R12
 R13
@@ -164,11 +164,11 @@ VKDI@]>_nT@R>X>0l3XA261
 !s100 `6c]]7UWAdYB?gzfzZQY43
 R7
 32
-R23
+R8
 !i10b 1
-R17
-R29
-R30
+R9
+R27
+R28
 !i113 1
 R12
 R13
@@ -178,8 +178,8 @@ R1
 R2
 R3
 R4
-R27
-R28
+R25
+R26
 l0
 L6
 VP8VaIY[nJHf4T4G0RfhK<1
@@ -189,19 +189,19 @@ R7
 !s110 1698937707
 !i10b 1
 !s108 1698937707.000000
-R29
-R30
+R27
+R28
 !i113 1
 R12
 R13
 Esub
-Z31 w1699274509
+Z29 w1699274509
 R1
 R2
 R3
 R4
-Z32 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd
-Z33 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd
+Z30 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd
+Z31 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd
 l0
 L7
 VTY6Lbed]kPNfQYZT_>D7c3
@@ -211,8 +211,8 @@ R7
 R8
 !i10b 1
 R9
-Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd|
-Z35 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd|
+Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd|
+Z33 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/sub.vhd|
 !i113 1
 R12
 R13
@@ -220,18 +220,18 @@ Abhv
 R1
 R2
 R3
-Z36 DEx4 work 3 sub 0 22 TY6Lbed]kPNfQYZT_>D7c3
+Z34 DEx4 work 3 sub 0 22 TY6Lbed]kPNfQYZT_>D7c3
 l28
 L17
-Z37 V]ON9l6O:B;GM:U205hBmH1
-Z38 !s100 EZ[G5XgXOoN@1CGfO8PnY3
+Z35 V]ON9l6O:B;GM:U205hBmH1
+Z36 !s100 EZ[G5XgXOoN@1CGfO8PnY3
 R7
 32
 R8
 !i10b 1
 R9
-R34
-R35
+R32
+R33
 !i113 1
 R12
 R13
