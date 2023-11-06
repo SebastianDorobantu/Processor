@@ -125,27 +125,30 @@ overflow_out_buf <= overflow_out_add when ALU_cntrl = "0000" else
 		overflow_out_lshift when ALU_cntrl = "0010";
 
 
-ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else				--addition
-						sub_output 		when ALU_cntrl = "0001" else				--subtraction
-						lshift_output 		when ALU_cntrl = "0010" else			--leftshift
-						ALU_A and ALU_B 	when ALU_cntrl = "0110" else			--AND
-						not(ALU_A and ALU_B) 	when ALU_cntrl = "1000" else	--NAND
-						ALU_A or ALU_B 		when ALU_cntrl = "0101" else		-- OR
-						ALU_A xor ALU_B		when ALU_cntrl = "1001" else		-- XOR
-						not(ALU_A xor ALU_B)  	when ALU_cntrl = "1010" else	-- XNOR
-						"ZZZZZZZZZZZZZZZZ";
+ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
+		sub_output 		when ALU_cntrl = "0001" else	-- subtraction
+		lshift_output 		when ALU_cntrl = "0010" else	-- leftshift
+		ALU_A and ALU_B 	when ALU_cntrl = "0110" else	-- AND
+		not(ALU_A and ALU_B) 	when ALU_cntrl = "1000" else	-- NAND
+		ALU_A or ALU_B 		when ALU_cntrl = "0101" else	-- OR
+		ALU_A xor ALU_B		when ALU_cntrl = "1001" else	-- XOR
+		not(ALU_A xor ALU_B)  	when ALU_cntrl = "1010" else	-- XNOR
+		"ZZZZZZZZZZZZZZZZ";
 
-zero_flag <= '1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else
+zero_flag <= '1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else --check result = 0
 	     '0' when ALU_out_buf /= "0000000000000000";
 
-neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' else
-					'1' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '1' else
-					'0' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '0' else
-					'0' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '0';
+neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and overflow = '1' else
+		'1' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '1' and overflow = '1' else --check if result is negative
+		'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '0' and overflow = '0' else
+		'0' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '0' and overflow = '1' else
+		'0' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '0';
 
 ovflow_flag <= overflow;
 ALU_out <= ALU_out_buf;
 overflow_out <= overflow_out_buf;
+
+--proc_complete <= '1' when ((ALU_out_buf /= "0000000000000000") and (overflow_out_buf /= "0000000000000000")) else '0';
 
 
 end bhv;
