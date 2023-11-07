@@ -10,19 +10,20 @@ PORT (
     CU_confirm,CU_wait      : OUT std_logic                     ;
     clk, reset              : IN  std_logic                     ;
     -- BUS CONNECTIONS
-    DB_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
-    bus_sync_a1             : IN  std_logic                     ;
+    BUS_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
+    BUS_sync_a1             : IN  std_logic                     ;
 
-    bus_grant               : IN  std_logic                     ;
-    bus_request             : OUT std_logic                     ;
-    bus_busy                : OUT std_logic                     ;
-    bus_data                : IN  std_logic_vector(15 DOWNTO 0) ;
+    BUS_grant               : IN  std_logic                     ;
+    BUS_request             : OUT std_logic                     ;
+    BUS_busy                : OUT std_logic                     ;
+    BUS_data                : IN  std_logic_vector(15 DOWNTO 0) ;
 
     -- IRegister connections
     
     reg_data                : OUT std_logic_vector(15 DOWNTO 0) ;
     reg_addr                : OUT std_logic_vector(4 DOWNTO 0)  ;
-    port_sel,IR_en,WR,CS    : OUT std_logic := '0'              
+    port_sel,IF_WR,IF_CS    : OUT std_logic := '0'              ;
+    IR_WR,IR_CS             : OUT std_logic := '0'              
 );
 END instructionFetcher;
 
@@ -83,7 +84,7 @@ BEGIN
                         IF bus_grant = '1' THEN
                             fetch_state <= Wait4data;
                             bus_busy        <= '1';
-                            db_a1           <= '0' & "01" & std_logic_vector(to_unsigned((iPC + (last_fetch - PCL)),8));       -- 001 represents the CS code of MEM
+                            BUS_a1           <= '0' & "01" & std_logic_vector(to_unsigned((iPC + (last_fetch - PCL)),8));       -- 001 represents the CS code of MEM
                         END IF;
                     WHEN Wait4data =>
                         IF bus_sync_a1 = '1' THEN 
@@ -91,15 +92,15 @@ BEGIN
                             last_fetch  <= last_fetch + 1;
                             reg_data    <= bus_data;
                             port_sel    <= '0' ;
-                            WR          <= '1' ;
-                            CS          <= '1' ;
+                            IF_WR          <= '1' ;
+                            IF_CS          <= '1' ;
                             bus_busy    <= '0' ;
                             bus_request <= '0' ;
                             fetch_state <= FIN ;
                         END IF;
                     WHEN FIN => 
-                        WR          <= '0' ;           -- IF THIS HAPPENS FASTER THAN THE HOLD TIME OF INSTRUCTION REGISTERS->
-                        CS          <= '0' ;            --  THE REGISTERS WON'T TAKE THE DATA BECAUSE THIS HAPPENS NEXT RISING EDGE
+                        IF_WR          <= '0' ;           -- IF THIS HAPPENS FASTER THAN THE HOLD TIME OF INSTRUCTION REGISTERS->
+                        IF_CS          <= '0' ;            --  THE REGISTERS WON'T TAKE THE DATA BECAUSE THIS HAPPENS NEXT RISING EDGE
                         fetch_state <= INIT;
                         IF  CU_control = "01" OR  CU_control = "10" OR  CU_control = "11" OR PCL = (last_fetch - 20) THEN
                             state       <= IDLE;
@@ -113,38 +114,41 @@ BEGIN
                 IF CU_control = "01" and PCL /= last_fetch THEN
                     PCL         <= PCL + 1;                                     --IF THIS HAPPENS FASTER THAN THE HOLD TIME OF IR same problem as above
                     reg_addr    <= std_logic_vector(to_unsigned((PCL + 1),5));
-                    IR_en       <= '1' ;
-                    WR          <= '0' ;
-                    CS          <= '1' ;
+                    IR_WR          <= '1' ;
+                    IR_CS          <= '1' ;
+                    IF_WR          <= '0' ;
+                    IF_CS          <= '1' ;
                     port_sel    <= '1' ;
                     state       <= NewIR_fin;
                 ELSIF CU_control = "01" and PCL = last_fetch THEN
                     state <= Fetching;
+                    bus_request <= '1'          ;      
                 ELSIF CU_control = "10" THEN
                     PCL         <= PCL -1;                                     --IF THIS HAPPENS FASTER THAN THE HOLD TIME OF IR same problem as above
                     reg_addr    <= std_logic_vector(to_unsigned((PCL-1 ),5));
-                    IR_en       <= '1' ;
-                    WR          <= '0' ;
-                    CS          <= '1' ;
+                    IR_WR       <= '1' ;
+                    IR_CS       <= '1' ;
+                    IF_WR       <= '0' ;
+                    IF_CS       <= '1' ;
                     port_sel    <= '1' ;
                     state       <= NewIR_fin;
                 ELSE     
-                    reg_addr    <= std_logic_vector(to_unsigned(PCL, 5 ));
-                    IR_en       <= '1' ;
-                    WR          <= '0' ;
-                    CS          <= '1' ;
-                    port_sel    <= '1' ;
-                    state       <= NewIR_fin;
+                    reg_addr       <= std_logic_vector(to_unsigned(PCL, 5 ));
+                    IF_WR          <= '0' ;
+                    IF_CS          <= '1' ;
+                    IR_WR          <= '1' ;
+                    IR_CS          <= '1' ;
+                    port_sel       <= '1' ;
+                    state          <= NewIR_fin;
                 END IF;
                 
             WHEN NewIR_fin => 
-                CU_wait     <= '0' ;
-                IR_en       <= '0' ;
-                WR          <= '0' ;
-                CS          <= '1' ;
-                port_sel    <= '1' ;
-                CU_confirm  <= '1' ;                                            --CU_confirm is also a potential HoldTime Hazard
-                state       <= IDLE;
+                CU_wait        <= '0' ;
+                IR_WR          <= '0' ;
+                IR_CS          <= '1' ;
+                port_sel       <= '1' ;
+                CU_confirm     <= '1' ;                                            --CU_confirm is also a potential HoldTime Hazard
+                state          <= IDLE;
 
             WHEN Branch =>
                 CU_wait <= '1';

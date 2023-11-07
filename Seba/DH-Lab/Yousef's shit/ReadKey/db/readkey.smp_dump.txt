@@ -1,6 +1,0 @@
-
-State Machine - |readkey|constantkey:constantkey|state
-Name state.break state.pressing state.waiting 
-state.waiting 0 0 0 
-state.pressing 0 1 1 
-state.break 1 0 1 

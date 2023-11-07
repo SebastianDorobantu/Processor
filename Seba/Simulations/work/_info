@@ -8,25 +8,25 @@ z2
 !i10f 100
 cModel Technology
 dC:/intelFPGA_lite/18.1
-Ecu
-Z0 w1699354191
+Einstructionfetcher
+Z0 w1699366919
 Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 Z4 dC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/Simulations
-Z5 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl
-Z6 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl
+Z5 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
+Z6 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
 l0
-L8
-Vkg;_GT<mDZ1JIU4RXm:ez2
-!s100 TRUCUXYD?bK^]8f?M;_lC2
+L5
+VZ^Mz9Zbl7Qb2IWHbf`Tzb3
+!s100 URKY5l]nOM0aBY5h[k8WW1
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1699357525
+Z8 !s110 1699370406
 !i10b 1
-Z9 !s108 1699357525.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl|
-Z11 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl|
+Z9 !s108 1699370406.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
+Z11 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
 !i113 1
 Z12 o-work work -2002 -explicit
 Z13 tExplicit 1 CvgOpt 0
@@ -34,11 +34,11 @@ Abhv
 R1
 R2
 R3
-DEx4 work 2 cu 0 22 kg;_GT<mDZ1JIU4RXm:ez2
-l85
-L45
-Vn7Q3l=W5bi=UNbia2DQDl3
-!s100 3:IER]5QVodjCM[XDnXNA0
+DEx4 work 18 instructionfetcher 0 22 Z^Mz9Zbl7Qb2IWHbf`Tzb3
+l53
+L33
+VO8Z39]>UOJ>z`V8j<^iZh2
+!s100 ?clN9bEc9lPPYAU7k6BhW0
 R7
 32
 R8
@@ -49,67 +49,25 @@ R11
 !i113 1
 R12
 R13
-Ehl_cu
-w1699308990
+Einstructionfile
+Z14 w1699357763
 R1
 R2
 R3
 R4
-R5
-R6
-l0
-L8
-V_Tbdcf=j]6jo13;^L[C8e3
-!s100 mHNYl<e2XHbP41P@NkbQ]1
-R7
-32
-!s110 1699309120
-!i10b 1
-!s108 1699309120.000000
-R10
-R11
-!i113 1
-R12
-R13
-Abhv
-w1699309142
-R1
-R2
-R3
-DEx4 work 5 hl_cu 0 22 _Tbdcf=j]6jo13;^L[C8e3
-l85
-L46
-V<Iz>M46J[=6`ch@K8DTdD3
-!s100 WK;b1YfA_34AV>g4XVB7l1
-R7
-32
-!s110 1699309147
-!i10b 1
-!s108 1699309147.000000
-R10
-R11
-!i113 1
-R12
-R13
-Einstructionfetcher
-Z14 w1699271675
-R1
-R2
-R3
-R4
-Z15 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
-Z16 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
+Z15 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/instructionFile.vhdl
+Z16 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/instructionFile.vhdl
 l0
 L5
-VGA[9N6H4de;MhFjn[nUR<0
-!s100 UCRKF2a]<=Vi=cjMGEe`e3
+VlAXoB3m0?9`LRKENKeYRa1
+!s100 hG6eS07H8H>6PFWJk>Yio3
 R7
 32
-Z17 !s110 1699271690
+R8
 !i10b 1
-Z18 !s108 1699271690.000000
-Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
-Z20 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
+R9
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/instructionFile.vhdl|
+Z18 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/instructionFile.vhdl|
 !i113 1
 R12
 R13
@@ -117,40 +75,81 @@ Abhv
 R1
 R2
 R3
-DEx4 work 18 instructionfetcher 0 22 GA[9N6H4de;MhFjn[nUR<0
-l52
-L32
-VS?cX4oMVj=QYzRzV@3[JA2
-!s100 :6^0]D4mL0]?RSAaj@OmW1
+DEx4 work 15 instructionfile 0 22 lAXoB3m0?9`LRKENKeYRa1
+l19
+L14
+VnnKLOI@9ci^TjN@Kc_=bD3
+!s100 Kn6jIOhZD7l1R8h2F<[1S2
 R7
 32
-R17
+R8
 !i10b 1
+R9
+R17
 R18
-R19
-R20
+!i113 1
+R12
+R13
+Einstructionmemory
+Z19 w1699370904
+R1
+R2
+R3
+R4
+Z20 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionMemory.vhdl
+Z21 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionMemory.vhdl
+l0
+L5
+VVK7dWiH1VCanDdj=iHdee1
+!s100 HJzS?An;ToWz=11O7TCeH2
+R7
+32
+Z22 !s110 1699370915
+!i10b 1
+Z23 !s108 1699370915.000000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionMemory.vhdl|
+Z25 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionMemory.vhdl|
+!i113 1
+R12
+R13
+Abhv
+R1
+R2
+R3
+Z26 DEx4 work 17 instructionmemory 0 22 VK7dWiH1VCanDdj=iHdee1
+l122
+L31
+VckM^ATi3XW9B1TH1QZJ=;3
+!s100 JOcK<0KPNLDF<791]m?0N0
+R7
+32
+R22
+!i10b 1
+R23
+R24
+R25
 !i113 1
 R12
 R13
 Eir
-Z21 w1699357421
+Z27 w1699357766
 R1
 R2
 R3
 R4
-Z22 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl
-Z23 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl
+Z28 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl
+Z29 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl
 l0
 L5
-VMkYf:Fl0P5:Ob4dBXioeA2
-!s100 zaEkcc7``F6Yc7S``:^cJ1
+V1b@_Sdk91ZScdbUmUEDF:3
+!s100 B5:C2<kTeXnbiKIcNcb]T1
 R7
 32
-Z24 !s110 1699357530
+R8
 !i10b 1
-Z25 !s108 1699357530.000000
-Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
-Z27 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
+R9
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
+Z31 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
 !i113 1
 R12
 R13
@@ -158,40 +157,40 @@ Abhv
 R1
 R2
 R3
-DEx4 work 2 ir 0 22 MkYf:Fl0P5:Ob4dBXioeA2
-l18
-L14
-Vd?cRz;nIJ@:mUZ0`oon?V3
-!s100 ;:;B70=XXnK?m=?N]hPRo3
+DEx4 work 2 ir 0 22 1b@_Sdk91ZScdbUmUEDF:3
+l17
+L13
+V7m8VbzAX>Hd]zOo1j4a^13
+!s100 J=aiLYlfCm^l1D6CTnCmM2
 R7
 32
-R24
+R8
 !i10b 1
-R25
-R26
-R27
+R9
+R30
+R31
 !i113 1
 R12
 R13
 Eprogramcounter
-Z28 w1698936255
+Z32 w1698956367
 R1
 R2
 R3
 R4
-Z29 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
-Z30 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
+Z33 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
+Z34 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
 l0
 L5
 VY?m]lEhnL6SeYAW4VJJ?:1
 !s100 MmeBkYVh41@3?LY8?L<7f0
 R7
 32
-Z31 !s110 1698936260
+R8
 !i10b 1
-Z32 !s108 1698936260.000000
-Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
-Z34 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
+R9
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
+Z36 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
 !i113 1
 R12
 R13
@@ -202,15 +201,15 @@ R3
 DEx4 work 14 programcounter 0 22 Y?m]lEhnL6SeYAW4VJJ?:1
 l18
 L14
-V2FgR<Z<A:0hZCo;Q5AEIe0
-!s100 PVSMQZ3DJQN>H]j6FFSlV0
+V5aEZVY:a5hQFEGjKW2Cb<0
+!s100 S`6lMXPB_U>5SJ`NGLcTD1
 R7
 32
-R31
+R8
 !i10b 1
-R32
-R33
-R34
+R9
+R35
+R36
 !i113 1
 R12
 R13

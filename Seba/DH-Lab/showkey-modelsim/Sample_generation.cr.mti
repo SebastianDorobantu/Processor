@@ -1,9 +1,0 @@
-{C:/Users/Seba/Documents/UNI/M5/DH-Lab/Maarten's shit/constantkey/constant_key_entity.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Seba/Documents/UNI/M5/DH-Lab/Maarten's shit/constantkey/constant_key_entity.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity constantkey
--- Compiling architecture bhv of constantkey
-
-} {} {}}
