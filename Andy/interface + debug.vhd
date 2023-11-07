@@ -8,14 +8,15 @@ ENTITY buttonss IS
         reset : IN std_logic;
         button1, button2, button3 : IN std_logic;
 	data_out : OUT STD_LOGIC_VECTOR(15 downto 0); --data from memory (debug)
-        switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9 : IN std_logic;
+        switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9: IN std_logic;
         dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
 	debug: OUT std_logic;
 	btn_inc : in STD_LOGIC; -- Increment button
         btn_dec : in STD_LOGIC; -- Decrement button
-	enter: in STD_LOGIC;
+	enter: in STD_LOGIC:= '0';
         address : out STD_LOGIC_VECTOR(7 downto 0);
-	led: OUT std_logic
+	function_code : OUT std_logic_vector(3 DOWNTO 0);
+        LED9, LED8, LED7, LED6, LED0 : OUT std_logic
     );
 END buttonss;
 
@@ -31,14 +32,18 @@ ARCHITECTURE bhv OF buttonss IS
     signal isNegative: std_logic := '0';  -- Added signal to track the sign of the decimal value
     signal temporal: std_logic_vector(15 DOWNTO 0) := (others => '0');
     signal ram_data_out : STD_LOGIC_VECTOR(15 downto 0);
-component ROM 
+    signal address_buf : std_logic_vector (7 downto 0) := (others => '0');
+    signal temp_int: integer:=0;
+
+component RAM_256X16 
     Port (
       clk : in STD_LOGIC;
       address : in STD_LOGIC_VECTOR(7 downto 0);
+      write_in: out std_logic; 
+      data_in: out std_logic_vector(15 downto 0);
       data_out : out STD_LOGIC_VECTOR(15 downto 0)
     );
   end component;
-  
 
     FUNCTION hex2display(n: std_logic_vector(3 DOWNTO 0)) RETURN std_logic_vector IS
     BEGIN
@@ -75,12 +80,59 @@ component ROM
     END displayToDecimal;
 
 BEGIN
+
     dig0 <= hex2display(temp0);
     dig1 <= hex2display(temp1);
     dig2 <= hex2display(temp2);
     dig3 <= hex2display(temp3);
     dig4 <= hex2display(temp4);
     dig5 <= hex2display(temp5);
+    address_buf(0) <= switch2;
+    address_buf(1) <= switch3;
+    address_buf(2) <= switch4;
+    address_buf(3) <= switch5;
+    address_buf(4) <= switch6;
+    address_buf(5) <= switch7;
+    address_buf(6) <= switch8;
+    address_buf(7) <= switch9; 
+     
+    RAM_256X16_port: RAM_256X16 
+	port map (
+      		clk => clk,
+      		address => address_buf,
+		write_in => open, 
+		data_in => open,
+      		data_out => ram_data_out
+    	); 
+
+    process(switch9, switch8, switch7, switch6)
+    begin
+        function_code <= "0000";  -- Default value
+        LED9 <= '0';  -- Turn off all LEDs by default
+        LED8 <= '0';
+        LED7 <= '0';
+        LED6 <= '0';
+
+        if switch9 = '1' then
+            function_code(3) <= '1';
+            LED9 <= '1';  -- Turn on LED9 if switch9 is on
+        end if;
+
+        if switch8 = '1' then
+            function_code(2) <= '1';
+            LED8 <= '1';  -- Turn on LED8 if switch8 is on
+        end if;
+
+        if switch7 = '1' then
+            function_code(1) <= '1';
+            LED7 <= '1';  -- Turn on LED7 if switch7 is on
+        end if;
+
+        if switch6 = '1' then
+            function_code(0) <= '1';
+            LED6 <= '1';  -- Turn on LED6 if switch6 is on
+        end if;
+    end process;
 
     PROCESS(clk, reset)
     BEGIN
@@ -95,7 +147,7 @@ BEGIN
             temp5 <= "0000";
             decimalValue <= 0;
             isNegative <= '0';
-	Debug <= '0'; 
+ 
         ELSIF rising_edge(clk) THEN
             IF button1 = '0' AND prev_button1 = '1' THEN
                 count <= (count + 1) mod countEnd;
@@ -140,53 +192,37 @@ BEGIN
                 END IF;
             END IF;
             prev_button3 <= button3;
-	IF switch1 = '1' AND enter = '0' THEN 
+		
+	    IF switch1 = '1' THEN 
         	if reset = '1' then
             		address <=(others => '0');
        		 elsif rising_edge(clk) then
+			If enter = '0' then 
             			if btn_inc = '1' then
-                			address <= std_logic_vector(unsigned(address) + 1);
+                			address <= std_logic_vector(unsigned(address_buf) + 1);
            			elsif btn_dec = '1' then
-                			address <= std_logic_vector(unsigned(address) - 1);
-            			else
-                			address(0) <= switch2;
-					address(1) <= switch3;
-					address(2) <= switch4;
-					address(3) <= switch5;
-					address(4) <= switch6;
-					address(5) <= switch7;
-					address(6) <= switch8;
-					address(7) <= switch9;  
+                			address <= std_logic_vector(unsigned(address_buf) - 1); 
             			end if;
-		END IF; 
+			else
+				address <= address_buf;
+				data_out <= ram_data_out;
+				--(display in hex) (with led indicating negative)
+				temporal <= std_logic_vector(signed(ram_data_out));
+				temp_int <= to_integer(signed(ram_data_out));		
+				if temp_int < 0 then 
+					LED0 <= '1';
+				else 
+					LED0 <= '0';	
+				end if;		
+				temp3 <= temporal(15 DOWNTO 12);
+				temp2 <= temporal(11 DOWNTO 8);
+				temp1 <= temporal(7 DOWNTO 4);
+				temp0 <= temporal(3 DOWNTO 0);
+			END IF; 
+		END IF;
 	END IF; 
-	begin
-  	rom_instance : ROM
-    	port map (
-      		clk => clk,
-      		address => address,
-      		data_out => ram_data_out
-    	); 
-	data_out <= ram_data_out;
-
-	IF switch1 = '1' AND enter = '1' THEN 
-		---(display in hex) (with led indicating negative)
-		temporal <= std_logic_vector(to_signed(data_out, 16));
-		if temporal(15) = '1' then 
-			led <= '1';
-		else 
-			led <= '0';	
-		end if;		
-		temp3 <= temporal(15 DOWNTO 12);
-		temp2 <= temporal(11 DOWNTO 8);
-		temp1 <= temporal(7 DOWNTO 4);
-		temp0 <= temporal(3 DOWNTO 0);
-		end if;
-	end if
-end if;
-end process; 
-end if;
-END PROCESS;
+END IF;
+End process; 
 END bhv;
 
 
