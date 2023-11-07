@@ -9,12 +9,9 @@ port(		reset : in std_logic;
 		ALU_A : in std_logic_vector (15 downto 0);				-- input A
 		ALU_B : in std_logic_vector (15 downto 0);				-- input B
 		complete : in boolean;							-- instruction complete => reset 
-
-		zero_flag : out std_logic;					        -- checks if result is 0				
-		neg_flag : out std_logic;						-- result is negative
-		ALU_out : out std_logic_vector (15 downto 0):= (others => '0');			-- output of ALU
-		ovflow_flag : out std_logic := '0';						-- overflow flag
-		proc_complete : out std_logic := '0'						-- process complete => notifies that data is placed on the bus
+		flag_vector : out std_logic_vector (2 downto 0) := (others => '0');	-- 3bit flag vector					
+		ALU_out : out std_logic_vector (15 downto 0):= (others => '0')		-- output of ALU
+								
 		);	
 end ALU;
 
@@ -22,6 +19,9 @@ architecture bhv of ALU is
 
 signal ALU_out_buf : std_logic_vector (15 downto 0) := (others => '0');
 signal overflow_out_buf : std_logic_vector (15 downto 0) := (others => '0');
+signal zero_flag : std_logic := '0';							-- checks if result is 0
+signal neg_flag : std_logic := '0';							-- result is negative
+signal ovflow_flag : std_logic := '0';							-- overflow flag
 
 signal pos_ovflow : std_logic := '0';
 signal neg_ovflow : std_logic := '0';
@@ -51,7 +51,6 @@ ALU_A			: in std_logic_vector(15 downto 0);
 ALU_B			: in std_logic_vector(15 downto 0);
 output 			: out std_logic_vector(15 downto 0):= (others => '0');
 overflow_vec 		: out std_logic_vector(15 downto 0):= (others => '0');
-proc_complete		: out std_logic := '0';
 ovflow_flag		: out std_logic := '0'
 );
 end component;
@@ -59,7 +58,6 @@ end component;
 component adder is
 port(	ALU_A   		: in  std_logic_vector(15 downto 0);
 	ALU_B 			: in  std_logic_vector(15 downto 0);
-	proc_complete		: out std_logic := '0';
 	ovflow_flag		: out std_logic := '0';
 	output 			: out std_logic_vector(15 downto 0):= (others => '0');
 	overflow_vec 		: out std_logic_vector(15 downto 0):= (others => '0')
@@ -69,7 +67,6 @@ end component;
 component sub is
 port(	ALU_A   		: in  std_logic_vector(15 downto 0);
 	ALU_B 			: in  std_logic_vector(15 downto 0);
-	proc_complete		: out std_logic := '0';
 	ovflow_flag		: out std_logic := '0';
 	output 			: out std_logic_vector(15 downto 0):= (others => '0');
 	overflow_vec 		: out std_logic_vector(15 downto 0):= (others => '0')
@@ -148,15 +145,12 @@ ovflow_flag <= overflow;
 
 overflow_out <= overflow_out_buf when ALU_cntrl ="1011" else	--loads overflow value into register if output is reqested
 		"0000000000000000";				--register is set to zero
+zero_flag <=	'0' when ALU_cntrl ="1011";
+
+flag_vector <= zero_flag & neg_flag & ovflow_flag;
+
 
 ALU_out <= overflow_out when ALU_cntrl ="1011" else		-- Output is overflow if requested, else normal output
 	   ALU_out_buf;
-
-
-
-
-
---proc_complete <= '1' when ((ALU_out_buf /= "0000000000000000") and (overflow_out_buf /= "0000000000000000")) else '0';
-
 
 end bhv;
