@@ -7,10 +7,10 @@ PORT (
     -- Logic inputs
     PC                      : IN  std_logic_vector(7 DOWNTO 0)  ;
     CU_control              : IN  std_logic_vector(1 DOWNTO 0)  ;
-    CU_confirm              : OUT std_logic                     ;
+    CU_confirm,CU_wait      : OUT std_logic                     ;
     clk, reset              : IN  std_logic                     ;
     -- BUS CONNECTIONS
-    DB_a1                   : OUT std_logic_vector(11 DOWNTO 0) ;
+    DB_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
     bus_sync_a1             : IN  std_logic                     ;
 
     bus_grant               : IN  std_logic                     ;
@@ -65,8 +65,10 @@ BEGIN
             WHEN Idle => 
                 CU_confirm  <= '0';
                 IF CU_control = "01" OR CU_control = "10" THEN      --INCREMENT OR DECREMENT PC
+                    CU_wait <= '1';
                     state <= NewIR;
                 ELSIF CU_control = "11" THEN                        --BRANCH
+                    CU_wait <= '1';
                     prev_PC <= temp_prev ;                                          -- IDK IF THIS WAY OF CAPTURING THE PREVIOUS PC WILL WORK AND I WON'T SIMULATE THIS NOW CUZ IT's 2 AM 
                     state   <= Branch    ;
 
@@ -81,7 +83,7 @@ BEGIN
                         IF bus_grant = '1' THEN
                             fetch_state <= Wait4data;
                             bus_busy        <= '1';
-                            db_a1           <= '0' & "100" & std_logic_vector(to_unsigned((iPC + (last_fetch - PCL)),8));       -- 100 represents the CS code of MEM
+                            db_a1           <= '0' & "01" & std_logic_vector(to_unsigned((iPC + (last_fetch - PCL)),8));       -- 001 represents the CS code of MEM
                         END IF;
                     WHEN Wait4data =>
                         IF bus_sync_a1 = '1' THEN 
@@ -107,6 +109,7 @@ BEGIN
                     END CASE;
 
             WHEN NewIR =>
+                CU_wait <= '1';
                 IF CU_control = "01" and PCL /= last_fetch THEN
                     PCL         <= PCL + 1;                                     --IF THIS HAPPENS FASTER THAN THE HOLD TIME OF IR same problem as above
                     reg_addr    <= std_logic_vector(to_unsigned((PCL + 1),5));
@@ -135,6 +138,7 @@ BEGIN
                 END IF;
                 
             WHEN NewIR_fin => 
+                CU_wait     <= '0' ;
                 IR_en       <= '0' ;
                 WR          <= '0' ;
                 CS          <= '1' ;
@@ -143,6 +147,7 @@ BEGIN
                 state       <= IDLE;
 
             WHEN Branch =>
+                CU_wait <= '1';
                 IF (prev_PC - iPC) > 0 AND (prev_PC - iPC) >= (32 - last_fetch + PCL ) THEN                             -- (prev_PC - iPC) > 0 means we branched backwards in memory
                     PCL <= PCL - (prev_PC - iPC) - 1;                                                                           -- (32 - last_fetch + PCL ) is the nr of instructions that haven't been replaced
                     state <= NewIR;
