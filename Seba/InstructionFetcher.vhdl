@@ -23,7 +23,7 @@ PORT (
     reg_data                : OUT std_logic_vector(15 DOWNTO 0) ;
     reg_addr                : OUT std_logic_vector(4 DOWNTO 0)  ;
     port_sel,IF_WR,IF_CS    : OUT std_logic := '0'              ;
-    IR_WR,IR_CS             : OUT std_logic := '0'              
+    IR_WR                   : OUT std_logic := '0'              
 );
 END instructionFetcher;
 
@@ -32,10 +32,10 @@ END instructionFetcher;
 
 ARCHITECTURE bhv of instructionFetcher IS
 
-type IF_state is (Idle,Fetching,NewIR,NewIR_fin,Branch);
+type IF_state is (Idle,Fetching,NewIR,NewIR_fin,NewIR_finfin,Branch);
 signal state : IF_state := Idle;
 
-type fetch_states is (INIT,Wait4data,FIN);
+type fetch_states is (INIT,Wait4data,FIN,FINFIN);
 signal fetch_state : fetch_states := INIT;
 
 constant MID_L : INTEGER := 15;
@@ -96,8 +96,9 @@ BEGIN
                             IF_CS          <= '1' ;
                             bus_busy    <= '0' ;
                             bus_request <= '0' ;
-                            fetch_state <= FIN ;
+                            fetch_state <= FINFIN ;
                         END IF;
+                    WHEN FINFIN => fetch_state <= FIN;
                     WHEN FIN => 
                         IF_WR          <= '0' ;           -- IF THIS HAPPENS FASTER THAN THE HOLD TIME OF INSTRUCTION REGISTERS->
                         IF_CS          <= '0' ;            --  THE REGISTERS WON'T TAKE THE DATA BECAUSE THIS HAPPENS NEXT RISING EDGE
@@ -115,7 +116,6 @@ BEGIN
                     PCL         <= PCL + 1;                                     --IF THIS HAPPENS FASTER THAN THE HOLD TIME OF IR same problem as above
                     reg_addr    <= std_logic_vector(to_unsigned((PCL + 1),5));
                     IR_WR          <= '1' ;
-                    IR_CS          <= '1' ;
                     IF_WR          <= '0' ;
                     IF_CS          <= '1' ;
                     port_sel    <= '1' ;
@@ -127,7 +127,6 @@ BEGIN
                     PCL         <= PCL -1;                                     --IF THIS HAPPENS FASTER THAN THE HOLD TIME OF IR same problem as above
                     reg_addr    <= std_logic_vector(to_unsigned((PCL-1 ),5));
                     IR_WR       <= '1' ;
-                    IR_CS       <= '1' ;
                     IF_WR       <= '0' ;
                     IF_CS       <= '1' ;
                     port_sel    <= '1' ;
@@ -137,15 +136,14 @@ BEGIN
                     IF_WR          <= '0' ;
                     IF_CS          <= '1' ;
                     IR_WR          <= '1' ;
-                    IR_CS          <= '1' ;
                     port_sel       <= '1' ;
-                    state          <= NewIR_fin;
+                    state          <= NewIR_finfin;
                 END IF;
-                
+            
+            WHEN NewIR_finfin => state <= NewIR_fin;      
             WHEN NewIR_fin => 
                 CU_wait        <= '0' ;
                 IR_WR          <= '0' ;
-                IR_CS          <= '1' ;
                 port_sel       <= '1' ;
                 CU_confirm     <= '1' ;                                            --CU_confirm is also a potential HoldTime Hazard
                 state          <= IDLE;

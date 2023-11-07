@@ -22,6 +22,7 @@ BEGIN
     IF (reset = '0') THEN
         Data <= (OTHERS => '0')                                                 ;
     ELSIF rising_edge(clk) AND CS = '1' THEN
+        Data <= (OTHERS => 'Z')                                             ;
         IF WR = '1' THEN
             registers(to_integer(unsigned(address))) <= Data                    ;
         ELSE 

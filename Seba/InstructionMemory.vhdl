@@ -51,15 +51,16 @@ PORT (
     reg_data                : OUT std_logic_vector(15 DOWNTO 0) ;
     reg_addr                : OUT std_logic_vector(4 DOWNTO 0)  ;
     port_sel,IF_WR,IF_CS    : OUT std_logic := '0'              ;
-    IR_WR,IR_CS             : OUT std_logic := '0'              
+    IR_WR                   : OUT std_logic := '0'              
 );
 END COMPONENT;
 
 
 COMPONENT IR IS
 PORT (
-    clk, reset, CS, WR  : in std_logic                          ;
-    Data                : inout std_logic_vector(15 DOWNTO 0)
+    clk, reset, WR      : in std_logic                          ;
+    Data                : inout std_logic_vector(15 DOWNTO 0)   ;
+    Data_in             : in  std_logic_vector(15 DOWNTO 0)
 );
 END COMPONENT;
 
@@ -104,18 +105,18 @@ signal hl_BUS_data      : std_logic_vector(15 DOWNTO 0) ;
 
 --- IR connectons
 
-signal hl_IFetch_IF_sig           : std_logic_vector(15 DOWNTO 0) ;
+signal hl_fetcher_data           : std_logic_vector(15 DOWNTO 0) ;
 signal hl_reg_addr                : std_logic_vector(4 DOWNTO 0)  ;
 signal hl_port_sel                : std_logic := '0'              ;
-signal hl_IR_CS,hl_IR_WR          : std_logic := '0'              ; 
+signal hl_IR_WR                  : std_logic := '0'              ; 
 signal hl_IF_WR,hl_IF_CS          : std_logic := '0'              ;
 signal hl_imm                     : std_logic_vector (7 DOWNTO 0) ;
-signal hl_IR_data                 : std_logic_vector (15 DOWNTO 0);
+signal hl_IR_data,hl_IR_data_in     : std_logic_vector (15 DOWNTO 0) ;
 
 --- IF connections
 
 signal hl_reg_data                : std_logic_vector(15 DOWNTO 0) ;
-
+signal in_between                 : std_logic_vector(15 DOWNTO 0) ;
 
 
 
@@ -142,10 +143,9 @@ BUS_data                => hl_BUS_data      ,
  
 -- IRegister connectios
                    
-reg_data               => hl_IFetch_IF_sig  ,
+reg_data               => hl_fetcher_data   ,
 reg_addr               => hl_reg_addr       , 
 port_sel               => hl_port_sel       ,
-IR_CS                  => hl_IR_CS          ,
 IR_WR                  => hl_IR_WR          ,
 IF_CS                  => hl_IF_CS          ,
 IF_WR                  => hl_IF_WR
@@ -164,9 +164,9 @@ InstructionRegister : IR
 PORT MAP(
     clk         => hl_clk                   ,
     reset       => hl_reset                 ,
-    CS          => hl_IR_CS                 ,
     WR          => hl_IR_WR                 ,
-    Data        => hl_IR_data     
+    Data        => hl_IR_data               ,
+    Data_in     => hl_IR_data_in
 );
 
 
@@ -174,22 +174,28 @@ InstructionFiles: instructionFile
 PORT MAP(
     clk         => hl_clk                   ,
     reset       => hl_reset                 , 
-    CS          => hl_IR_CS                 , 
-    WR          => hl_IR_WR                 , 
+    CS          => hl_IF_CS                 , 
+    WR          => hl_IF_WR                 , 
     address     => hl_reg_addr              , 
     Data        => hl_reg_data              
 );
 
 hl_imm <= hl_IR_data(7 DOWNTO 0);
 
--- WITH hl_port_sel select
--- hl_reg_data <=
---     hl_IFetch_IF_sig    WHEN '0',
---     hl_IR_Out           WHEN '1',
---     (OTHERS => 'Z')     WHEN others;
+-- WITH hl_port_sel SELECT
+-- in_between <=
+--     hl_fetcher_data WHEN '0',
+--     hl_IR_data      WHEN '1',
+--     (OTHERS => 'Z') WHEN others;
 
-hl_reg_data <= hl_IFetch_IF_sig ;--WHEN hl_port_sel = '0';
---hl_IR_data  <= hl_reg_data      ; --WHEN hl_port_sel = '1';
+in_between <= hl_fetcher_data WHEN hl_port_sel = '0';
+hl_IR_data_in <= in_between      WHEN hl_port_sel = '1'; 
+
+
+
+hl_reg_data <= in_between;
+
+-- hl_reg_data <= in_between WHEN hl_port_sel = '0';
 
 
 hl_clk         <= clk  ;

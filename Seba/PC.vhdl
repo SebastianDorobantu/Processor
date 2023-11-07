@@ -7,7 +7,7 @@ PORT (
     reset,clk   : in std_logic;
     CU_control  : in std_logic_vector (1 DOWNTO 0);
     jmp_addr    : in std_logic_vector (7 DOWNTO 0);
-    PC          : out std_logic_vector(7 DOWNTO 0 
+    PC          : out std_logic_vector(7 DOWNTO 0)
 );
 END ProgramCounter;
 
