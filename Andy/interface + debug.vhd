@@ -7,15 +7,15 @@ ENTITY buttonss IS
         clk   : IN std_logic;
         reset : IN std_logic;
         button1, button2, button3 : IN std_logic;
-	data_out : OUT STD_LOGIC_VECTOR(15 downto 0); --data from memory (debug)
+	    data_out : OUT STD_LOGIC_VECTOR(15 downto 0); --data from memory (debug)
         switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9: IN std_logic;
         dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
-	debug: OUT std_logic;
-	btn_inc : in STD_LOGIC; -- Increment button
+	    debug: OUT std_logic;
+	    btn_inc : in STD_LOGIC; -- Increment button
         btn_dec : in STD_LOGIC; -- Decrement button
-	enter: in STD_LOGIC:= '0';
+	    enter: in STD_LOGIC:= '0';
         address : out STD_LOGIC_VECTOR(7 downto 0);
-	function_code : OUT std_logic_vector(3 DOWNTO 0);
+	    function_code : OUT std_logic_vector(3 DOWNTO 0);
         LED9, LED8, LED7, LED6, LED0 : OUT std_logic
     );
 END buttonss;
