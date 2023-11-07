@@ -63,7 +63,8 @@ begin
 		overflow_vec(0) <= '1' 		when overflow = '1' and pos_ovflow = '1' else
 				   '1'		when overflow = '1' and neg_ovflow = '1' else
 				   '0'		when overflow = '0';
-		overflow_vec(15 downto 0) <= "1111111111111111" when overflow = '1' and neg_ovflow = '1'; 
+		overflow_vec(15 downto 1) <= 	"111111111111111" when overflow = '1' and neg_ovflow = '1' else
+						"000000000000000"; 
 		
 
 		ovflow_flag  <= '1' 	  when overflow = '1' else

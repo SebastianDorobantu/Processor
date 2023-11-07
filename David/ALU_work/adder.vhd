@@ -42,10 +42,10 @@ begin
 			'0' when others;
 	
 	pos_ovflow <= '1' when (pos_ovflow_a = '1') and (pos_ovflow_b = '1') ELSE 
-		      '0' when (pos_ovflow_a = '0') and (pos_ovflow_b = '0');
+		      '0';
 	
 	neg_ovflow <= '1' when (neg_ovflow_a = '1') and (neg_ovflow_b = '1') ELSE
-		      '0' when (neg_ovflow_a = '0') and (neg_ovflow_b = '0');
+		      '0';
 	
 	
 										--check for Valid input 													-- check OP field
