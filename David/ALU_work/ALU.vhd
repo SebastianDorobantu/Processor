@@ -121,7 +121,8 @@ overflow <=  	ovflow_flag_add when ALU_cntrl = "0000" else
 
 overflow_out_buf <= 	overflow_out_add when ALU_cntrl = "0000" else
 		  	overflow_out_sub when ALU_cntrl = "0001" else
-			overflow_out_lshift when ALU_cntrl = "0010";
+			overflow_out_lshift when ALU_cntrl = "0010" else
+			"0000000000000000" when ALU_cntrl ="0110" or ALU_cntrl ="1000" or ALU_cntrl ="0101" or ALU_cntrl ="1001" or ALU_cntrl ="1010";
 
 reset_buf <= 	'0' when reset = '0' else
 		'1';
