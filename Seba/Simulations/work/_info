@@ -9,7 +9,7 @@ z2
 cModel Technology
 dC:/intelFPGA_lite/18.1
 Ecu
-Z0 w1699311815
+Z0 w1699354191
 Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
@@ -18,13 +18,13 @@ Z5 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl
 Z6 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl
 l0
 L8
-Vk:G;[71^XfdS;B:FM8Pbi1
-!s100 7LBY]A;M6_V<7DUDU7AdB2
+Vkg;_GT<mDZ1JIU4RXm:ez2
+!s100 TRUCUXYD?bK^]8f?M;_lC2
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1699311905
+Z8 !s110 1699357525
 !i10b 1
-Z9 !s108 1699311905.000000
+Z9 !s108 1699357525.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl|
 Z11 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU/CU.vhdl|
 !i113 1
@@ -34,11 +34,11 @@ Abhv
 R1
 R2
 R3
-Z14 DEx4 work 2 cu 0 22 k:G;[71^XfdS;B:FM8Pbi1
+DEx4 work 2 cu 0 22 kg;_GT<mDZ1JIU4RXm:ez2
 l85
-L46
-VD?HDDOM>iKSbco6fkac0z2
-!s100 a0@_oYeIedRbnzzD1BLnl1
+L45
+Vn7Q3l=W5bi=UNbia2DQDl3
+!s100 3:IER]5QVodjCM[XDnXNA0
 R7
 32
 R8
@@ -92,24 +92,24 @@ R11
 R12
 R13
 Einstructionfetcher
-Z15 w1699271675
+Z14 w1699271675
 R1
 R2
 R3
 R4
-Z16 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
-Z17 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
+Z15 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
+Z16 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl
 l0
 L5
 VGA[9N6H4de;MhFjn[nUR<0
 !s100 UCRKF2a]<=Vi=cjMGEe`e3
 R7
 32
-Z18 !s110 1699271690
+Z17 !s110 1699271690
 !i10b 1
-Z19 !s108 1699271690.000000
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
-Z21 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
+Z18 !s108 1699271690.000000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
+Z20 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
 !i113 1
 R12
 R13
@@ -124,33 +124,74 @@ VS?cX4oMVj=QYzRzV@3[JA2
 !s100 :6^0]D4mL0]?RSAaj@OmW1
 R7
 32
-R18
+R17
 !i10b 1
+R18
 R19
 R20
-R21
 !i113 1
 R12
 R13
-Eprogramcounter
-Z22 w1698936255
+Eir
+Z21 w1699357421
 R1
 R2
 R3
 R4
-Z23 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
-Z24 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
+Z22 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl
+Z23 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl
+l0
+L5
+VMkYf:Fl0P5:Ob4dBXioeA2
+!s100 zaEkcc7``F6Yc7S``:^cJ1
+R7
+32
+Z24 !s110 1699357530
+!i10b 1
+Z25 !s108 1699357530.000000
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
+Z27 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
+!i113 1
+R12
+R13
+Abhv
+R1
+R2
+R3
+DEx4 work 2 ir 0 22 MkYf:Fl0P5:Ob4dBXioeA2
+l18
+L14
+Vd?cRz;nIJ@:mUZ0`oon?V3
+!s100 ;:;B70=XXnK?m=?N]hPRo3
+R7
+32
+R24
+!i10b 1
+R25
+R26
+R27
+!i113 1
+R12
+R13
+Eprogramcounter
+Z28 w1698936255
+R1
+R2
+R3
+R4
+Z29 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
+Z30 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl
 l0
 L5
 VY?m]lEhnL6SeYAW4VJJ?:1
 !s100 MmeBkYVh41@3?LY8?L<7f0
 R7
 32
-Z25 !s110 1698936260
+Z31 !s110 1698936260
 !i10b 1
-Z26 !s108 1698936260.000000
-Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
-Z28 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
+Z32 !s108 1698936260.000000
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
+Z34 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
 !i113 1
 R12
 R13
@@ -165,11 +206,11 @@ V2FgR<Z<A:0hZCo;Q5AEIe0
 !s100 PVSMQZ3DJQN>H]j6FFSlV0
 R7
 32
-R25
+R31
 !i10b 1
-R26
-R27
-R28
+R32
+R33
+R34
 !i113 1
 R12
 R13

@@ -21,11 +21,13 @@ PROCESS (clk, reset)
 BEGIN
     IF (reset = '0') THEN
         Data <= (OTHERS => '0')                                                 ;
-    ELSIF rising_edge(clk) AND CS = '1' AND WR = '1' THEN
-        registers(to_integer(unsigned(address))) <= Data                        ;
-    ELSIF rising_edge(clk) AND CS = '1' AND WR = '0' THEN
-        Data <= registers(to_integer(unsigned(address)))                        ;
+    ELSIF rising_edge(clk) AND CS = '1' THEN
+        IF WR = '1' THEN
+            registers(to_integer(unsigned(address))) <= Data                    ;
+        ELSE 
+            Data <= registers(to_integer(unsigned(address)))                    ;
+        END IF;
     END IF;
-END PROCESS;
 
+END PROCESS;
 END ARCHITECTURE;
