@@ -177,20 +177,20 @@ port_hl_lshifter : lshifter
 
 
 
-	WITH overflow_sign SELECT
+	
 	overflow_vec <= 
-			'0'  & overflow_sign(14 downto 0)	WHEN "000000000000000",
-			ALU_A(15) & overflow_sign(14 downto 0) 	WHEN others;
+			'0'  & overflow_sign(14 downto 0)	WHEN overflow_sign = "000000000000000" and to_integer(unsigned(ALU_B)) /= 16 else
+			ALU_A(15) & overflow_sign(14 downto 0);
 	
 	WITH signcheck SELECT
 	ovflow_flag1 <= '1' 	WHEN '1',
 			'0' 	WHEN others; 
 
-	WITH overflow_sign SELECT
 	ovflow_flag2 <=
-			'0' 	WHEN "000000000000000",
-			'0'	WHEN "111111111111111",
-			'1'	WHEN others;
+			'0' 	WHEN overflow_sign = "000000000000000" and to_integer(unsigned(ALU_B)) /= 16 else
+			'0'	WHEN overflow_sign = "111111111111111" and to_integer(unsigned(ALU_B)) /= 16 else
+			'1'	;
+	
 	
 	ovflow_flag_buf <= ovflow_flag1 or ovflow_flag2;
 	ovflow_flag <= ovflow_flag_buf;

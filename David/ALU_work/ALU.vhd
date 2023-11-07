@@ -21,6 +21,7 @@ signal overflow_out_buf : std_logic_vector (15 downto 0) := (others => '0');
 signal zero_flag : std_logic := '0';							-- checks if result is 0
 signal neg_flag : std_logic := '0';							-- result is negative
 signal ovflow_flag : std_logic := '0';							-- overflow flag
+signal reset_buf : std_logic := '1';
 
 signal pos_ovflow : std_logic := '0';
 signal neg_ovflow : std_logic := '0';
@@ -120,6 +121,9 @@ overflow_out_buf <= 	overflow_out_add when ALU_cntrl = "0000" else
 		  	overflow_out_sub when ALU_cntrl = "0001" else
 			overflow_out_lshift when ALU_cntrl = "0010";
 
+reset_buf <= 	'0' when reset = '0' else
+		'1';
+
 
 ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
 		sub_output 		when ALU_cntrl = "0001" else	-- subtraction
@@ -132,7 +136,8 @@ ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
 		"0000000000000000";					--register is set to zero
 
 zero_flag <= 	'1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else --check result = 0
-		'0' when ALU_out_buf /= "0000000000000000"  or overflow = '1' or ALU_cntrl ="1011";
+		'0' when ALU_out_buf /= "0000000000000000"  or overflow = '1' or ALU_cntrl ="1011" else
+		'0';
 
 neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and overflow = '1' else
 		'1' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '1' and overflow = '1' else --check if result is negative
@@ -151,10 +156,5 @@ flag_vector <= zero_flag & neg_flag & ovflow_flag;
 ALU_out <= overflow_out when ALU_cntrl ="1011" else		-- Output is overflow if requested, else normal output
 	   ALU_out_buf;
 
-flag_vector	<= "000" when reset = '0';
-ALU_out 	<= "0000000000000000" when reset = '0';
-zero_flag 	<= '0' when reset = '0';
-neg_flag 	<= '0'when  reset = '0';
-ovflow_flag	<= '0' when reset = '0';
 
 end bhv;
