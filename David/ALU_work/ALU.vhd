@@ -133,7 +133,7 @@ ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
 		"0000000000000000";					--register is set to zero
 
 zero_flag <= '1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else --check result = 0
-	     '0' when ALU_out_buf /= "0000000000000000"  or overflow = '1';
+				 '0' when ALU_out_buf /= "0000000000000000"  or overflow = '1' or ALU_cntrl ="1011";
 
 neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and overflow = '1' else
 		'1' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '1' and overflow = '1' else --check if result is negative
@@ -144,8 +144,7 @@ neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and o
 ovflow_flag <= overflow;
 
 overflow_out <= overflow_out_buf when ALU_cntrl ="1011" else	--loads overflow value into register if output is reqested
-		"0000000000000000";				--register is set to zero
-zero_flag <=	'0' when ALU_cntrl ="1011";
+											"0000000000000000";				--register is set to zero
 
 flag_vector <= zero_flag & neg_flag & ovflow_flag;
 
