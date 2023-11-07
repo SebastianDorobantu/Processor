@@ -55,8 +55,8 @@ BEGIN
 				ELSE 
 					state <= Idle;
 				END IF;
-				BUS_sync_a1 <= '0 ;
-				BUS_sync_a2 <= '0';
+					BUS_sync_a1 <= '0 ;
+					BUS_sync_a2 <= '0';
 			END IF;
 		END CASE;
 	END IF;
