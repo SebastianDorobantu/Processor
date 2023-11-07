@@ -22,9 +22,9 @@ VgN3XL<hgndDboUm7ZNR1D0
 !s100 foHDFaLgSR^Tiz7ndkjbb3
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1699356202
+Z8 !s110 1699361644
 !i10b 1
-Z9 !s108 1699356202.000000
+Z9 !s108 1699361644.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/adder.vhd|
 Z11 !s107 C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/adder.vhd|
 !i113 1
@@ -50,7 +50,7 @@ R11
 R12
 R13
 Ealu
-Z14 w1699356055
+Z14 w1699361640
 R1
 R2
 R3
@@ -59,8 +59,8 @@ Z15 8C:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd
 Z16 FC:/Users/grimm/Documents/GitHub/Processor/David/ALU_work/ALU.vhd
 l0
 L5
-Vz4=K8_`E?k_ghVTFNhD]43
-!s100 e[5:km_3e?l3oOjz9c^1z0
+VZ]f>0DWIlJKJLlDAd1b:[0
+!s100 bKS:WKcblCDWWP^Jj>a[@3
 R7
 32
 R8
@@ -75,11 +75,11 @@ Abhv
 R1
 R2
 R3
-DEx4 work 3 alu 0 22 z4=K8_`E?k_ghVTFNhD]43
-l77
-L18
-V5c;mRm6BkzS6L[P5hTmK<3
-!s100 e:KYd_ET38[`Y=X8N9cWJ0
+DEx4 work 3 alu 0 22 Z]f>0DWIlJKJLlDAd1b:[0
+l76
+L17
+Vm_:3LliP@2P`VcUkU478:2
+!s100 02eUC[mJU5]W93Q5dm>Qm0
 R7
 32
 R8
@@ -223,8 +223,8 @@ R3
 Z34 DEx4 work 3 sub 0 22 dahL4kNUlPGA@cJ=E^z>I1
 l27
 L16
-Vo@4`nkb6c2k@;R9Bzh>[c0
-!s100 =zF^dVl>DJW1XJ?=;W5Nk1
+Z35 Vo@4`nkb6c2k@;R9Bzh>[c0
+Z36 !s100 =zF^dVl>DJW1XJ?=;W5Nk1
 R7
 32
 R8

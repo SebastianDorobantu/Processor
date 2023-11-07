@@ -3,8 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity ALU IS
-port(		reset : in std_logic;
-		clk : in std_logic;						
+port(		reset : in std_logic;					
 		ALU_cntrl : in std_logic_vector (3 downto 0);				-- OP field
 		ALU_A : in std_logic_vector (15 downto 0);				-- input A
 		ALU_B : in std_logic_vector (15 downto 0);				-- input B
@@ -132,8 +131,8 @@ ALU_out_buf <= 	add_output 		when ALU_cntrl = "0000" else	-- addition
 		not(ALU_A xor ALU_B)  	when ALU_cntrl = "1010" else	-- XNOR
 		"0000000000000000";					--register is set to zero
 
-zero_flag <= '1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else --check result = 0
-				 '0' when ALU_out_buf /= "0000000000000000"  or overflow = '1' or ALU_cntrl ="1011";
+zero_flag <= 	'1' when ALU_out_buf  = "0000000000000000" and overflow = '0' else --check result = 0
+		'0' when ALU_out_buf /= "0000000000000000"  or overflow = '1' or ALU_cntrl ="1011";
 
 neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and overflow = '1' else
 		'1' when ALU_out_buf(15) = '0' and overflow_out_buf(15) = '1' and overflow = '1' else --check if result is negative
@@ -144,12 +143,18 @@ neg_flag <= 	'1' when ALU_out_buf(15) = '1' and overflow_out_buf(15) = '1' and o
 ovflow_flag <= overflow;
 
 overflow_out <= overflow_out_buf when ALU_cntrl ="1011" else	--loads overflow value into register if output is reqested
-											"0000000000000000";				--register is set to zero
+		"0000000000000000";				--register is set to zero
 
 flag_vector <= zero_flag & neg_flag & ovflow_flag;
 
 
 ALU_out <= overflow_out when ALU_cntrl ="1011" else		-- Output is overflow if requested, else normal output
 	   ALU_out_buf;
+
+flag_vector	<= "000" when reset = '0';
+ALU_out 	<= "0000000000000000" when reset = '0';
+zero_flag 	<= '0' when reset = '0';
+neg_flag 	<= '0'when  reset = '0';
+ovflow_flag	<= '0' when reset = '0';
 
 end bhv;
