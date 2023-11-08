@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-ENTITY buttonss IS
+ENTITY IO_Unit IS
     PORT (
 	clk   : IN std_logic;
         reset : IN std_logic;
@@ -19,9 +19,9 @@ ENTITY buttonss IS
 
 
     );
-END buttonss;
+END IO_Unit;
 
-ARCHITECTURE bhv OF buttonss IS
+ARCHITECTURE bhv OF IO_Unit IS
     constant countEnd : natural := 10;
     signal currentDisplay: integer range 0 to 5 := 0;
     signal count : integer range 0 to countEnd - 1 := 0;

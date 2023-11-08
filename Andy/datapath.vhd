@@ -111,8 +111,8 @@ Architecture bhv of datapath is
 signal LF_addr1,LF_addr2 : std_logic_vector(2 downto 0);
 signal BUS_addr1,BUS_addr2 : std_logic_vector(10 DOWNTO 0);
 signal address : std_logic_vector(10 DOWNTO 0);
-signal BUS_sync_a1 : std_logic;
-signal BUS_sync_a2 : std_logic;
+signal BUS_sync_1 : std_logic;
+signal BUS_sync_2 : std_logic;
 signal ALU_cntrl : std_logic_vector(3 downto 0);
 signal ALU_A_MUX : std_logic;
 signal ALU_B_MUX : std_logic;
@@ -162,8 +162,8 @@ BUS_data <=	ALU_out when ALU_OUTPUT_SEL = '0' else
 	BUS_addr1(9 DOWNTO 8)=> CS,
 	BUS_data => data_in,
 	---BUS sync---
-	BUS_sync_a1 => BUS_sync_a1,
-	BUS_sync_a2 => BUS_sync_a2
+	BUS_sync_a1 => BUS_sync_1,
+	BUS_sync_a2 => BUS_sync_2
 	);
 
 arbiter_port: arbiter 
@@ -171,8 +171,8 @@ arbiter_port: arbiter
 	busy <= BUS_busy, 
 	req0 <= BUS_request,
 	req1 <= BUS_request, -- ?
-	BUS_sync_a1 => BUS_sync_a1,
-	BUS_sync_a2 => BUS_sync_a2, 
+	BUS_sync_a1 => BUS_sync_1,
+	BUS_sync_a2 => BUS_sync_2, 
 	gnt0 => gnt0,  
 	gnt1 => gnt1,
 	clk <= clk, 
@@ -186,8 +186,8 @@ RAM_port: ram
 	BUS_addr2 <= BUS_addr2,
 	data_in <= BUS_data,  
     data_out => Bus_data,
-	BUS_sync1 => BUS_sync,
-	BUS_sync2 => BUS_sync,
+	BUS_sync1 => BUS_sync1,
+	BUS_sync2 => BUS_sync2,
 	);
 
 interface_port: buttonss 
@@ -196,9 +196,7 @@ interface_port: buttonss
 	binaryValue => BUS_data,
 	function_code => BUS_data,
 	BUS_busy => BUS_busy_CU,
-	wr_in <= BUS_addr1(10),
-	CS    <= BUS_addr1(9 DOWNTO 8),
-	address <= BUS_addr1(7 downto 0)
+	address => BUS_addr1,
 	data_in <= BUS_data,
     data_out => ram_data_out,
 	);

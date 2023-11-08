@@ -8,7 +8,7 @@ USE IEEE.numeric_std.ALL;
 ENTITY CU IS
 PORT (
 
-clk, reset,debug         : IN  std_logic                                             ;
+clk, reset,debug         : IN  std_logic                                            ;
 
 --Lobster File
 
