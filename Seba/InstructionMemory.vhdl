@@ -12,7 +12,7 @@ PORT (
     BUS_sync_a1             : IN  std_logic                     ;
 
     BUS_gnt                 : IN  std_logic                     ;
-    BUS_bsy,BUS_req                : OUT std_logic                     ;
+    BUS_bsy,BUS_req         : OUT std_logic                     ;
     BUS_Data                : IN  std_logic_vector(15 DOWNTO 0) ;
 
     -- IR outputs

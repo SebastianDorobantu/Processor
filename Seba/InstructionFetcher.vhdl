@@ -164,9 +164,8 @@ BEGIN
                     bus_request <= '1'          ;      
                 END IF;              
             END CASE;
+        END IF;
     END IF;         
-
-
 END PROCESS;
 
 END ARCHITECTURE;

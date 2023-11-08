@@ -4,17 +4,18 @@ USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY interface IS
     PORT (
-        clk   : IN std_logic;
-        reset : IN std_logic;
-        button1, button2, button3 : IN std_logic;
+        clk                         : IN std_logic;
+        reset                       : IN std_logic;
+        button1, button2, button3   : IN std_logic;
         switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9: IN std_logic;
         dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
-	enter: IN STD_LOGIC:= '0';
-	BUS_addr2: OUT std_logic_vector(10 DOWNTO 0); 
-	BUS_data: IN std_logic_vector(15 downto 0);  
-	function_code: OUT std_logic_vector(3 DOWNTO 0);
-	binaryValue: OUT std_logic_vector(15 DOWNTO 0) := (others => '0');  -- 16-bit binary value
-        LED9, LED8, LED7, LED6, LED0: OUT std_logic
+        enter                       : IN STD_LOGIC:= '0';
+        BUS_addr2                   : OUT std_logic_vector(10 DOWNTO 0); 
+        BUS_data                    : IN std_logic_vector(15 downto 0);  
+        function_code               : OUT std_logic_vector(3 DOWNTO 0);
+        binaryValue                 : OUT std_logic_vector(15 DOWNTO 0) := (others => '0');  -- 16-bit binary value
+        LED9, LED8, LED7, LED6, LED0: OUT std_logic                     ;
+        debug                       : OUT std_logic                                       
     );
 END interface;
 
@@ -32,15 +33,6 @@ ARCHITECTURE bhv OF interface IS
     signal address_buf : std_logic_vector (7 downto 0) := (others => '0');
     signal temp_int: integer:=0;
 
-component RAM_256X16 
-    Port (
-      clk : in STD_LOGIC;
-      address : in STD_LOGIC_VECTOR(7 downto 0);
-      write_in: out std_logic; 
-      data_in: out std_logic_vector(15 downto 0);
-      data_out : out STD_LOGIC_VECTOR(15 downto 0)
-    );
-  end component;
 
     FUNCTION hex2display(n: std_logic_vector(3 DOWNTO 0)) RETURN std_logic_vector IS
     BEGIN
@@ -136,7 +128,7 @@ BEGIN
             decimalValue <= 0;
             isNegative <= '0';
  
-        ELSIF rising_edge(clk) THEN
+        ELSIF rising_edge(clk) and switch1 /= '1' THEN
             IF button1 = '0' AND prev_button1 = '1' THEN
                 count <= (count + 1) mod countEnd;
                 CASE currentDisplay IS
@@ -181,21 +173,19 @@ BEGIN
             END IF;
             prev_button3 <= button3;
 		
-	    IF switch1 = '1' THEN 
-        	if reset = '1' then
-            		Bus_addr2 <=(others => '0');
-       		 elsif rising_edge(clk) then
+	    IF switch1 = '1' AND rising_edge(clk) THEN -- debug mode
+            debug <= '1';
 			If enter = '0' then 
-            			if button2 = '1' then
-                			Bus_addr2(7 DOWNTO 0)<= std_logic_vector(unsigned(address_buf) + 1);
-           			elsif button3 = '1' then
-                			Bus_addr2(7 DOWNTO 0) <= std_logic_vector(unsigned(address_buf) - 1); 
-            			end if;
+            		if button2 = '1' then   -- Increment
+                		Bus_addr2<= '0' & "01" & std_logic_vector(unsigned(address_buf) + 1);
+           			elsif button3 = '1' then    -- decrement
+                		Bus_addr2<= '0' & "01" & std_logic_vector(unsigned(address_buf) - 1); 
+            		end if;
 			else
-				Bus_addr2(7 DOWNTO 0) <= address_buf;
+				Bus_addr2 <= '0' & "01" & address_buf;
 				ram_data_out <= Bus_data;
 				--(display in hex) (with led indicating negative)
-				temporal <= std_logic_vector(signed(Bus_data));
+				temporal <= Bus_data;
 				temp_int <= to_integer(signed(Bus_data));		
 				if temp_int < 0 then 
 					LED0 <= '1';
@@ -209,7 +199,6 @@ BEGIN
 			END IF; 
 		END IF;
 	END IF; 
-END IF;
 End process; 
 END bhv;
 

@@ -4,14 +4,11 @@ USE ieee.numeric_std.ALL;
 ENTITY Memory IS
 PORT(
 	clk : in std_logic; 
-	-- address: in std_logic_vector(7 downto 0); 
-	-- data_in: in std_logic_vector(15 downto 0);
-	-- data_out: out std_logic_vector(15 downto 0)
 
 	BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
 	--selects memory (from bus)
-	BUS_address1: IN std_logic_vector(10 DOWNTO 0); 
-	BUS_address2: IN std_logic_vector(10 DOWNTO 0); 
+	BUS_addr1: IN std_logic_vector(10 DOWNTO 0); 
+	BUS_addr2: IN std_logic_vector(10 DOWNTO 0); 
 	---Indicate IF output IS complete
 	BUS_sync1: OUT std_logic;
 	BUS_sync2: OUT std_logic
@@ -26,20 +23,20 @@ BEGIN
 	PROCESS(clk) IS 
 	BEGIN 
 		IF rising_edge(clk) THEN 
-			IF    BUS_address1(9 DOWNTO 8) = "01" THEN		-- Checking CS on add1
-				IF BUS_address1(10) = '1' THEN
-					ram_data(to_integer(unsigned(BUS_address1(7 DOWNTO 0)))) <= BUS_data;
+			IF    BUS_addr1(9 DOWNTO 8) = "01" THEN		-- Checking CS on add1
+				IF BUS_addr1(10) = '1' THEN
+					ram_data(to_integer(unsigned(BUS_addr1(7 DOWNTO 0)))) <= BUS_data;
 					BUS_sync1 						 <= '1'		;	
 				ELSE 
-					BUS_data <= ram_data(to_integer(unsigned(BUS_address1(7 DOWNTO 0))));
+					BUS_data <= ram_data(to_integer(unsigned(BUS_addr1(7 DOWNTO 0))));
 					BUS_sync1 						 <= '1'		;
 				END IF;
-			ELSIF BUS_address2(9 DOWNTO 8) = "01" THEN		-- Checking CS on add2
-				IF BUS_address2(10) = '1' THEN
-					ram_data(to_integer(unsigned(BUS_address1(7 DOWNTO 0)))) <= BUS_data;
+			ELSIF BUS_addr2(9 DOWNTO 8) = "01" THEN		-- Checking CS on add2
+				IF BUS_addr2(10) = '1' THEN
+					ram_data(to_integer(unsigned(BUS_addr1(7 DOWNTO 0)))) <= BUS_data;
 					BUS_sync2 						 <= '1'		;	
 				ELSE 
-					BUS_data <= ram_data(to_integer(unsigned(BUS_address1(7 DOWNTO 0))));
+					BUS_data <= ram_data(to_integer(unsigned(BUS_addr1(7 DOWNTO 0))));
 					BUS_sync2 						 <= '1'		;
 				END IF;
 			ELSE

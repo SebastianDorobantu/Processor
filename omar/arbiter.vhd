@@ -13,15 +13,12 @@ entity arbiter is
 	
 	busy : in  std_logic;
 	BUS_sync_a1,BUS_sync_a2 : OUT  std_logic;
-
 				
 -- outputs  
  
     gnt0 : out std_logic;
 	gnt1 : out std_logic;
-		gnt2 : out std_logic
-
-	
+	gnt2 : out std_logic
   );
   
   type t_state is (Idle,Granted,In_prog);

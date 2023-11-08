@@ -3,14 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity ALU IS
-port(		reset : in std_logic;					
-		ALU_cntrl : in std_logic_vector (3 downto 0);				-- OP field
-		ALU_A : in std_logic_vector (15 downto 0);				-- input A
-		ALU_B : in std_logic_vector (15 downto 0);				-- input B
-		complete : in boolean;							-- instruction complete => reset 
-		flag_vector : out std_logic_vector (2 downto 0) := (others => '0');	-- 3bit flag vector					
-		ALU_out : out std_logic_vector (15 downto 0):= (others => '0')		-- output of ALU
-								
+port(		
+	reset : in std_logic;					
+	ALU_cntrl : in std_logic_vector (3 downto 0);				-- OP field
+	ALU_A : in std_logic_vector (15 downto 0);				-- input A
+	ALU_B : in std_logic_vector (15 downto 0);				-- input B
+	flag_vector : out std_logic_vector (2 downto 0) := (others => '0');	-- 3bit flag vector					
+	ALU_out : out std_logic_vector (15 downto 0):= (others => '0')		-- output of ALU							
 		);	
 end ALU;
 

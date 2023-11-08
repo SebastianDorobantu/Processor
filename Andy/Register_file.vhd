@@ -8,8 +8,8 @@ ENTITY register_file IS
 	--16 bit address from memory/ALU
 	BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
 	--selects registers (from bus)
-	BUS_address1: IN std_logic_vector(10 DOWNTO 0); 
-	BUS_address2: IN std_logic_vector(10 DOWNTO 0); 
+	BUS_addr1: IN std_logic_vector(10 DOWNTO 0); 
+	BUS_addr2: IN std_logic_vector(10 DOWNTO 0); 
 	---Assigns register with address (from control unit)
 	regA: IN std_logic_vector(2 DOWNTO 0); 
 	regB: IN std_logic_vector(2 DOWNTO 0); 
@@ -34,20 +34,20 @@ BEGIN
 				outA <= regs(to_integer(unsigned(regA))); 
 				outB <= regs(to_integer(unsigned(regB)));
 			
-			IF    BUS_address1(9 DOWNTO 8) = "00" THEN		-- Checking CS on add1
-				IF BUS_address1(10) = '1' THEN
-					regs(to_integer(unsigned(BUS_address1(2 DOWNTO 0)))) <= BUS_data;
+			IF    BUS_addr1(9 DOWNTO 8) = "00" THEN		-- Checking CS on add1
+				IF BUS_addr1(10) = '1' THEN
+					regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0)))) <= BUS_data;
 					BUS_sync1 						 <= '1'		;	
 				ELSE 
-					BUS_data <= regs(to_integer(unsigned(BUS_address1(2 DOWNTO 0))));
+					BUS_data <= regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0))));
 					BUS_sync1 						 <= '1'		;
 				END IF;
-			ELSIF BUS_address2(9 DOWNTO 8) = "00" THEN		-- Checking CS on add2
-				IF BUS_address2(10) = '1' THEN
-					regs(to_integer(unsigned(BUS_address1(2 DOWNTO 0)))) <= BUS_data;
+			ELSIF BUS_addr2(9 DOWNTO 8) = "00" THEN		-- Checking CS on add2
+				IF BUS_addr2(10) = '1' THEN
+					regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0)))) <= BUS_data;
 					BUS_sync2 						 <= '1'		;	
 				ELSE 
-					BUS_data <= regs(to_integer(unsigned(BUS_address1(2 DOWNTO 0))));
+					BUS_data <= regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0))));
 					BUS_sync2 						 <= '1'		;
 				END IF;
 			ELSE

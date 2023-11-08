@@ -2,17 +2,26 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
-entity datapath is 
+entity datapath IS 
 PORT( clk, reset : IN std_logic
 );
-end datapath;
+END datapath;
 
-component CU IS
+
+
+
+
+---------------------------------------------ARCHITECTURE---------------------------
+
+Architecture bhv of datapath IS
+
+-------------------------------------- COMPONENTS -----------------------	
+
+COMPONENT CU IS
 PORT (
-
-clk, reset              : IN  std_logic                                             ;
+clk, reset, debug       : IN  std_logic                                             ;
 --Lobster File
-LF_addr1,LF_addr2        : OUT std_logic_vector(2 DOWNTO 0)                         ;
+LF_addr1,LF_addr2       : OUT std_logic_vector(2 DOWNTO 0)                          ;
 --BUS 
 BUS_addr1,BUS_addr2     : OUT std_logic_vector(10 DOWNTO 0)                         ;
 BUS_sync_a1,BUS_sync_a2 : IN  std_logic                                             ;
@@ -29,9 +38,9 @@ ALU_control             : OUT std_logic_vector(3 DOWNTO 0)                      
 ALU_A_MUX,ALU_B_MUX     : OUT std_logic                                             ;
 ALU_OUTPUT_SEL          : OUT std_logic                           -- 0 for data and 1 for address
 );
-END component;
+END COMPONENT;
 
-component buttonss IS
+COMPONENT IO_Unit IS
     PORT (
 		clk   : IN std_logic;
 		reset : IN std_logic;
@@ -40,72 +49,100 @@ component buttonss IS
 		switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9: IN std_logic;
 		dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
 		debug: OUT std_logic;
-		btn_inc : in STD_LOGIC; -- Increment button
-		btn_dec : in STD_LOGIC; -- Decrement button
-		enter: in STD_LOGIC:= '0';
-		address : out STD_LOGIC_VECTOR(7 downto 0);
+		btn_inc : IN STD_LOGIC; -- Increment button
+		btn_dec : IN STD_LOGIC; -- Decrement button
+		enter: IN STD_LOGIC:= '0';
+		address : OUT STD_LOGIC_VECTOR(7 downto 0);
 		function_code : OUT std_logic_vector(3 DOWNTO 0);
 		LED9, LED8, LED7, LED6, LED0 : OUT std_logic
     );
-END component;
+END COMPONENT;
 
-component register_file IS 
-	PORT(
+COMPONENT register_file IS 
+PORT(
 	clk: IN std_logic;
-	wr_enable: IN std_logic;
 	--16 bit address from memory/ALU
-	data: IN std_logic_vector(15 DOWNTO 0); 
-	--selects registers (8 registers)(from bus)
-	address: IN std_logic_vector(7 DOWNTO 0); 
+	BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
+	--selects registers (from bus)
+	BUS_addr1: IN std_logic_vector(10 DOWNTO 0); 
+	BUS_addr2: IN std_logic_vector(10 DOWNTO 0); 
 	---Assigns register with address (from control unit)
 	regA: IN std_logic_vector(2 DOWNTO 0); 
 	regB: IN std_logic_vector(2 DOWNTO 0); 
-	---16 bit output(out A and B to ALU, outC to main bus)
+	---16 bit output(out A and B to ALU, BUS_output to main bus)
 	outA: OUT std_logic_vector(15 DOWNTO 0); 
 	outB: OUT std_logic_vector(15 DOWNTO 0); 
-	outC: OUT std_logic_vector(15 DOWNTO 0); 
 	---Indicate if output is complete
-	outD: OUT std_logic
+	BUS_sync1: OUT std_logic;
+	BUS_sync2: OUT std_logic
 	); 
-END component;
+END COMPONENT;
 
-component arbiter is
-  port (
-   	clk  : in  std_logic;
-    	rst  : in  std_logic;
--- inputs --data bus requests
-	req0,req1  : in  std_logic;
-	busy : in  std_logic;
-	BUS_sync_a1,BUS_sync_a2 : OUT  std_logic;			
--- outputs   
-   	gnt0 : out std_logic;
-	gnt1 : out std_logic
-  );
-end arbiter;
+COMPONENT arbiter is
+	PORT (
+		clk  			: IN  std_logic;
+		rst  			: IN  std_logic;
+		-- inputs --data bus requests
+		req0,req1,req2	: IN  std_logic;
+		busy 			: IN  std_logic;
+		BUS_sync_a1,BUS_sync_a2 : OUT  std_logic;			
+			-- outputs   
+		gnt0 			: OUT std_logic;
+		gnt1 			: OUT std_logic;
+		gnt2			: OUT std_logic
+	);
+END COMPONENT;
 
-component RAM_256X16 is
-port(
- address: in std_logic_vector(7 downto 0); 
- data_in: in std_logic_vector(15 downto 0);
- write_in: in std_logic; 
- clock: in std_logic; 
- data_out: out std_logic_vector(15 downto 0)
-);
-end component;
+COMPONENT Memory is
+	PORT(
+		clk : IN std_logic; 
+	
+		BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
+		--selects memory (from bus)
+		BUS_addr1: IN std_logic_vector(10 DOWNTO 0); 
+		BUS_addr2: IN std_logic_vector(10 DOWNTO 0); 
+		---Indicate IF output IS complete
+		BUS_sync1: OUT std_logic;
+		BUS_sync2: OUT std_logic
+	
+	);
+	END COMPONENT;
 
-component ALU IS
-port(		reset : in std_logic;					
-		ALU_cntrl : in std_logic_vector (3 downto 0);				-- OP field
-		ALU_A : in std_logic_vector (15 downto 0);				-- input A
-		ALU_B : in std_logic_vector (15 downto 0);				-- input B
-		complete : in boolean;							-- instruction complete => reset 
-		flag_vector : out std_logic_vector (2 downto 0) := (others => '0');	-- 3bit flag vector					
-		ALU_out : out std_logic_vector (15 downto 0):= (others => '0')		-- output of ALU
+COMPONENT ALU IS
+PORT(		
+		reset : IN std_logic;					
+		ALU_cntrl : IN std_logic_vector (3 downto 0);				-- OP field
+		ALU_A : IN std_logic_vector (15 downto 0);				-- input A
+		ALU_B : IN std_logic_vector (15 downto 0);				-- input B
+		flag_vector : OUT std_logic_vector (2 downto 0) := (others => '0');	-- 3bit flag vector					
+		ALU_out : OUT std_logic_vector (15 downto 0):= (others => '0')		-- output of ALU
 								
 		);	
-end component;
-Architecture bhv of datapath is
+END COMPONENT;
 
+COMPONENT InstructionMemory IS
+PORT (
+    clk, reset          : IN std_logic                          ;
+    --- BUS CONNECTIONS
+    DB_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
+    BUS_sync_a1             : IN  std_logic                     ;
+
+    BUS_gnt                 : IN  std_logic                     ;
+    BUS_bsy,BUS_req         : OUT std_logic                     ;
+    BUS_Data                : IN  std_logic_vector(15 DOWNTO 0) ;
+    -- IR outputs
+    IR_instruction          : OUT std_logic_vector(15 DOWNTO 0) ;
+    IR_imm                  : OUT std_logic_vector(7  DOWNTO 0) ;
+
+    -- CONTROL
+    
+    CU_control              : IN  std_logic_vector (1  DOWNTO 0);
+    CU_wait,CU_confirm      : OUT std_logic          
+
+);
+END COMPONENT;
+
+-------------------------------------- END OF COMPONENTS ----------
 
 --CU buffer signals
 signal LF_addr1,LF_addr2 : std_logic_vector(2 downto 0);
@@ -114,114 +151,148 @@ signal address : std_logic_vector(10 DOWNTO 0);
 signal BUS_sync_1 : std_logic;
 signal BUS_sync_2 : std_logic;
 signal ALU_cntrl : std_logic_vector(3 downto 0);
-signal ALU_A_MUX : std_logic;
-signal ALU_B_MUX : std_logic;
+signal ALU_A_sel : std_logic;
+signal ALU_B_sel : std_logic;
 signal ALU_OUTPUT_SEL : std_logic;
-signal busy : std_logic;
-signal req0 : std_logic;
-signal gnt0, gnt1 : std_logic;
-signal CS : std_logic_vector(1 downto 0);
-signal wr_in : std_logic;
+signal req0, req1, req2 : std_logic;
+signal gnt0, gnt1, gnt2 : std_logic;
 
-signal BUS_busy_CU : std_logic;
+signal BUS_busy_line : std_logic;
 signal BUS_request_CU : std_logic;
+signal BUS_request_IO : std_logic;
+signal BUS_request_IM : std_logic;
 
 signal BUS_data : std_logic_vector(15 downto 0);
 
-Begin
 
-BUS_busy <= '1' when BUS_busy_CU = '1' or BUS_busy_IO = '1' 
+CU_IM_confirm, CU_IM_wait : std_logic;
+CU_IM_control		: std_logic_vector(1  DOWNTO 0) ;
+IR_instruction		: std_logic_vector(15 DOWNTO 0) ;
+IR_imm				: std_logic_vector(7  DOWNTO 0) ;
 
-ALU_A_sel <= 	ALU_A_REG when ALU_A_MUX = '0' else
-		ALU_A_IREG when ALU_A_MUX = '1';
-ALU_B_sel <= 	ALU_B_REG when ALU_B_MUX = '0' else
-		ALU_B_IREG when ALU_B_MUX = '1';
-BUS_addr2 <=	ALU_out when ALU_OUTPUT_SEL = '1' else --shouldnt be ALU_out
-		"ZZZZZZZZZZZZ";
-BUS_data <=	ALU_out when ALU_OUTPUT_SEL = '0' else
-		"ZZZZZZZZZZZZ";
 
- CU_port: CU
-	port map(
+BEGIN
+
+-- BUS_busy_line <= '1' when BUS_busy_CU = '1' or BUS_busy_IO = '1' or BUS_busy_IM = '1';
+
+ALU_A_sel <= 	ALU_A_REG when ALU_A_sel = '0' else
+				IR_imm when ALU_A_sel = '1';
+ALU_B_sel <= 	ALU_B_REG when ALU_B_sel = '0' else
+				IR_imm when ALU_B_sel = '1';
+
+ CU_PORT: CU
+	PORT MAP(
+	clk   => clk,
+	reset => reset,
+	debug => debug,
 	---LOBSTER FILE---
 	LF_addr1 => LF_addr1,
 	LF_addr2 => LF_addr2, 
-	---ALU---
-	ALU_control => ALU_cntrl,
-	ALU_A_MUX => ALU_A_MUX,
-	ALU_B_MUX => ALU_B_MUX ,
-	ALU_OUTPUT_SEL => ALU_OUTPUT_SEL,
 	---Arbiter---
-	BUS_busy => BUS_busy_CU, 
+	BUS_busy 	=> BUS_busy_line, 
 	BUS_request => BUS_request_CU,
-	BUS_grant <= gnt0,
-+	---BUS ADDRESS 1--
-	---TO LF/RAM/I|O--- 
-	BUS_addr1(7 downto 0) => address, 
-	BUS_addr1(10)=> wr_in,
-	BUS_addr1(9 DOWNTO 8)=> CS,
-	BUS_data => data_in,
+	BUS_grant 	=> gnt0,
+	BUS_addr1 	=> BUS_addr1,
+	BUS_addr2	=> BUS_addr2,
+	BUS_data 	=> BUS_data,
 	---BUS sync---
 	BUS_sync_a1 => BUS_sync_1,
-	BUS_sync_a2 => BUS_sync_2
+	BUS_sync_a2 => BUS_sync_ <= 
+	
+	--Instruction memory
+
+	IM_confirm => CU_IM_confirm,
+	IM_wait	   => CU_IM_wait,
+	IM_control => CU_IM_control,
+	IM_instruction => IR_instruction
+	
+	---ALU---
+	ALU_control 	=> ALU_cntrl,
+	ALU_A_MUX 		=> ALU_A_sel,
+	ALU_B_MUX 		=> ALU_B_sel ,
+	ALU_OUTPUT_SEL 	=> ALU_OUTPUT_SEL,
+	ALU_flags      	=> ALU_flags
+	
 	);
 
-arbiter_port: arbiter 
-	port map(
-	busy <= BUS_busy, 
-	req0 <= BUS_request,
-	req1 <= BUS_request, -- ?
+	
+LF_PORT: register_file 
+PORT MAP (
+	clk <= clk, 
+	BUS_addr1 => BUS_addr1, 
+	BUS_addr2 => BUS_addr2, 
+	BUS_data => BUS_data, 
+	regA => LF_addr1,
+	regB => LF_addr2,
+	outA => ALU_A_REG,
+	outB => ALU_B_REG,
+	BUS_sync1 => BUS_sync1,
+	BUS_sync2 => BUS_sync2
+);
+
+
+arbiter_PORT: arbiter 
+	PORT MAP(
+	clk => clk, 
+	reset <= reset	
+	busy => BUS_busy_line, 
+	req0 => BUS_request_CU,
+	req1 => BUS_request_IM,
+	req2 => BUS_request_IO,
 	BUS_sync_a1 => BUS_sync_1,
 	BUS_sync_a2 => BUS_sync_2, 
 	gnt0 => gnt0,  
 	gnt1 => gnt1,
-	clk <= clk, 
-	reset <= reset,
+	gnt2 => gnt2,
 	); 
 
-RAM_port: ram 
-	port map (
-	clock <= clk,
-	BUS_addr1 <= BUS_addr1, 
-	BUS_addr2 <= BUS_addr2,
-	data_in <= BUS_data,  
-    data_out => Bus_data,
+Memory_Unit: Memory 
+	PORT MAP (
+	clk 	  => clk,
+	BUS_addr1 => BUS_addr1, 
+	BUS_addr2 => BUS_addr2,
+	BUS_data  => BUS_data,
 	BUS_sync1 => BUS_sync1,
-	BUS_sync2 => BUS_sync2,
+	BUS_sync2 => BUS_sync2
 	);
 
-interface_port: buttonss 
-	port map(
-	clk <= clk,
+interface_PORT: IO_Unit 
+	PORT MAP(
+	clk => clk,
 	binaryValue => BUS_data,
 	function_code => BUS_data,
-	BUS_busy => BUS_busy_CU,
-	address => BUS_addr1,
-	data_in <= BUS_data,
-    data_out => ram_data_out,
+	BUS_busy => BUS_busy_line,
+	Bus_addr2 => address, 
+	Bus_data => data_out,
+	busreq => BUS_request_IO
 	);
 
-LF_port: register_file 
-	port map (
-	address <= BUS_addr1(7 downto 0), 
-	wr_in <= BUS_addr1(10),
-	CS    <= BUS_addr1(9 DOWNTO 8), 
-	data_in <= BUS_data, 
-	clk <= clk, 
-	regA <= LF_addr1,
-	regB <= LF_addr2,
-	outA => ALU_A_REG,
-	outB => ALU_B_REG,
-	outC => BUS_addr2
-	);
-
-ALU_port: ALU 
-	port map(
+ALU_PORT: ALU 
+	PORT MAP(
+	reset => reset,
+	ALU_cntrl => ALU_control,
+	ALU_A => ALU_A_sel,
+	ALU_B => ALU_B_sel,
 	flag_vector => ALU_flags, 
-	ALU_out => ALU_OUTPUT,
-	ALU_cntrl <= ALU_control,
-	ALU_A_sel => ALU_A,
-	ALU_B_sel => ALU_B
+	ALU_out => ALU_OUTPUT
 	);
+
+IM: InstructionMemory 
+	PORT MAP(
+	clk 			=> clk,
+	reset 			=> reset,
+	DB_a1   		=> BUS_addr1,
+	BUS_sync_a1 	=> BUS_sync1,
+	BUS_gnt 		=> gnt2,
+	BUS_bsy 		=> BUS_busy_line,
+	BUS_req 		=> BUS_request_IM,
+	BUS_Data		=> BUS_data,
+	IR_instruction	=> IR_instruction,
+	IR_imm			=> IR_imm,
+    CU_control      => CU_IM_control,
+	CU_wait			=> CU_IM_wait,
+	CU_confirm		=> CU_IM_confirm
+);
 	
-end bhv;
+	
+END bhv;
