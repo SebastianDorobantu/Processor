@@ -4,11 +4,12 @@ USE IEEE.numeric_std.ALL;
 
 ENTITY instructionFetcher IS
 PORT (
+    clk, reset,debug        : IN  std_logic                     ;
+
     -- Logic inputs
     PC                      : IN  std_logic_vector(7 DOWNTO 0)  ;
     CU_control              : IN  std_logic_vector(1 DOWNTO 0)  ;
     CU_confirm,CU_wait      : OUT std_logic                     ;
-    clk, reset              : IN  std_logic                     ;
     -- BUS CONNECTIONS
     BUS_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
     BUS_sync_a1             : IN  std_logic                     ;
@@ -57,6 +58,7 @@ iPC <= to_INTEGER(unsigned(PC));
 
 PROCESS (clk, reset)
 BEGIN
+    IF debug = '1' THEN
     IF (reset = '0') THEN
         state <= Idle;
     ELSIF rising_edge(clk) THEN
@@ -92,8 +94,8 @@ BEGIN
                             last_fetch  <= last_fetch + 1;
                             reg_data    <= bus_data;
                             port_sel    <= '0' ;
-                            IF_WR          <= '1' ;
-                            IF_CS          <= '1' ;
+                            IF_WR       <= '1' ;
+                            IF_CS       <= '1' ;
                             bus_busy    <= '0' ;
                             bus_request <= '0' ;
                             fetch_state <= FINFIN ;

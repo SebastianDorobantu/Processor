@@ -8,7 +8,7 @@ USE IEEE.numeric_std.ALL;
 ENTITY CU IS
 PORT (
 
-clk, reset              : IN  std_logic                                             ;
+clk, reset,debug         : IN  std_logic                                             ;
 
 --Lobster File
 
@@ -94,8 +94,8 @@ cond    <= IM_instruction(8)                                                    
 
     PROCESS(clk,reset)
     BEGIN
-
-        IF reset = '0' THEN
+        IF debug = '1' THEN
+        ELSIF reset = '0' THEN
             fe_state    <= execute                                                  ;   
             fetch_state <= send                                                     ;
             exec_state  <= control                                                  ;
