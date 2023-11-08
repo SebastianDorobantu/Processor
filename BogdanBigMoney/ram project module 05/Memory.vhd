@@ -22,6 +22,8 @@ ARCHITECTURE bhv OF Memory IS
 BEGIN
 	PROCESS(clk) IS 
 	BEGIN 
+		IF reset  = '0' THEN
+		ram_data <= (OTHERS => (OTHERS => '0'));	
 		IF rising_edge(clk) THEN 
 			IF    BUS_addr1(9 DOWNTO 8) = "01" THEN		-- Checking CS on add1
 				IF BUS_addr1(10) = '1' THEN
@@ -39,7 +41,11 @@ BEGIN
 					BUS_data <= ram_data(to_integer(unsigned(BUS_addr1(7 DOWNTO 0))));
 					BUS_sync2 						 <= '1'		;
 				END IF;
-		END IF;
+			ELSE
+				BUS_data <= (OTHERS => 'Z') ;
+				BUS_sync1 <= 'Z';
+				BUS_sync2 <= 'Z';	
+			END IF;
 		END IF; 
 	END PROCESS; 
 END bhv;
