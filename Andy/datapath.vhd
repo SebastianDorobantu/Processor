@@ -182,11 +182,12 @@ arbiter_port: arbiter
 RAM_port: ram 
 	port map (
 	clock <= clk,
-	address <= BUS_addr1(7 downto 0), 
-	write_in <= BUS_addr1(10),
-	CS    <= BUS_addr1(9 DOWNTO 8), -- no chipselect input in ram
+	BUS_addr1 <= BUS_addr1, 
+	BUS_addr2 <= BUS_addr2,
 	data_in <= BUS_data,  
-      	data_out => Bus_data
+    data_out => Bus_data,
+	BUS_sync1 => BUS_sync,
+	BUS_sync2 => BUS_sync,
 	);
 
 interface_port: buttonss 
@@ -199,7 +200,7 @@ interface_port: buttonss
 	CS    <= BUS_addr1(9 DOWNTO 8),
 	address <= BUS_addr1(7 downto 0)
 	data_in <= BUS_data,
-        data_out => ram_data_out,
+    data_out => ram_data_out,
 	);
 
 LF_port: register_file 
