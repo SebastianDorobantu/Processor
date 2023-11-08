@@ -92,8 +92,8 @@ BEGIN
                             last_fetch  <= last_fetch + 1;
                             reg_data    <= bus_data;
                             port_sel    <= '0' ;
-                            IF_WR          <= '1' ;
-                            IF_CS          <= '1' ;
+                            IF_WR       <= '1' ;
+                            IF_CS       <= '1' ;
                             bus_busy    <= '0' ;
                             bus_request <= '0' ;
                             fetch_state <= FINFIN ;
