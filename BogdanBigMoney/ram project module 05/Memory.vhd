@@ -39,11 +39,7 @@ BEGIN
 					BUS_data <= ram_data(to_integer(unsigned(BUS_addr1(7 DOWNTO 0))));
 					BUS_sync2 						 <= '1'		;
 				END IF;
-			ELSE
-				BUS_data <= (OTHERS => 'Z') ;
-				BUS_sync1 <= 'Z';
-				BUS_sync2 <= 'Z';	
-			END IF;
+		END IF;
 		END IF; 
 	END PROCESS; 
 END bhv;
