@@ -95,7 +95,7 @@ END COMPONENT;
 
 COMPONENT Memory is
 	PORT(
-		clk : IN std_logic; 
+		clk, reset: IN std_logic; 
 	
 		BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
 		--selects memory (from bus)
@@ -156,24 +156,24 @@ signal ALU_A_sel : std_logic_vector(15 downto 0);
 signal ALU_B_sel : std_logic_vector(15 downto 0);
 signal ALU_A_MUX  : std_logic;
 signal ALU_B_MUX  : std_logic;
-signal ALU_OUTPUT_SEL : std_logic;
-signal req0, req1, req2 : std_logic;
-signal gnt0, gnt1, gnt2 : std_logic;
+signal ALU_OUTPUT_SEL : std_logic := '0';
+signal req0, req1, req2 : std_logic := '0';
+signal gnt0, gnt1, gnt2 : std_logic := '0';
 
-signal BUS_busy_line : std_logic;
-signal BUS_request_CU : std_logic;
-signal BUS_request_IO : std_logic;
-signal BUS_request_IM : std_logic;
+signal BUS_busy_line : std_logic := '0';
+signal BUS_request_CU : std_logic := '0';
+signal BUS_request_IO : std_logic := '0';
+signal BUS_request_IM : std_logic := '0';
 
-signal BUS_data : std_logic_vector(15 downto 0);
+signal BUS_data : std_logic_vector(15 downto 0) := (OTHERS => '0');
 
-signal ALU_A_REG : std_logic_vector(15 downto 0);
-signal ALU_B_REG : std_logic_vector(15 downto 0);
+signal ALU_A_REG : std_logic_vector(15 downto 0) := (OTHERS => '0');
+signal ALU_B_REG : std_logic_vector(15 downto 0) := (OTHERS => '0');
 
 signal CU_IM_confirm, CU_IM_wait : std_logic;
-signal CU_IM_control		: std_logic_vector(1  DOWNTO 0) ;
-signal IR_instruction		: std_logic_vector(15 DOWNTO 0) ;
-signal IR_imm				: std_logic_vector(7  DOWNTO 0) ;
+signal CU_IM_control		: std_logic_vector(1  DOWNTO 0) := (OTHERS => '0');
+signal IR_instruction		: std_logic_vector(15 DOWNTO 0) := (OTHERS => '0');
+signal IR_imm				: std_logic_vector(7  DOWNTO 0) := (OTHERS => '0');
 
 signal ALU_flags : std_logic_vector(2 downto 0);
 
@@ -257,6 +257,7 @@ arbiter_PORT: arbiter
 Memory_Unit: Memory 
 	PORT MAP (
 	clk 	  => clk,
+	reset	  => reset,
 	BUS_addr1 => BUS_addr1, 
 	BUS_addr2 => BUS_addr2,
 	BUS_data  => BUS_data,

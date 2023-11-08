@@ -34,7 +34,7 @@ BEGIN
 				outA <= regs(to_integer(unsigned(regA))); 
 				outB <= regs(to_integer(unsigned(regB)));
 			
-			IF    BUS_addr1(9 DOWNTO 8) = "00" THEN		-- Checking CS on add1
+			IF    BUS_addr1(9 DOWNTO 8) = "01" THEN		-- Checking CS on add1
 				IF BUS_addr1(10) = '1' THEN
 					regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0)))) <= BUS_data;
 					BUS_sync1 						 <= '1'		;	
@@ -42,7 +42,7 @@ BEGIN
 					BUS_data <= regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0))));
 					BUS_sync1 						 <= '1'		;
 				END IF;
-			ELSIF BUS_addr2(9 DOWNTO 8) = "00" THEN		-- Checking CS on add2
+			ELSIF BUS_addr2(9 DOWNTO 8) = "01" THEN		-- Checking CS on add2
 				IF BUS_addr2(10) = '1' THEN
 					regs(to_integer(unsigned(BUS_addr1(2 DOWNTO 0)))) <= BUS_data;
 					BUS_sync2 						 <= '1'		;	

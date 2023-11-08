@@ -1,0 +1,18 @@
+0000 0 0 0 0 0000 0000
+0000 0 0 0 0 0000 0000
+0000 0 0 0 0 0000 0000
+0000 0 0 0 0 0000 0000
+0000 0 0 0 0 0000 0000
+
+; The I/O unit will put the instruction to be executed in memory address 251 
+; and the operands in registers %r5 and %r6, clear 250 and then set %r1 to something else than 0
+; when it's done
+; The I/O will then wait 3 clock cycles check mem location 249 for flag, repeat
+
+loop:
+0000 0 0 0 0 0000 0000				;NOOP
+0001 x x x 0 − − − − − − −−			;Branch on 0 to loop
+									;Ba to 250 
+									
+;at 251
+									; st %5 2
