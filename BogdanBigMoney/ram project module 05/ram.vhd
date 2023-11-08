@@ -1,7 +1,7 @@
 library IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE ieee.numeric_std.ALL;
-ENTITY RAM_256X16 IS
+ENTITY Memory IS
 PORT(
 	clk : in std_logic; 
 	-- address: in std_logic_vector(7 downto 0); 
@@ -17,9 +17,9 @@ PORT(
 	BUS_sync2: OUT std_logic
 
 );
-END RAM_256X16;
+END Memory;
 
-ARCHITECTURE bhv OF RAM_256X16 IS
+ARCHITECTURE bhv OF Memory IS
 	TYPE ram_array IS array (0 to 255) OF std_logic_vector (15 downto 0);
 	signal ram_data: ram_array := (OTHERS => (OTHERS => '0'));
 BEGIN
