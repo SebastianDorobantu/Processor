@@ -117,7 +117,7 @@ signal hl_IR_data,hl_IR_data_in     : std_logic_vector (15 DOWNTO 0) ;
 
 signal hl_reg_data                : std_logic_vector(15 DOWNTO 0) ;
 signal in_between                 : std_logic_vector(15 DOWNTO 0) ;
-
+signal debug                       : std_logic;
 
 
 BEGIN
@@ -212,5 +212,6 @@ IR_imm         <= hl_imm;
 hl_CU_control  <= CU_control;       
 CU_wait        <= hl_CU_wait;      
 CU_confirm     <= hl_CU_confirm; 
+debug           <= debug;    
 
 END ARCHITECTURE;

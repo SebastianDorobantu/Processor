@@ -4,7 +4,7 @@ USE IEEE.numeric_std.ALL;
 
 ENTITY instructionFetcher IS
 PORT (
-    clk, reset,debug        : IN  std_logic                     ;
+    clk, reset, debug        : IN  std_logic                     ;
 
     -- Logic inputs
     PC                      : IN  std_logic_vector(7 DOWNTO 0)  ;

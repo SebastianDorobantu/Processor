@@ -122,7 +122,7 @@ END COMPONENT;
 
 COMPONENT InstructionMemory IS
 PORT (
-    clk, reset          : IN std_logic                          ;
+    clk, reset, debug          : IN std_logic                          ;
     --- BUS CONNECTIONS
     DB_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
     BUS_sync_a1             : IN  std_logic                     ;
@@ -148,11 +148,14 @@ END COMPONENT;
 signal LF_addr1,LF_addr2 : std_logic_vector(2 downto 0);
 signal BUS_addr1,BUS_addr2 : std_logic_vector(10 DOWNTO 0);
 signal address : std_logic_vector(10 DOWNTO 0);
-signal BUS_sync_1 : std_logic;
-signal BUS_sync_2 : std_logic;
-signal ALU_cntrl : std_logic_vector(3 downto 0);
-signal ALU_A_sel : std_logic;
-signal ALU_B_sel : std_logic;
+signal BUS_sync1 : std_logic;
+signal BUS_sync2 : std_logic;
+signal ALU_control : std_logic_vector(3 downto 0);
+signal ALU_OUTPUT : std_logic_vector(15 downto 0);
+signal ALU_A_sel : std_logic_vector(15 downto 0);
+signal ALU_B_sel : std_logic_vector(15 downto 0);
+signal ALU_A_MUX  : std_logic;
+signal ALU_B_MUX  : std_logic;
 signal ALU_OUTPUT_SEL : std_logic;
 signal req0, req1, req2 : std_logic;
 signal gnt0, gnt1, gnt2 : std_logic;
@@ -164,21 +167,26 @@ signal BUS_request_IM : std_logic;
 
 signal BUS_data : std_logic_vector(15 downto 0);
 
+signal ALU_A_REG : std_logic_vector(15 downto 0);
+signal ALU_B_REG : std_logic_vector(15 downto 0);
 
-CU_IM_confirm, CU_IM_wait : std_logic;
-CU_IM_control		: std_logic_vector(1  DOWNTO 0) ;
-IR_instruction		: std_logic_vector(15 DOWNTO 0) ;
-IR_imm				: std_logic_vector(7  DOWNTO 0) ;
+signal CU_IM_confirm, CU_IM_wait : std_logic;
+signal CU_IM_control		: std_logic_vector(1  DOWNTO 0) ;
+signal IR_instruction		: std_logic_vector(15 DOWNTO 0) ;
+signal IR_imm				: std_logic_vector(7  DOWNTO 0) ;
 
+signal ALU_flags : std_logic_vector(2 downto 0);
+
+signal debug : std_logic;
 
 BEGIN
 
 -- BUS_busy_line <= '1' when BUS_busy_CU = '1' or BUS_busy_IO = '1' or BUS_busy_IM = '1';
 
-ALU_A_sel <= 	ALU_A_REG when ALU_A_sel = '0' else
-				IR_imm when ALU_A_sel = '1';
-ALU_B_sel <= 	ALU_B_REG when ALU_B_sel = '0' else
-				IR_imm when ALU_B_sel = '1';
+ALU_A_sel <= 	ALU_A_REG when ALU_A_MUX = '0' else
+		"00000000" & IR_imm when ALU_A_MUX = '1';
+ALU_B_sel <= 	ALU_B_REG when ALU_B_MUX = '0' else
+		"00000000" & IR_imm when ALU_B_MUX = '1';
 
  CU_PORT: CU
 	PORT MAP(
@@ -194,22 +202,22 @@ ALU_B_sel <= 	ALU_B_REG when ALU_B_sel = '0' else
 	BUS_grant 	=> gnt0,
 	BUS_addr1 	=> BUS_addr1,
 	BUS_addr2	=> BUS_addr2,
-	BUS_data 	=> BUS_data,
+	--BUS_data 	=> BUS_data,
 	---BUS sync---
-	BUS_sync_a1 => BUS_sync_1,
-	BUS_sync_a2 => BUS_sync_ <= 
+	BUS_sync_a1 => BUS_sync1,
+	BUS_sync_a2 => BUS_sync2, 
 	
 	--Instruction memory
 
 	IM_confirm => CU_IM_confirm,
 	IM_wait	   => CU_IM_wait,
 	IM_control => CU_IM_control,
-	IM_instruction => IR_instruction
+	IM_instruction => IR_instruction,
 	
 	---ALU---
-	ALU_control 	=> ALU_cntrl,
-	ALU_A_MUX 		=> ALU_A_sel,
-	ALU_B_MUX 		=> ALU_B_sel ,
+	ALU_control 	=> ALU_control,
+	ALU_A_MUX 	=> ALU_A_MUX,
+	ALU_B_MUX 	=> ALU_B_MUX ,
 	ALU_OUTPUT_SEL 	=> ALU_OUTPUT_SEL,
 	ALU_flags      	=> ALU_flags
 	
@@ -218,7 +226,7 @@ ALU_B_sel <= 	ALU_B_REG when ALU_B_sel = '0' else
 	
 LF_PORT: register_file 
 PORT MAP (
-	clk <= clk, 
+	clk => clk, 
 	BUS_addr1 => BUS_addr1, 
 	BUS_addr2 => BUS_addr2, 
 	BUS_data => BUS_data, 
@@ -234,17 +242,17 @@ PORT MAP (
 arbiter_PORT: arbiter 
 	PORT MAP(
 	clk => clk, 
-	reset <= reset	
+	rst => reset,	
 	busy => BUS_busy_line, 
 	req0 => BUS_request_CU,
 	req1 => BUS_request_IM,
 	req2 => BUS_request_IO,
-	BUS_sync_a1 => BUS_sync_1,
-	BUS_sync_a2 => BUS_sync_2, 
+	BUS_sync_a1 => BUS_sync1,
+	BUS_sync_a2 => BUS_sync2, 
 	gnt0 => gnt0,  
 	gnt1 => gnt1,
-	gnt2 => gnt2,
-	); 
+	gnt2 => gnt2
+); 
 
 Memory_Unit: Memory 
 	PORT MAP (
@@ -256,16 +264,7 @@ Memory_Unit: Memory
 	BUS_sync2 => BUS_sync2
 	);
 
-interface_PORT: IO_Unit 
-	PORT MAP(
-	clk => clk,
-	binaryValue => BUS_data,
-	function_code => BUS_data,
-	BUS_busy => BUS_busy_line,
-	Bus_addr2 => address, 
-	Bus_data => data_out,
-	busreq => BUS_request_IO
-	);
+
 
 ALU_PORT: ALU 
 	PORT MAP(
@@ -281,15 +280,16 @@ IM: InstructionMemory
 	PORT MAP(
 	clk 			=> clk,
 	reset 			=> reset,
+	debug 			=> debug,
 	DB_a1   		=> BUS_addr1,
-	BUS_sync_a1 	=> BUS_sync1,
+	BUS_sync_a1 		=> BUS_sync1,
 	BUS_gnt 		=> gnt2,
 	BUS_bsy 		=> BUS_busy_line,
 	BUS_req 		=> BUS_request_IM,
 	BUS_Data		=> BUS_data,
-	IR_instruction	=> IR_instruction,
+	IR_instruction		=> IR_instruction,
 	IR_imm			=> IR_imm,
-    CU_control      => CU_IM_control,
+    	CU_control     		=> CU_IM_control,
 	CU_wait			=> CU_IM_wait,
 	CU_confirm		=> CU_IM_confirm
 );
