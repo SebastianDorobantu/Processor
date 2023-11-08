@@ -31,44 +31,6 @@ ALU_OUTPUT_SEL          : OUT std_logic                           -- 0 for data 
 );
 END component;
 
-component buttonss IS
-    PORT (
-        clk   : IN std_logic;
-        reset : IN std_logic;
-        button1, button2, button3 : IN std_logic;
-	data_out : OUT STD_LOGIC_VECTOR(15 downto 0); --data from memory (debug)
-        switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9: IN std_logic;
-        dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
-	debug: OUT std_logic;
-	btn_inc : in STD_LOGIC; -- Increment button
-        btn_dec : in STD_LOGIC; -- Decrement button
-	enter: in STD_LOGIC:= '0';
-        address : out STD_LOGIC_VECTOR(7 downto 0);
-	function_code : OUT std_logic_vector(3 DOWNTO 0);
-        LED9, LED8, LED7, LED6, LED0 : OUT std_logic
-    );
-END component;
-
-component register_file IS 
-	PORT(
-	clk: IN std_logic;
-	wr_enable: IN std_logic;
-	--16 bit address from memory/ALU
-	data: IN std_logic_vector(15 DOWNTO 0); 
-	--selects registers (8 registers)(from bus)
-	address: IN std_logic_vector(7 DOWNTO 0); 
-	---Assigns register with address (from control unit)
-	regA: IN std_logic_vector(2 DOWNTO 0); 
-	regB: IN std_logic_vector(2 DOWNTO 0); 
-	---16 bit output(out A and B to ALU, outC to main bus)
-	outA: OUT std_logic_vector(15 DOWNTO 0); 
-	outB: OUT std_logic_vector(15 DOWNTO 0); 
-	outC: OUT std_logic_vector(15 DOWNTO 0); 
-	---Indicate if output is complete
-	outD: OUT std_logic
-	); 
-END component;
-
 component arbiter is
   port (
    	clk  : in  std_logic;
@@ -82,16 +44,6 @@ component arbiter is
 	gnt1 : out std_logic
   );
 end arbiter;
-
-component RAM_256X16 is
-port(
- address: in std_logic_vector(7 downto 0); 
- data_in: in std_logic_vector(15 downto 0);
- write_in: in std_logic; 
- clock: in std_logic; 
- data_out: out std_logic_vector(15 downto 0)
-);
-end component;
 
 component ALU IS
 port(		reset : in std_logic;					
@@ -126,11 +78,9 @@ signal wr_in : std_logic;
 signal BUS_busy_CU : std_logic;
 signal BUS_request_CU : std_logic;
 
-signal BUS_data : std_logic_vector(15 downto 0);
-
 Begin
 
-BUS_busy <= '1' when BUS_busy_CU = '1' or BUS_busy_IO = '1' 
+BUS_busy <= '1' when BUS_busy_CU 0 '1' or BUS_busy_ 
 
 ALU_A_sel <= 	ALU_A_REG when ALU_A_MUX = '0' else
 		ALU_A_IREG when ALU_A_MUX = '1';
@@ -157,9 +107,9 @@ BUS_data <=	ALU_out when ALU_OUTPUT_SEL = '0' else
 	BUS_grant <= gnt0,
 +	---BUS ADDRESS 1--
 	---TO LF/RAM/I|O--- 
-	BUS_addr1(7 downto 0) => address, 
-	BUS_addr1(10)=> wr_in,
-	BUS_addr1(9 DOWNTO 8)=> CS,
+	BUS_addr1 => address, 
+	BUS_addr1(11)=> wr_in,
+	BUS_addr1(10 DOWNTO 9)=> CS,
 	BUS_data => data_in,
 	---BUS sync---
 	BUS_sync_a1 => BUS_sync_a1,
@@ -181,32 +131,26 @@ arbiter_port: arbiter
 
 RAM_port: ram 
 	port map (
-	clock <= clk,
-	address <= BUS_addr1(7 downto 0), 
-	write_in <= BUS_addr1(10),
-	CS    <= BUS_addr1(9 DOWNTO 8), -- no chipselect input in ram
+	reset => reset
+	clk <= clk,
+	address <= BUS_addr1, 
+	wr_in <= BUS_addr1(11),
+	CS    <= BUS_addr1(10 DOWNTO 9),
 	data_in <= BUS_data,  
       	data_out => Bus_data
 	);
-
-interface_port: buttonss 
+interface_port: interface 
 	port map(
 	clk <= clk,
 	binaryValue => BUS_data,
-	function_code => BUS_data,
-	BUS_busy => BUS_busy_CU,
-	wr_in <= BUS_addr1(10),
-	CS    <= BUS_addr1(9 DOWNTO 8),
-	address <= BUS_addr1(7 downto 0)
-	data_in <= BUS_data,
-        data_out => ram_data_out,
+	function_code => BUS_data
 	);
 
 LF_port: register_file 
 	port map (
-	address <= BUS_addr1(7 downto 0), 
-	wr_in <= BUS_addr1(10),
-	CS    <= BUS_addr1(9 DOWNTO 8), 
+	address <= BUS_addr1, 
+	wr_in <= BUS_addr1(11),
+	CS    <= BUS_addr1(10 DOWNTO 9), 
 	data_in <= BUS_data, 
 	clk <= clk, 
 	regA <= LF_addr1,
