@@ -2,25 +2,23 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
-ENTITY IO_Unit IS
+ENTITY interface IS
     PORT (
         clk   : IN std_logic;
         reset : IN std_logic;
         button1, button2, button3 : IN std_logic;
-	    data_out : OUT STD_LOGIC_VECTOR(15 downto 0); --data from memory (debug)
         switch0, switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9: IN std_logic;
         dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
-	    debug: OUT std_logic;
-	    btn_inc : in STD_LOGIC; -- Increment button
-        btn_dec : in STD_LOGIC; -- Decrement button
-	    enter: in STD_LOGIC:= '0';
-        address : out STD_LOGIC_VECTOR(7 downto 0);
-	    function_code : OUT std_logic_vector(3 DOWNTO 0);
-        LED9, LED8, LED7, LED6, LED0 : OUT std_logic
+	enter: IN STD_LOGIC:= '0';
+	BUS_addr2: OUT std_logic_vector(10 DOWNTO 0); 
+	BUS_data: IN std_logic_vector(15 downto 0);  
+	function_code: OUT std_logic_vector(3 DOWNTO 0);
+	binaryValue: OUT std_logic_vector(15 DOWNTO 0) := (others => '0');  -- 16-bit binary value
+        LED9, LED8, LED7, LED6, LED0: OUT std_logic
     );
-END IO_Unit;
+END interface;
 
-ARCHITECTURE bhv OF IO_Unit IS
+ARCHITECTURE bhv OF interface IS
     constant countEnd : natural := 10;
     signal currentDisplay: integer range 0 to 5 := 0;
     signal count : integer range 0 to countEnd - 1 := 0;
@@ -28,7 +26,6 @@ ARCHITECTURE bhv OF IO_Unit IS
     signal temp1, temp2, temp5 : std_logic_vector(3 DOWNTO 0) := "0000";
     signal prev_button1, prev_button2, prev_button3: std_logic := '0';
     signal decimalValue: integer range -999999 to 999999 := 0;
-    signal binaryValue: std_logic_vector(15 DOWNTO 0) := (others => '0');  -- 16-bit binary value
     signal isNegative: std_logic := '0';  -- Added signal to track the sign of the decimal value
     signal temporal: std_logic_vector(15 DOWNTO 0) := (others => '0');
     signal ram_data_out : STD_LOGIC_VECTOR(15 downto 0);
@@ -95,15 +92,6 @@ BEGIN
     address_buf(5) <= switch7;
     address_buf(6) <= switch8;
     address_buf(7) <= switch9; 
-     
-    RAM_256X16_port: RAM_256X16 
-	port map (
-      		clk => clk,
-      		address => address_buf,
-		write_in => open, 
-		data_in => open,
-      		data_out => ram_data_out
-    	); 
 
     process(switch9, switch8, switch7, switch6)
     begin
@@ -195,20 +183,20 @@ BEGIN
 		
 	    IF switch1 = '1' THEN 
         	if reset = '1' then
-            		address <=(others => '0');
+            		Bus_addr2 <=(others => '0');
        		 elsif rising_edge(clk) then
 			If enter = '0' then 
-            			if btn_inc = '1' then
-                			address <= std_logic_vector(unsigned(address_buf) + 1);
-           			elsif btn_dec = '1' then
-                			address <= std_logic_vector(unsigned(address_buf) - 1); 
+            			if button2 = '1' then
+                			Bus_addr2(7 DOWNTO 0)<= std_logic_vector(unsigned(address_buf) + 1);
+           			elsif button3 = '1' then
+                			Bus_addr2(7 DOWNTO 0) <= std_logic_vector(unsigned(address_buf) - 1); 
             			end if;
 			else
-				address <= address_buf;
-				data_out <= ram_data_out;
+				Bus_addr2(7 DOWNTO 0) <= address_buf;
+				ram_data_out <= Bus_data;
 				--(display in hex) (with led indicating negative)
-				temporal <= std_logic_vector(signed(ram_data_out));
-				temp_int <= to_integer(signed(ram_data_out));		
+				temporal <= std_logic_vector(signed(Bus_data));
+				temp_int <= to_integer(signed(Bus_data));		
 				if temp_int < 0 then 
 					LED0 <= '1';
 				else 
