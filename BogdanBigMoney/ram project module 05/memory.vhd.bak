@@ -4,7 +4,7 @@ USE ieee.numeric_std.ALL;
 ENTITY Memory IS
 PORT(
 	clk,reset : in std_logic; 
-        cnt1,cnt2 : in std_logic; --both 0 reading everyting cnt1 =1 first 8 bits cnt2 =1 last 8 bits
+        cnt1,cnt2 : in std_logic;
 	BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
 	--selects memory (from bus)
 
