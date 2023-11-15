@@ -9,11 +9,11 @@ ENTITY IO_Unit IS
         button1, button2, button3 : IN std_logic;
         switch0, switch1, switch2, switch3 : IN std_logic;
         switch9, switch8, switch7, switch6 : IN std_logic;
-	address : OUT std_logic_vector (10 DOWNTO 0);
+	address_bus : OUT std_logic_vector (10 DOWNTO 0);
 	dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
         function_code : OUT std_logic_vector(3 DOWNTO 0);
 	busreq : OUT std_logic;
-	data: OUT std_logic_vector(15 DOWNTO 0);
+	data_bus: OUT std_logic_vector(15 DOWNTO 0);
         LED9, LED8, LED7, LED6 : OUT std_logic
       
 
@@ -30,6 +30,7 @@ ARCHITECTURE bhv OF IO_Unit IS
     signal prev_button1, prev_button2, prev_button3: std_logic := '0';
     signal decimalValue: integer range -999999 to 999999 := 0;
     signal nxt_adrs: std_logic := '0';  -- Added signal to toggle between two values
+    signal address : std_logic_vector (10 DOWNTO 0);
     signal binaryValue: std_logic_vector(15 DOWNTO 0) := (others => '0');  -- 16-bit binary value
     signal isNegative: std_logic := '0';  -- Added signal to track the sign of the decimal value
 
@@ -170,7 +171,11 @@ BEGIN
                 END IF;
             END IF;
             prev_button3 <= button3;
-        END IF;
-    END PROCESS;
-data <= binaryValue;
-END bhv;
+
+	    IF grant_signal = '1' THEN
+            	address <= address_bus;
+            	binaryValue <= data_bus;
+	    END IF;
+    END IF;
+   END PROCESS;
+  END bhv  
