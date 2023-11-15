@@ -13,6 +13,7 @@ ENTITY IO_Unit IS
 	dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
         function_code : OUT std_logic_vector(3 DOWNTO 0);
 	busreq : OUT std_logic;
+	grant_signal: IN std_logic;
 	data_bus: OUT std_logic_vector(15 DOWNTO 0);
         LED9, LED8, LED7, LED6 : OUT std_logic
       
@@ -178,4 +179,4 @@ BEGIN
 	    END IF;
     END IF;
    END PROCESS;
-  END bhv  
+  END bhv;  
