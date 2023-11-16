@@ -1,0 +1,25 @@
+load %r1 $10
+load %r2 $-127
+
+add %r2 %r1      - r2 = -117
+
+load %r3 $117 
+
+add %r2 %r3
+be 22
+
+add %r8 1
+
+
+
+
+
+
+
+
+
+
+ld %r5 48
+shl %r5 14
+oov %r6
+ba 1
