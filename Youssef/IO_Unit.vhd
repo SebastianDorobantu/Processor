@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-ENTITY IO_Unit IS
+ENTITY buttonss IS
     PORT (
 	clk   : IN std_logic;
         reset : IN std_logic;
@@ -11,18 +11,18 @@ ENTITY IO_Unit IS
         switch9, switch8, switch7, switch6 : IN std_logic;
 	address_bus : OUT std_logic_vector (10 DOWNTO 0);
 	dig0, dig1, dig2, dig3, dig4, dig5: OUT std_logic_vector(6 DOWNTO 0);
-        function_code : OUT std_logic_vector(3 DOWNTO 0);
 	busreq : OUT std_logic;
 	grant_signal: IN std_logic;
+	instruction: OUT std_logic_vector(15 DOWNTO 0);
 	data_bus: OUT std_logic_vector(15 DOWNTO 0);
         LED9, LED8, LED7, LED6 : OUT std_logic
       
 
 
     );
-END IO_Unit;
+END buttonss;
 
-ARCHITECTURE bhv OF IO_Unit IS
+ARCHITECTURE bhv OF buttonss IS
     constant countEnd : natural := 10;
     signal currentDisplay: integer range 0 to 5 := 0;
     signal count : integer range 0 to countEnd - 1 := 0;
@@ -32,6 +32,7 @@ ARCHITECTURE bhv OF IO_Unit IS
     signal decimalValue: integer range -999999 to 999999 := 0;
     signal nxt_adrs: std_logic := '0';  -- Added signal to toggle between two values
     signal address : std_logic_vector (10 DOWNTO 0);
+    signal function_code : std_logic_vector(3 DOWNTO 0);
     signal binaryValue: std_logic_vector(15 DOWNTO 0) := (others => '0');  -- 16-bit binary value
     signal isNegative: std_logic := '0';  -- Added signal to track the sign of the decimal value
 
@@ -163,7 +164,36 @@ BEGIN
                     address <= "10111111110"; -- Address value for one state
                 ELSE
                     address <= "10111111111"; -- Address value for the other state
+
                 END IF;
+
+		CASE function_code IS
+		    
+                   WHEN "0000" =>
+		       instruction <= "1000100000000101";
+
+ 		   WHEN "0001" =>
+		       instruction <= "1001100000000101";
+  
+                   WHEN "0010" =>
+		       instruction <= "0011100100000101";
+
+ 		   WHEN "0101" =>
+		       instruction <= "0101100000000101";
+  
+                   WHEN "0110" =>
+		       instruction <= "0111100000000101";
+
+ 		   WHEN "0111" =>
+		       instruction <= "0110100000000101";
+  
+                   WHEN "1000" =>
+		       instruction <= "1000100000000101";
+
+		   WHEN OTHERS =>
+			instruction <= "0000000000000000";
+
+		END CASE;
 
                 IF isNegative = '1' THEN
                     binaryValue <= std_logic_vector(to_signed(-decimalValue, 16));
