@@ -16,17 +16,17 @@ LF_addr1,LF_addr2        : OUT std_logic_vector(2 DOWNTO 0)                     
 
 --BUS 
 
-BUS_addr1,BUS_addr2     : OUT std_logic_vector(10 DOWNTO 0)                         ;
+BUS_addr1,BUS_addr2     : OUT std_logic_vector(10 DOWNTO 0) := (OTHERS => '0')      ;
 BUS_sync_a1,BUS_sync_a2 : IN  std_logic                                             ;
 
 BUS_grant               : IN  std_logic                                             ;
-BUS_request             : OUT std_logic                                             ;
-BUS_busy                : OUT std_logic                                             ;
+BUS_request             : OUT std_logic := '0'                                      ;
+BUS_busy                : OUT std_logic := 'Z'                                      ;
 
 --Instruction memory
 
 IM_confirm,IM_wait      : IN  std_logic                                             ;
-IM_control              : OUT std_logic_vector(1 DOWNTO 0)                          ;
+IM_control              : OUT std_logic_vector(1 DOWNTO 0)  := "00"                 ;
 IM_instruction          : IN  std_logic_vector(15 DOWNTO 0)                         ; 
 
 
@@ -104,6 +104,8 @@ cond    <= IM_instruction(8)                                                    
 
             CASE fe_state IS 
             WHEN fetch   => --------------------------------------------- FETCH STATE --------------------------------------------------------------
+                BUS_addr1 <= (OTHERS => 'L')                                        ;
+                BUS_addr2 <= (OTHERS => 'L')                                        ;
                 CASE fetch_state IS 
                 WHEN send => 
                     IM_control <= next_instruction                                  ;
@@ -143,6 +145,7 @@ cond    <= IM_instruction(8)                                                    
                         
                             WHEN "0001" =>----BRANCH INSTRUCTION
                                 IF    cond = '0' THEN  --- branch always
+                                    --BUS_request <= '1'                                          ;   
                                     fe_state <= fetch                               ;
                                     next_instruction <= "11"                        ;
                                 ELSIF cond = '1' THEN --- branch on eq 0
@@ -217,7 +220,9 @@ cond    <= IM_instruction(8)                                                    
                     END IF;
 
                 WHEN fin =>
-                    BUS_busy <= '0'                                                 ;
+                    BUS_busy <= 'L'                                                 ;
+                    BUS_addr1 <= (OTHERS => 'L')                                    ;
+                    BUS_addr2 <= (OTHERS => 'L')                                    ;
                     CASE op_code IS
                         WHEN "0001" => ----BRANCH INSTRUCTION ; condition code doesn't need to be checked bc only with 1 we get to this state
                             IF alu_flags(2) = '1' THEN

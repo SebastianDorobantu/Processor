@@ -5,7 +5,7 @@ USE IEEE.numeric_std.ALL;
 ENTITY IR IS
 PORT (
     clk, reset, WR      : in  std_logic                       ;
-    Data                : out std_logic_vector(15 DOWNTO 0)   ;
+    Data                : out std_logic_vector(15 DOWNTO 0) := ( OTHERS => '0')  ;
     Data_in             : in  std_logic_vector(15 DOWNTO 0)
 );
 END IR ;

@@ -20,7 +20,7 @@ BEGIN
 PROCESS (clk, reset)
 BEGIN
     IF (reset = '0') THEN
-        Data <= (OTHERS => '0')                                                 ;
+        Data <= (OTHERS => 'Z')                                                 ;
     ELSIF rising_edge(clk) AND CS = '1' THEN
         Data <= (OTHERS => 'Z')                                             ;
         IF WR = '1' THEN

@@ -96,7 +96,7 @@ END COMPONENT;
 COMPONENT Memory is
 	PORT(
 		clk, reset: IN std_logic; 
-	
+	    cnt			: in std_logic_vector(1 DOWNTO 0); --IF 00 reading whole word; 10 => first 8 bits; 01 => last 8 bits
 		BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
 		--selects memory (from bus)
 		BUS_addr1: IN std_logic_vector(10 DOWNTO 0); 
@@ -161,9 +161,6 @@ signal req0, req1, req2 : std_logic := '0';
 signal gnt0, gnt1, gnt2 : std_logic := '0';
 
 signal BUS_busy_line : std_logic := '0';
-signal BUS_request_CU : std_logic := '0';
-signal BUS_request_IO : std_logic := '0';
-signal BUS_request_IM : std_logic := '0';
 
 signal BUS_data : std_logic_vector(15 downto 0) := (OTHERS => '0');
 
@@ -177,6 +174,8 @@ signal IR_imm				: std_logic_vector(7  DOWNTO 0) := (OTHERS => '0');
 
 signal ALU_flags : std_logic_vector(2 downto 0);
 
+-- IO signals
+signal cnt	 : std_logic_vector(1 DOWNTO 0) := "00"; 
 signal debug : std_logic;
 
 BEGIN
@@ -188,17 +187,17 @@ ALU_A_sel <= 	ALU_A_REG when ALU_A_MUX = '0' else
 ALU_B_sel <= 	ALU_B_REG when ALU_B_MUX = '0' else
 		"00000000" & IR_imm when ALU_B_MUX = '1';
 
- CU_PORT: CU
+ ControlUnit: CU
 	PORT MAP(
-	clk   => clk,
-	reset => reset,
-	debug => debug,
+	clk   		=> clk,
+	reset 		=> reset,
+	debug 		=> debug,
 	---LOBSTER FILE---
-	LF_addr1 => LF_addr1,
-	LF_addr2 => LF_addr2, 
+	LF_addr1 	=> LF_addr1,
+	LF_addr2 	=> LF_addr2, 
 	---Arbiter---
 	BUS_busy 	=> BUS_busy_line, 
-	BUS_request => BUS_request_CU,
+	BUS_request => req0,
 	BUS_grant 	=> gnt0,
 	BUS_addr1 	=> BUS_addr1,
 	BUS_addr2	=> BUS_addr2,
@@ -209,22 +208,22 @@ ALU_B_sel <= 	ALU_B_REG when ALU_B_MUX = '0' else
 	
 	--Instruction memory
 
-	IM_confirm => CU_IM_confirm,
-	IM_wait	   => CU_IM_wait,
-	IM_control => CU_IM_control,
-	IM_instruction => IR_instruction,
+	IM_confirm 		=> CU_IM_confirm,
+	IM_wait	 	  	=> CU_IM_wait,
+	IM_control 		=> CU_IM_control,
+	IM_instruction 	=> IR_instruction,
 	
 	---ALU---
 	ALU_control 	=> ALU_control,
-	ALU_A_MUX 	=> ALU_A_MUX,
-	ALU_B_MUX 	=> ALU_B_MUX ,
+	ALU_A_MUX 		=> ALU_A_MUX,
+	ALU_B_MUX 		=> ALU_B_MUX ,
 	ALU_OUTPUT_SEL 	=> ALU_OUTPUT_SEL,
 	ALU_flags      	=> ALU_flags
 	
 	);
 
 	
-LF_PORT: register_file 
+LobsterFile: register_file 
 PORT MAP (
 	clk => clk, 
 	BUS_addr1 => BUS_addr1, 
@@ -239,24 +238,25 @@ PORT MAP (
 );
 
 
-arbiter_PORT: arbiter 
+BUSarbiter: arbiter 
 	PORT MAP(
-	clk => clk, 
-	rst => reset,	
-	busy => BUS_busy_line, 
-	req0 => BUS_request_CU,
-	req1 => BUS_request_IM,
-	req2 => BUS_request_IO,
+	clk 		=> clk, 
+	rst 		=> reset,	
+	busy 		=> BUS_busy_line, 
+	req0 		=> req0,
+	req1 		=> req1,
+	req2 		=> req2,
 	BUS_sync_a1 => BUS_sync1,
 	BUS_sync_a2 => BUS_sync2, 
-	gnt0 => gnt0,  
-	gnt1 => gnt1,
-	gnt2 => gnt2
+	gnt0 		=> gnt0,  
+	gnt1 		=> gnt1,
+	gnt2 		=> gnt2
 ); 
 
-Memory_Unit: Memory 
+MemoryUnit: Memory 
 	PORT MAP (
 	clk 	  => clk,
+	cnt 	  => cnt,
 	reset	  => reset,
 	BUS_addr1 => BUS_addr1, 
 	BUS_addr2 => BUS_addr2,
@@ -267,7 +267,7 @@ Memory_Unit: Memory
 
 
 
-ALU_PORT: ALU 
+ALU_instance: ALU 
 	PORT MAP(
 	reset => reset,
 	ALU_cntrl => ALU_control,
@@ -283,14 +283,14 @@ IM: InstructionMemory
 	reset 			=> reset,
 	debug 			=> debug,
 	DB_a1   		=> BUS_addr1,
-	BUS_sync_a1 		=> BUS_sync1,
-	BUS_gnt 		=> gnt2,
+	BUS_sync_a1 	=> BUS_sync1,
+	BUS_gnt 		=> gnt1,
 	BUS_bsy 		=> BUS_busy_line,
-	BUS_req 		=> BUS_request_IM,
+	BUS_req 		=> req1,
 	BUS_Data		=> BUS_data,
-	IR_instruction		=> IR_instruction,
+	IR_instruction	=> IR_instruction,
 	IR_imm			=> IR_imm,
-    	CU_control     		=> CU_IM_control,
+    CU_control     	=> CU_IM_control,
 	CU_wait			=> CU_IM_wait,
 	CU_confirm		=> CU_IM_confirm
 );

@@ -4,7 +4,7 @@ USE ieee.numeric_std.ALL;
 ENTITY Memory IS
 PORT(
 	clk,reset : in std_logic; 
-    cnt			: in std_logic_vector(1 DOWNTO 0); --both 0 reading everyting cnt1 =1 first 8 bits cnt2 =1 last 8 bits
+    cnt			: in std_logic_vector(1 DOWNTO 0) := "00"; --IF 00 reading whole word; 10 => first 8 bits; 01 => last 8 bits
 	BUS_data: INOUT std_logic_vector(15 DOWNTO 0); 
 	--selects memory (from bus)
 
@@ -21,7 +21,7 @@ END Memory;
 ARCHITECTURE bhv OF Memory IS
 	TYPE ram_array IS array (0 to 255) OF std_logic_vector (15 DOWNTO 0);
 	CONSTANT init_ram : ram_array :=( 
-	x"0000",x"0000",x"0000",x"0000",
+	x"AAAA",x"BBBB",x"CCCC",x"0000",
    	x"0000",x"1306",x"1306",x"10FA",
    	x"0000",x"0000",x"0000",x"0000",
    	x"0000",x"0000",x"0000",x"0000",
@@ -84,7 +84,7 @@ ARCHITECTURE bhv OF Memory IS
    	x"0000",x"0000",x"0000",x"0000",
 	x"0000",x"0000",x"0000",x"0000",
    	x"0000",x"0000",x"0000",x"7200",
-	x"5501",x"1006",x"0000",x"0000"
+	x"5501",x"1006",x"EEEE",x"DDDD"
    );
 
 	signal ram_data: ram_array := init_ram;
@@ -92,7 +92,7 @@ BEGIN
 	PROCESS(clk) IS 
 	BEGIN 
 		IF reset  = '0' THEN
-		ram_data <= init_ram;	
+			ram_data <= init_ram;	
 		ELSIF rising_edge(clk) THEN 
 			IF    BUS_addr1(9 DOWNTO 8) = "10" THEN		-- Checking CS on add1
 				IF BUS_addr1(10) = '1' THEN --IF writing in memory 

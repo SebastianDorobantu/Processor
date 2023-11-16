@@ -36,7 +36,7 @@ PORT (
     PC                      : IN  std_logic_vector(7 DOWNTO 0)  ;
     CU_control              : IN  std_logic_vector(1 DOWNTO 0)  ;
     CU_confirm,CU_wait      : OUT std_logic                     ;
-    clk, reset,debug              : IN  std_logic                     ;
+    clk, reset,debug        : IN  std_logic                     ;
     -- BUS CONNECTIONS
     BUS_a1                  : OUT std_logic_vector(10 DOWNTO 0) ;
     BUS_sync_a1             : IN  std_logic                     ;

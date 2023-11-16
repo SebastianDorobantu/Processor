@@ -1,9 +1,0 @@
-
-    WITH CU_control SELECT
-    PC_temp <=
-        PC_temp             WHEN "00",
-        PC_temp + 1         WHEN "01",
-        PC_temp - 1         WHEN "10",
-        unsigned(jmp_addr)  WHEN "11";
-
-    PC <= std_logic_vector(PC_temp);

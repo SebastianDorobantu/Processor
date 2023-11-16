@@ -9,19 +9,19 @@ PORT (
     -- Logic inputs
     PC                      : IN  std_logic_vector(7 DOWNTO 0)  ;
     CU_control              : IN  std_logic_vector(1 DOWNTO 0)  ;
-    CU_confirm,CU_wait      : OUT std_logic                     ;
+    CU_confirm,CU_wait      : OUT std_logic := '0'              ;
     -- BUS CONNECTIONS
-    BUS_a1                   : OUT std_logic_vector(10 DOWNTO 0) ;
+    BUS_a1                  : OUT std_logic_vector(10 DOWNTO 0) := (OTHERS => '0') ;
     BUS_sync_a1             : IN  std_logic                     ;
 
     BUS_grant               : IN  std_logic                     ;
-    BUS_request             : OUT std_logic                     ;
-    BUS_busy                : OUT std_logic                     ;
+    BUS_request             : OUT std_logic := '0'              ;
+    BUS_busy                : OUT std_logic := 'Z'              ;
     BUS_data                : IN  std_logic_vector(15 DOWNTO 0) ;
 
     -- IRegister connections
     
-    reg_data                : OUT std_logic_vector(15 DOWNTO 0) ;
+    reg_data                : OUT std_logic_vector(15 DOWNTO 0):= (OTHERS => 'Z') ;
     reg_addr                : OUT std_logic_vector(4 DOWNTO 0)  ;
     port_sel,IF_WR,IF_CS    : OUT std_logic := '0'              ;
     IR_WR                   : OUT std_logic := '0'              
@@ -59,6 +59,7 @@ iPC <= to_INTEGER(unsigned(PC));
 PROCESS (clk, reset)
 BEGIN
     IF debug = '1' THEN
+    END IF;
     IF (reset = '0') THEN
         state <= Idle;
     ELSIF rising_edge(clk) THEN
@@ -67,7 +68,7 @@ BEGIN
 
             WHEN Idle => 
                 CU_confirm  <= '0';
-                IF CU_control = "01" OR CU_control = "10" THEN      --INCREMENT OR DECREMENT PC
+                IF (CU_control="01") THEN      --INCREMENT OR DECREMENT PC
                     CU_wait <= '1';
                     state <= NewIR;
                 ELSIF CU_control = "11" THEN                        --BRANCH
@@ -86,7 +87,7 @@ BEGIN
                         IF bus_grant = '1' THEN
                             fetch_state <= Wait4data;
                             bus_busy        <= '1';
-                            BUS_a1           <= '0' & "01" & std_logic_vector(to_unsigned((iPC + (last_fetch - PCL)),8));       -- 001 represents the CS code of MEM
+                            BUS_a1           <= '0' & "10" & std_logic_vector(to_unsigned((iPC + (last_fetch - PCL)),8));       -- 001 represents the CS code of MEM
                         END IF;
                     WHEN Wait4data =>
                         IF bus_sync_a1 = '1' THEN 
@@ -96,7 +97,7 @@ BEGIN
                             port_sel    <= '0' ;
                             IF_WR       <= '1' ;
                             IF_CS       <= '1' ;
-                            bus_busy    <= '0' ;
+                            bus_busy    <= 'L' ;
                             bus_request <= '0' ;
                             fetch_state <= FINFIN ;
                         END IF;
@@ -164,8 +165,7 @@ BEGIN
                     bus_request <= '1'          ;      
                 END IF;              
             END CASE;
-        END IF;
-    END IF;         
+        END IF;   
 END PROCESS;
 
 END ARCHITECTURE;
