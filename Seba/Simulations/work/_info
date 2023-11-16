@@ -22,9 +22,9 @@ VgN3XL<hgndDboUm7ZNR1D0
 !s100 foHDFaLgSR^Tiz7ndkjbb3
 Z7 OV;C;10.5b;63
 32
-Z8 !s110 1700143359
+Z8 !s110 1700161497
 !i10b 1
-Z9 !s108 1700143359.000000
+Z9 !s108 1700161496.000000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/adder.vhd|
 Z11 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/adder.vhd|
 !i113 1
@@ -63,9 +63,9 @@ VbjZURJm^:n`VNZ:68fc5M2
 !s100 Nfh<7`JmcH18X>0m]j?lz1
 R7
 32
-Z17 !s110 1700143360
+R8
 !i10b 1
-R9
+Z17 !s108 1700161497.000000
 Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd|
 Z19 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/ALU.vhd|
 !i113 1
@@ -82,16 +82,16 @@ VgL>eCc;79B_04LNc33>@30
 !s100 BUX89HKQ`1>]6k4BdPo1<2
 R7
 32
-R17
+R8
 !i10b 1
-R9
+R17
 R18
 R19
 !i113 1
 R12
 R13
 Earbiter
-Z20 w1700141176
+Z20 w1700161492
 R1
 R2
 R3
@@ -104,11 +104,11 @@ Vi>g9bEE;e^cATXFK>NY:j2
 !s100 gKcCDQIX8KoXZhhmTA4JE2
 R7
 32
-R8
+Z23 !s110 1700161496
 !i10b 1
 R9
-Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/omar/arbiter.vhd|
-Z24 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/omar/arbiter.vhd|
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/omar/arbiter.vhd|
+Z25 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/omar/arbiter.vhd|
 !i113 1
 R12
 R13
@@ -119,37 +119,37 @@ R3
 DEx4 work 7 arbiter 0 22 i>g9bEE;e^cATXFK>NY:j2
 l30
 L29
-VPHC7=kK<^lc^5^=fP5KBZ2
-!s100 BD@izBaiCK_lfOdE5QGPO0
+VRflJ6i=0F]O9C8A00FnK10
+!s100 PMN;UO?oZH^DWb2V;7>[z3
 R7
 32
-R8
+R23
 !i10b 1
 R9
-R23
 R24
+R25
 !i113 1
 R12
 R13
 Ecu
-Z25 w1700141228
+Z26 w1700141228
 R1
 R2
 R3
 R4
-Z26 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl
-Z27 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl
+Z27 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl
+Z28 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl
 l0
 L8
 VIj?[95W[e5PENdig5iFfI1
 !s100 W1nUJfJd[5R2cU7>;Yd]E0
 R7
 32
-R8
+R23
 !i10b 1
 R9
-Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl|
-Z29 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl|
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl|
+Z30 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/CU.vhdl|
 !i113 1
 R12
 R13
@@ -164,31 +164,31 @@ VWEzmi81=I`XkF^i4m?27M3
 !s100 WG<=m2NH0zm[UN=O:ofMR1
 R7
 32
-R8
+R23
 !i10b 1
 R9
-R28
 R29
+R30
 !i113 1
 R12
 R13
 Edatapath
-Z30 w1700138131
+Z31 w1700138131
 R1
 R2
 R3
 R4
-Z31 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/datapath.vhd
-Z32 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/datapath.vhd
+Z32 8C:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/datapath.vhd
+Z33 FC:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/datapath.vhd
 l0
 L5
 VKY;ahgzC>]_1kB[_>:YTC3
 !s100 Beg3PR?DJI`94z4LO^dFl0
 R7
 32
-R17
+R8
 !i10b 1
-Z33 !s108 1700143360.000000
+R17
 Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/datapath.vhd|
 Z35 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/datapath.vhd|
 !i113 1
@@ -205,9 +205,9 @@ Z37 VJoc9SFW52Ei[FJGLGi_Bg1
 Z38 !s100 WFAE2<YMAPNZWiKAFYPnO1
 R7
 32
-R17
+R8
 !i10b 1
-R33
+R17
 R34
 R35
 !i113 1
@@ -229,7 +229,7 @@ R7
 32
 R8
 !i10b 1
-R9
+R17
 Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd|
 Z42 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/hl_lshifter.vhd|
 !i113 1
@@ -248,7 +248,7 @@ R7
 32
 R8
 !i10b 1
-R9
+R17
 R41
 R42
 !i113 1
@@ -268,7 +268,7 @@ Vb;KCeYjWNjm7mMAgeMYoS3
 !s100 PaY3[SH;X3Kz^AX;>ia<m3
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionFetcher.vhdl|
@@ -287,7 +287,7 @@ Vn>h1;RV5CDU:_i5]R?ed22
 !s100 WVbR2<b<_`Dg=ZZ80cmP@0
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R46
@@ -309,7 +309,7 @@ VlAXoB3m0?9`LRKENKeYRa1
 !s100 hG6eS07H8H>6PFWJk>Yio3
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/instructionFile.vhdl|
@@ -328,7 +328,7 @@ VHB2NM;:13BF>WfBz`^f>M3
 !s100 DT6dAiICcEokQ<PdXULK71
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R51
@@ -350,7 +350,7 @@ VVeNl]E4MUA=2EoUC1Medh3
 !s100 HKc>D;nIUY605clh;iVIA2
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/InstructionMemory.vhdl|
@@ -369,7 +369,7 @@ V9DgCZN344EnfiDO;A3Xmb2
 !s100 QRIOAQ5z1@Q?]de]Wg7NN0
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R56
@@ -391,7 +391,7 @@ VOVzXjbIO?7AYzD^AkcIIH3
 !s100 m`1RBehG1<Dha[7ia[PM@0
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/interface + debug.vhd|
@@ -410,7 +410,7 @@ V@k36c3ZiBZ@8T2m7=MfkS0
 !s100 i5L=@i0BDG1EmImRg8gMX3
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R61
@@ -432,7 +432,7 @@ VhF]h4eMOXhQi:8PgeUON61
 !s100 NoO9FY]hkOPUZgf8T61l80
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/IR.vhdl|
@@ -451,7 +451,7 @@ VhgZLkILi7d?bh;zjP?2e10
 !s100 JaLS[V>H>[<BIS<e@I@D20
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R66
@@ -475,7 +475,7 @@ R7
 32
 R8
 !i10b 1
-R9
+R17
 Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/lshifter.vhd|
 Z72 !s107 C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/lshifter.vhd|
 !i113 1
@@ -494,7 +494,7 @@ R7
 32
 R8
 !i10b 1
-R9
+R17
 R71
 R72
 !i113 1
@@ -514,7 +514,7 @@ VWIGZ`TE<Za<KX^lSTTk9m2
 !s100 gQ<W@`m2i6^4Hoj9<nk`^3
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/BogdanBigMoney/ram project module 05/Memory.vhd|
@@ -533,7 +533,7 @@ VCV;iaKDa]UZda6PC599m71
 !s100 ZkZJ0R7_I<EnTFM_SQeY]0
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R76
@@ -555,7 +555,7 @@ VY?m]lEhnL6SeYAW4VJJ?:1
 !s100 MmeBkYVh41@3?LY8?L<7f0
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Seba/PC.vhdl|
@@ -574,7 +574,7 @@ V5aEZVY:a5hQFEGjKW2Cb<0
 !s100 S`6lMXPB_U>5SJ`NGLcTD1
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R81
@@ -596,7 +596,7 @@ VN1^FiUgV=_1cn5Jd]l^Lj1
 !s100 6aj6RmAXJBzGo0iY7MiT=1
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/Andy/Register_file.vhd|
@@ -615,7 +615,7 @@ VzEzUJVa:1^W081Kef@d2J3
 !s100 l0^PJ>YKLWRAjG6YE1NDP0
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R86
@@ -637,7 +637,7 @@ VdahL4kNUlPGA@cJ=E^z>I1
 !s100 =Vf:2fE?FQ4?@;cM[mBOO3
 R7
 32
-R8
+R23
 !i10b 1
 R9
 Z91 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Seba/Documents/UNI/M5/Project/Processor/David/ALU_work/sub.vhd|
@@ -656,7 +656,7 @@ Vo@4`nkb6c2k@;R9Bzh>[c0
 !s100 =zF^dVl>DJW1XJ?=;W5Nk1
 R7
 32
-R8
+R23
 !i10b 1
 R9
 R91

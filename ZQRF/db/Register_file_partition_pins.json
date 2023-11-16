@@ -1,0 +1,273 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "outA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[3]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[4]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[5]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[6]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[7]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[8]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[9]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[10]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[11]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[12]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[13]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[14]",
+					"strict" : false
+				},
+				{
+					"name" : "outA[15]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[0]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[1]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[2]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[3]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[4]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[5]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[6]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[7]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[8]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[9]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[10]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[11]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[12]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[13]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[14]",
+					"strict" : false
+				},
+				{
+					"name" : "outB[15]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_sync1",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_sync2",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[6]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[8]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[9]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[10]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[11]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[12]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[13]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[14]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_data[15]",
+					"strict" : false
+				},
+				{
+					"name" : "regA[2]",
+					"strict" : false
+				},
+				{
+					"name" : "regA[0]",
+					"strict" : false
+				},
+				{
+					"name" : "regA[1]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "regB[2]",
+					"strict" : false
+				},
+				{
+					"name" : "regB[0]",
+					"strict" : false
+				},
+				{
+					"name" : "regB[1]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr2[10]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr2[8]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr2[9]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "BUS_addr1[2]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,29 @@
+0000  000 0  0000  0000			;@0	
+0000  000 0  0000  0000			;@1
+0000  000 0  0000  0000			;@2
+0000  000 0  0000  0000			;@3
+0000  000 0  0000  0000			;@4
+
+; Mem locations: 
+;	250 is instruction
+;	%r1 is flag for cu
+;	%r2 is flag for IO
+;	%r5 is result
+;	%r5 is operand
+;	%r6 is operand
+	
+; The I/O unit will put the instruction to be executed in memory address 251 
+; and the operands in registers %r5 and %r6, clear 250 and then set %r1 to something else than 0
+; when it's done
+; The I/O will then wait 3 clock cycles check mem location 249 for flag, repeat
+
+loop:
+0000  000 0  0000  0000				;@5	 NOOP
+0001  001 1  0000  0110  				;@6  Branch on 0 to loop
+0001  000 0  1111  1010				;@7  Ba to 250 
+									
+instruction set by IO				;@250  exec operation and store in %r5
+0111  001 0  0000  0000				;@251  and %r1 , %r0
+0101  010 1  0000  0001				;@252  or %r2 , $1
+0001  000 0  0000  0110				;@253  ba loop
+							

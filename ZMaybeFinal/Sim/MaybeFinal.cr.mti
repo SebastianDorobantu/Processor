@@ -1,0 +1,64 @@
+C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/instructionFile.vhdl {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/instructionFile.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity instructionFile
+-- Compiling architecture bhv of instructionFile
+
+} {} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/ALU.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/ALU.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ALU
+-- Compiling architecture bhv of ALU
+
+} {} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/PC.vhdl {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/PC.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ProgramCounter
+-- Compiling architecture bhv of ProgramCounter
+
+} {} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/IR.vhdl {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/IR.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity IR
+-- Compiling architecture bhv of IR
+
+} {} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/InstructionMemory.vhdl {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/InstructionMemory.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity InstructionMemory
+-- Compiling architecture bhv of InstructionMemory
+
+} {} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/InstructionFetcher.vhdl {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/InstructionFetcher.vhdl
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity instructionFetcher
+-- Compiling architecture bhv of instructionFetcher
+
+} {} {}} C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/arbiter.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Seba/Documents/UNI/M5/Project/Processor/ZMaybeFinal/arbiter.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity arbiter
+-- Compiling architecture bhv of arbiter
+
+} {} {}}

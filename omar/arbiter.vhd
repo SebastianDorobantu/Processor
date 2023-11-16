@@ -53,7 +53,7 @@ BEGIN
 				state <= In_prog;
 			END IF;
 		WHEN In_prog => 
-			IF busy = '0' THEN
+			IF busy /= '1' THEN
 				IF req0 = '1' OR req1 = '1' THEN 
 					gnt0 <= req0;
 					gnt1 <= req1 and not req0;
